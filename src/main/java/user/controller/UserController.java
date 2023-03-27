@@ -32,8 +32,13 @@ public class UserController {
 //	}
 
 	@GetMapping(value = "getUser")
-	public UserDTO getMethodName(@RequestParam int id) {
+	public UserDTO getUser(@RequestParam int id) {
 		return userService.getUser(id);
+	}
+	
+	@GetMapping(value = "getUserCount")
+	public int getUserCount() {
+		return userService.getUserCount();
 	}
 
 	@PutMapping(value = "edit")

@@ -8,14 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springboot.main.GoodJobApplication;
+import com.springboot.main.GreatJobApplication;
 
 import company.bean.CompanyDTO;
 import company.dao.CompanyDAO;
 
 
 @SpringBootTest
-@ContextConfiguration(classes = GoodJobApplication.class)
+@ContextConfiguration(classes = GreatJobApplication.class)
 public class TestCompanyMapper {
 	@Autowired
 	CompanyDAO companyDAO;

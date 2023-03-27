@@ -42,5 +42,9 @@ public class UserService {
 	public void block(int id) {
 		userDAO.block(id);
 	}
+
+	public int getUserCount() {
+		return userDAO.getUserCount();
+	}
 	
 }

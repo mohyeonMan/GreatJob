@@ -7,13 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springboot.main.GoodJobApplication;
+import com.springboot.main.GreatJobApplication;
 
 import user.bean.UserDTO;
 import user.dao.UserDAO;
 
 @SpringBootTest
-@ContextConfiguration(classes = GoodJobApplication.class)
+@ContextConfiguration(classes = GreatJobApplication.class)
 public class TestUserMapper {
 	@Autowired
 	UserDAO userDAO;
