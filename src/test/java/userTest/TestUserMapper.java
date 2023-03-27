@@ -1,6 +1,8 @@
 package userTest;
 
 import org.assertj.core.api.Assertions;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +22,11 @@ public class TestUserMapper {
 	
 	@Test
 	@Transactional
-	void create() {
+	void create() throws JSONException {
+		
+		JSONObject object = new JSONObject();
+		object.put("good", 23000);
+		System.out.println(object.toString());
 		
 		//user 생성
 		UserDTO user = new UserDTO();

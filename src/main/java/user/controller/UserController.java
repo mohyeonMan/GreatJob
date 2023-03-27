@@ -39,11 +39,12 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "getUserCount")
-	public JSONObject getUserCount() {
+	public String getUserCount() {
 //		return userService.getUserCount();
 		JSONObject object = new JSONObject();
+		System.out.println(object.toString());
 		object.put("good", 23000);
-		return object;
+		return "{'good':23000}";
 	}
 
 	@PutMapping(value = "edit")
