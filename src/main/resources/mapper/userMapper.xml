@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="userMapper">
+ 
+	<insert id="create" parameterType="user">
+		insert into goodjob.user(
+			image_url,
+			user_id,
+			password,
+			name,
+			interest,
+			description,
+			email,
+			phone,
+			address,
+			type,
+			date_created
+		)values(
+			#{imageUrl},
+			#{userId},
+			#{password},
+			#{name},
+			#{interest},
+			#{description},
+			#{email},
+			#{phone},
+			#{address},
+			#{type},
+			now()
+		)
+	</insert>
+	
+	<select id="getUser" parameterType="Integer" resultType="user">
+		select
+			id as "id",
+			user_id as "userId",
+			password as "password",
+			image_url as "imageUrl",
+			name as "name",
+			interest as "interest",
+			description as "description",
+			point as "point",
+			email as "email",
+			phone as "phone",
+			address as "address",
+			reported as "reported",
+			date_created as "dateCreated",
+			type as "type"
+		from
+			goodjob.user
+		where
+			id= #{id} and status = 0
+		
+	</select>
+	
+	<select id="getIdByUserId" resultType="Integer">
+ 		select id from goodjob.user where user_id = #{userId}
+ 	</select>
+ 	
+ 	<select id="getUserCount" resultType="Integer">
+ 		select count(*) from goodjob.user
+ 	</select>
+ 	
+ 	<update id="update" parameterType="user">
+ 		update goodjob.user set
+ 			password = #{password},
+ 			image_url = #{imageUrl},
+ 			name = #{name},
+ 			interest = #{interest},
+ 			description = #{description},
+ 			email = #{email},
+ 			phone = #{phone},
+ 			address = #{address},
+ 			type = #{type}
+ 		where id = #{id} and status = 0
+ 	</update>
+ 	
+ 	<update id="softDelete" parameterType="Integer">
+		update goodjob.user set
+			status = 1
+		where id= #{id} and status != 1
+	</update>
+	
+	<update id="block" parameterType="Integer">
+		update goodjob.user set
+			status = 2
+		where id= #{id} and status = 0  and status !=2
+	</update>
+	
+	<update id="rollback" parameterType="Integer">
+		update goodjob.user set
+			status = 0
+		where id= #{id} and status != 0
+	</update>
+ 
+ 
+<!--  	<insert id="create" parameterType="company">
+	 	insert into goodjob.company(
+	 		image_url,name,user_id,password,email,description,address,date_created
+	 	)values(
+	 		#{imageUrl},#{name},#{userId},#{password},#{email},#{description},#{address},now()
+	 	)
+ 	</insert>
+ 	
+ 	<select id="getCompany" parameterType="Integer" resultType="company">
+ 		select 
+ 			id as "id",
+ 			image_url as "imageUrl",
+ 			name as "name",
+ 			description as "description",
+ 			email as "email",
+ 			address as "address",
+ 			date_created as "dateCreated"
+ 		from goodjob.company where id = #{id} and deleted = 0
+ 	</select>
+ 	
+ 	<select id="getCompanyCount" resultType="Integer">
+ 		select count(*) from goodjob.company where deleted = 0
+ 	</select>
+ 	
+ 	<select id="getIdByName" resultType="Integer">
+ 		select id from goodjob.company where name = #{name}
+ 	</select>
+ 	
+ 	<update id="update" parameterType="company">
+ 		update goodjob.company set 
+ 			image_url = #{imageUrl},
+ 			user_id = #{userId},
+ 			password = #{password},
+ 			name = #{name},
+ 			description = #{description},
+ 			email = #{email},
+ 			address = #{address}
+ 		where id = #{id} and deleted = 0
+ 	</update>
+ 	
+	<update id="delete" parameterType="Integer">
+		update goodjob.company set
+			deleted = 1
+		where id= #{id} and deleted = 0
+	</update>
+	
+	<update id="rollback" parameterType="Integer">
+		update goodjob.company set
+			deleted = 0
+		where id= #{id} and deleted = 1
+	</update> -->
+	
+ </mapper>
