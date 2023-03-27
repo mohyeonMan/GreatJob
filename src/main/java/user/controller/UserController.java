@@ -41,10 +41,22 @@ public class UserController {
 	@GetMapping(value = "getUserCount")
 	public String getUserCount() {
 //		return userService.getUserCount();
+		UserDTO user = new UserDTO();
+		user.setUserId("userId-");
+		user.setPassword("password-");
+		user.setImageUrl("url-");
+		user.setName("name-");
+		user.setInterest("interest-");
+		user.setDescription("description-");
+		user.setEmail("email@gmail.com");
+		user.setPhone("phone-");
+		user.setAddress("address-");
+		user.setType("kakao-");		
+		
 		JSONObject object = new JSONObject();
-		System.out.println(object.toString());
-		object.put("good", 23000);
-		return "{'good':23000}";
+		object.put("good", user);
+		
+		return object.toString();
 	}
 
 	@PutMapping(value = "edit")

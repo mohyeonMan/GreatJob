@@ -24,10 +24,6 @@ public class TestUserMapper {
 	@Transactional
 	void create() throws JSONException {
 		
-		JSONObject object = new JSONObject();
-		object.put("good", 23000);
-		System.out.println(object.toString());
-		
 		//user 생성
 		UserDTO user = new UserDTO();
 		user.setUserId("userId-");
