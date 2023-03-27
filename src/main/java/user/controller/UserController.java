@@ -1,7 +1,5 @@
 package user.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +39,11 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "getUserCount")
-	public String getUserCount() {
+	public JSONObject getUserCount() {
 //		return userService.getUserCount();
-		return "{'park':200}";
+		JSONObject object = new JSONObject();
+		object.put("good", 23000);
+		return object;
 	}
 
 	@PutMapping(value = "edit")
