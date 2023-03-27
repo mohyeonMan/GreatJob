@@ -33,7 +33,7 @@ public class UserController {
 //	@PostMapping(value = "logIn")
 //	public void logIn(@ModelAttribute UserDTO user) {
 //		user
-//	}
+//	} 
 
 	@GetMapping(value = "getUser")
 	public UserDTO getUser(@RequestParam int id) {
@@ -41,12 +41,9 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "getUserCount")
-	public JSONObject getUserCount() {
+	public String getUserCount() {
 //		return userService.getUserCount();
-		Map<String, Integer> map = new HashMap<>();
-		map.put("park", 29);
-		JSONObject object = new JSONObject(map) ;
-		return object;
+		return "{'park':200}";
 	}
 
 	@PutMapping(value = "edit")
