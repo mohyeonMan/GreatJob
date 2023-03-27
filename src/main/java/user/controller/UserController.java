@@ -1,5 +1,9 @@
 package user.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,8 +41,12 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "getUserCount")
-	public int getUserCount() {
-		return userService.getUserCount();
+	public JSONObject getUserCount() {
+//		return userService.getUserCount();
+		Map<String, Integer> map = new HashMap<>();
+		map.put("park", 29);
+		JSONObject object = new JSONObject(map) ;
+		return object;
 	}
 
 	@PutMapping(value = "edit")
