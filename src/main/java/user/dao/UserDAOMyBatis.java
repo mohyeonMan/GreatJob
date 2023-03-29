@@ -1,18 +1,26 @@
 package user.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import user.bean.UserDTO;
 import user.bean.UserQueryOption;
 
 @Repository
+@Primary
 @Transactional
+@RequiredArgsConstructor
 public class UserDAOMyBatis implements UserDAO{
 	@Autowired
 	SqlSession sqlSession;
@@ -20,6 +28,21 @@ public class UserDAOMyBatis implements UserDAO{
 	@Override
 	public void create(UserDTO userDTO) {
 		sqlSession.insert("userMapper.create",userDTO);
+	}
+	
+	@Override
+	public int checkIdExist(String userId) {
+		return sqlSession.selectOne("userMapper.checkIdExist",userId);
+	}
+	
+	@Override
+	public int logIn(Map<String, Object> map) {
+		if(sqlSession.selectOne("userMapper.logIn",map) != null){
+			return sqlSession.selectOne("userMapper.logIn",map);
+		}else {
+			return 0;
+		}
+		
 	}
 
 	@Override

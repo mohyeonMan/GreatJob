@@ -1,72 +1,63 @@
 package user.controller;
 
 
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
 import user.bean.UserDTO;
 import user.service.UserService;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "user")
 public class UserController {
-	@Autowired
-	UserService userService;
+	private Map<String, UserService> userService;
 
+	
 	@PostMapping(value = "signIn")
-	public void signIn(@ModelAttribute UserDTO user) {
-		userService.signIn(user);
+	public JSONArray signIn(@ModelAttribute UserDTO userDTO) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("user", userDTO);
+		return userService.get("userSignInService").execute(map);
 	}
 
-//	@PostMapping(value = "logIn")
-//	public void logIn(@ModelAttribute UserDTO user) {
-//		user
-//	} 
+	@PostMapping(value = "logIn")
+	public JSONArray logIn(@RequestBody Map<String, Object> map) {
+		return userService.get("userLogInService").execute(map);
+	} 
 
 	@GetMapping(value = "getUser")
-	public UserDTO getUser(@RequestParam int id) {
-		return userService.getUser(id);
+	public JSONArray getUser(@RequestBody Map<String,Object> map) {
+		return userService.get("getUserService").execute(map);
 	}
 	
 	@GetMapping(value = "getUserCount")
-	public String getUserCount() {
-//		return userService.getUserCount();
-		UserDTO user = new UserDTO();
-		user.setUserId("userId-");
-		user.setPassword("password-");
-		user.setImageUrl("url-");
-		user.setName("name-");
-		user.setInterest("interest-");
-		user.setDescription("description-");
-		user.setEmail("email@gmail.com");
-		user.setPhone("phone-");
-		user.setAddress("address-");
-		user.setType("kakao-");		
-		
-		JSONObject object = new JSONObject();
-		object.put("good", user);
-		
-		return object.toString();
+	public JSONArray getUserCount() {
+		Map<String, Object> map = new HashMap<>();
+		return userService.get("getUserCountService").execute(map);
 	}
 
-	@PutMapping(value = "edit")
-	public void edit(@ModelAttribute UserDTO user) {
-		userService.editUser(user);
-	}
+//	@PutMapping(value = "edit")
+//	public JSONArray edit(@RequestBody Map<String, Object> map) {
+//		userService.get("editUserService").execute();
+//		JSONArray data = new JSONArray();
+//		data.put(false);
+//	}
 
-	@DeleteMapping(value = "delete")
-	public void delete(@RequestParam int id) {
-		userService.deleteUser(id);
-	}
+//	@DeleteMapping(value = "delete")
+//	public void delete(@RequestParam int id) {
+//		userService.deleteUser(id);
+//	}
 
 }

@@ -1,5 +1,8 @@
 package userTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.main.GreatJobApplication;
 
 import user.bean.UserDTO;
@@ -18,11 +23,11 @@ import user.dao.UserDAO;
 @ContextConfiguration(classes = GreatJobApplication.class)
 public class TestUserMapper {
 	@Autowired
-	UserDAO userDAO;
+	private Map<String, UserDAO> userDAO;
 	
 	@Test
 	@Transactional
-	void create() throws JSONException {
+	void create() throws JsonProcessingException {
 		
 		//user 생성
 		UserDTO user = new UserDTO();
@@ -30,16 +35,77 @@ public class TestUserMapper {
 		user.setPassword("password-");
 		user.setImageUrl("url-");
 		user.setName("name-");
-		user.setInterest("interest-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
 		user.setPhone("phone-");
 		user.setAddress("address-");
-		user.setType("kakao-");
-		userDAO.create(user);
-		
-		int count = userDAO.getUserCount();
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
+				
+		int count = userDAO.get("userDAOMyBatis").getUserCount();
 		Assertions.assertThat(count).isEqualTo(1);
+	}
+	
+	@Test
+	@Transactional
+	void checkIdExist() {
+		//user 생성
+		UserDTO user = new UserDTO();
+		user.setUserId("userId-");
+		user.setPassword("password-");
+		user.setImageUrl("url-");
+		user.setName("name-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
+		user.setDescription("description-");
+		user.setEmail("email@gmail.com");
+		user.setPhone("phone-");
+		user.setAddress("address-");
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
+		
+		int exist = userDAO.get("userDAOMyBatis").checkIdExist(user.getUserId());
+		Assertions.assertThat(exist).isEqualTo(1);
+		exist = userDAO.get("userDAOMyBatis").checkIdExist("newId");
+		Assertions.assertThat(exist).isEqualTo(0);
+		
+	}
+	
+	@Test
+	@Transactional
+	void logIn() {
+		
+		//user 생성
+		UserDTO user = new UserDTO();
+		user.setUserId("userId-");
+		user.setPassword("password-");
+		user.setImageUrl("url-");
+		user.setName("name-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
+		user.setDescription("description-");
+		user.setEmail("email@gmail.com");
+		user.setPhone("phone-");
+		user.setAddress("address-");
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", "userId-");
+		map.put("password", "password-");
+		int id = userDAO.get("userDAOMyBatis").logIn(map);
+		
+		//right id,password
+		int expectingId= userDAO.get("userDAOMyBatis").getIdByUserId(user.getUserId());
+		Assertions.assertThat(id).isEqualTo(expectingId);
+
+		//wrong id,password
+		map.put("userId", "wrongId");
+		map.put("password", "wrongPassword");
+		id = userDAO.get("userDAOMyBatis").logIn(map);
+		Assertions.assertThat(id).isEqualTo(0);
 	}
 	
 	@Test
@@ -52,21 +118,22 @@ public class TestUserMapper {
 		user.setPassword("password-");
 		user.setImageUrl("url-");
 		user.setName("name-");
-		user.setInterest("interest-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
 		user.setPhone("phone-");
 		user.setAddress("address-");
-		user.setType("kakao-");
-		userDAO.create(user);
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
 		
 		//id로 user조회
-		UserDTO returnUser = userDAO.getUser(userDAO.getIdByUserId("userId-"));
+		UserDTO returnUser = userDAO.get("userDAOMyBatis").getUser(userDAO.get("userDAOMyBatis").getIdByUserId("userId-"));
 		Assertions.assertThat(returnUser.getUserId()).isEqualTo(user.getUserId());
 		Assertions.assertThat(returnUser.getPassword()).isEqualTo(user.getPassword());
 		Assertions.assertThat(returnUser.getImageUrl()).isEqualTo(user.getImageUrl());
 		Assertions.assertThat(returnUser.getName()).isEqualTo(user.getName());
-		Assertions.assertThat(returnUser.getInterest()).isEqualTo(user.getInterest());
+		Assertions.assertThat(returnUser.getInterests()).isEqualTo(user.getInterests());
 		Assertions.assertThat(returnUser.getDescription()).isEqualTo(user.getDescription());
 		Assertions.assertThat(returnUser.getEmail()).isEqualTo(user.getEmail());
 		Assertions.assertThat(returnUser.getPhone()).isEqualTo(user.getPhone());
@@ -84,34 +151,36 @@ public class TestUserMapper {
 		user.setPassword("password-");
 		user.setImageUrl("url-");
 		user.setName("name-");
-		user.setInterest("interest-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
 		user.setPhone("phone-");
 		user.setAddress("address-");
-		user.setType("kakao-");
-		userDAO.create(user);
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
 		
 		//user 변경
-		user.setId(userDAO.getIdByUserId("userId-"));
+		user.setId(userDAO.get("userDAOMyBatis").getIdByUserId("userId-"));
 		user.setPassword("password---");
 		user.setImageUrl("url---");
 		user.setName("name---");
-		user.setInterest("interest---");
+		String[] arr2 = {"interest3","interest4"};
+		user.setInterests(arr2);
 		user.setDescription("description---");
 		user.setEmail("email@gmail.com---");
 		user.setPhone("phone---");
 		user.setAddress("address---");
-		user.setType("kakao---");
-		userDAO.update(user);
+		user.setType(2);
+		userDAO.get("userDAOMyBatis").update(user);
 		
 		//적용 확인
-		UserDTO returnUser = userDAO.getUser(user.getId());
+		UserDTO returnUser = userDAO.get("userDAOMyBatis").getUser(user.getId());
 		Assertions.assertThat(returnUser.getUserId()).isEqualTo(user.getUserId());
 		Assertions.assertThat(returnUser.getPassword()).isEqualTo(user.getPassword());
 		Assertions.assertThat(returnUser.getImageUrl()).isEqualTo(user.getImageUrl());
 		Assertions.assertThat(returnUser.getName()).isEqualTo(user.getName());
-		Assertions.assertThat(returnUser.getInterest()).isEqualTo(user.getInterest());
+		Assertions.assertThat(returnUser.getInterests()).isEqualTo(user.getInterests());
 		Assertions.assertThat(returnUser.getDescription()).isEqualTo(user.getDescription());
 		Assertions.assertThat(returnUser.getEmail()).isEqualTo(user.getEmail());
 		Assertions.assertThat(returnUser.getPhone()).isEqualTo(user.getPhone());
@@ -129,23 +198,23 @@ public class TestUserMapper {
 		user.setPassword("password-");
 		user.setImageUrl("url-");
 		user.setName("name-");
-		user.setInterest("interest-");
+		String[] arr = {"interest","interest2"};
+		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
 		user.setPhone("phone-");
 		user.setAddress("address-");
-		user.setType("kakao-");
-		userDAO.create(user);
+		user.setType(1);
+		userDAO.get("userDAOMyBatis").create(user);
 		
 		//user 삭제
-		int id = userDAO.getIdByUserId("userId-");
-		userDAO.delete(id);
+		int id = userDAO.get("userDAOMyBatis").getIdByUserId("userId-");
+		userDAO.get("userDAOMyBatis").delete(id);
 		
 		//총 유저수 조회 - 삭제유저 포함
-		Assertions.assertThat(userDAO.getUserCount()).isEqualTo(1);
+		Assertions.assertThat(userDAO.get("userDAOMyBatis").getUserCount()).isEqualTo(1);
 		//유저 조회 - 삭제유저 미포함
-		Assertions.assertThat(userDAO.getUser(id)).isNull();
-
+		Assertions.assertThat(userDAO.get("userDAOMyBatis").getUser(id)).isNull();
 		
 	}
 

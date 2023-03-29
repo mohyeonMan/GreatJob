@@ -6,12 +6,12 @@
  <mapper namespace="userMapper">
  
 	<insert id="create" parameterType="user">
-		insert into goodjob.user(
+		insert into user(
 			image_url,
 			user_id,
 			password,
 			name,
-			interest,
+			interests,
 			description,
 			email,
 			phone,
@@ -23,7 +23,7 @@
 			#{userId},
 			#{password},
 			#{name},
-			#{interest},
+			#{interests},
 			#{description},
 			#{email},
 			#{phone},
@@ -33,6 +33,24 @@
 		)
 	</insert>
 	
+	<select id="checkIdExist" resultType="Integer">
+		select
+			count(*)
+		from
+			user
+		where 
+			user_id = #{userId}
+	</select>
+	
+	<select id="logIn" parameterType="hashMap" resultType="Integer">
+		select 
+			id as "id"
+		from
+			user
+		where 
+			user_id = #{userId} and password = #{password} and status = 0
+	</select>
+	
 	<select id="getUser" parameterType="Integer" resultType="user">
 		select
 			id as "id",
@@ -40,7 +58,7 @@
 			password as "password",
 			image_url as "imageUrl",
 			name as "name",
-			interest as "interest",
+			interests as "interests",
 			description as "description",
 			point as "point",
 			email as "email",
@@ -50,26 +68,26 @@
 			date_created as "dateCreated",
 			type as "type"
 		from
-			goodjob.user
+			user
 		where
 			id= #{id} and status = 0
 		
 	</select>
 	
 	<select id="getIdByUserId" resultType="Integer">
- 		select id from goodjob.user where user_id = #{userId}
+ 		select id from user where user_id = #{userId}
  	</select>
  	
  	<select id="getUserCount" resultType="Integer">
- 		select count(*) from goodjob.user
+ 		select count(*) from user
  	</select>
  	
  	<update id="update" parameterType="user">
- 		update goodjob.user set
+ 		update user set
  			password = #{password},
  			image_url = #{imageUrl},
  			name = #{name},
- 			interest = #{interest},
+ 			interests = #{interests},
  			description = #{description},
  			email = #{email},
  			phone = #{phone},
@@ -79,26 +97,26 @@
  	</update>
  	
  	<update id="softDelete" parameterType="Integer">
-		update goodjob.user set
+		update user set
 			status = 1
 		where id= #{id} and status != 1
 	</update>
 	
 	<update id="block" parameterType="Integer">
-		update goodjob.user set
+		update user set
 			status = 2
 		where id= #{id} and status = 0  and status !=2
 	</update>
 	
 	<update id="rollback" parameterType="Integer">
-		update goodjob.user set
+		update user set
 			status = 0
 		where id= #{id} and status != 0
 	</update>
  
  
 <!--  	<insert id="create" parameterType="company">
-	 	insert into goodjob.company(
+	 	insert into company(
 	 		image_url,name,user_id,password,email,description,address,date_created
 	 	)values(
 	 		#{imageUrl},#{name},#{userId},#{password},#{email},#{description},#{address},now()
@@ -114,19 +132,19 @@
  			email as "email",
  			address as "address",
  			date_created as "dateCreated"
- 		from goodjob.company where id = #{id} and deleted = 0
+ 		from company where id = #{id} and deleted = 0
  	</select>
  	
  	<select id="getCompanyCount" resultType="Integer">
- 		select count(*) from goodjob.company where deleted = 0
+ 		select count(*) from company where deleted = 0
  	</select>
  	
  	<select id="getIdByName" resultType="Integer">
- 		select id from goodjob.company where name = #{name}
+ 		select id from company where name = #{name}
  	</select>
  	
  	<update id="update" parameterType="company">
- 		update goodjob.company set 
+ 		update company set 
  			image_url = #{imageUrl},
  			user_id = #{userId},
  			password = #{password},
@@ -138,13 +156,13 @@
  	</update>
  	
 	<update id="delete" parameterType="Integer">
-		update goodjob.company set
+		update company set
 			deleted = 1
 		where id= #{id} and deleted = 0
 	</update>
 	
 	<update id="rollback" parameterType="Integer">
-		update goodjob.company set
+		update company set
 			deleted = 0
 		where id= #{id} and deleted = 1
 	</update> -->

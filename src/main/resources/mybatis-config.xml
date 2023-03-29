@@ -6,8 +6,6 @@
 
 	<typeAliases>
 		<typeAlias type="user.bean.UserDTO" alias="user" />
-		<typeAlias type="company.bean.CompanyDTO" alias="company" />
-		<typeAlias type="company.bean.CompanyQueryOption" alias="cqo" />
 	</typeAliases>
 
 
