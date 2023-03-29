@@ -26,11 +26,10 @@ public class UserController {
 
 	
 	@PostMapping(value = "signIn")
-	public String signIn(@RequestBody String user) {
-		//Map<String, Object> map = new HashMap<>();
-		//map.put("user", userDTO);
-		//return userService.get("userSignInService").execute();
-		return user.toString();
+	public JSONArray signIn(@RequestBody UserDTO userDTO) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("user", userDTO);
+		return userService.get("userSignInService").execute(map);
 	}
 
 	@PostMapping(value = "logIn")
