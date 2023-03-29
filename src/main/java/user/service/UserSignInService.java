@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import user.bean.UserDTO;
 import user.dao.UserDAO;
-import user.dao.UserDAOMyBatis;
 
 @Service
 @RequiredArgsConstructor

@@ -26,7 +26,7 @@ public class UserController {
 
 	
 	@PostMapping(value = "signIn")
-	public JSONArray signIn(@ModelAttribute UserDTO userDTO) {
+	public JSONArray signIn(@RequestBody UserDTO userDTO) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("user", userDTO);
 		return userService.get("userSignInService").execute(map);
