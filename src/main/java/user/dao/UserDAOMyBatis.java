@@ -1,14 +1,10 @@
 package user.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,33 +17,33 @@ import user.bean.UserQueryOption;
 @Primary
 @Transactional
 @RequiredArgsConstructor
-public class UserDAOMyBatis implements UserDAO{
+public class UserDAOMyBatis implements UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 
 	@Override
 	public void create(UserDTO userDTO) {
-		sqlSession.insert("userMapper.create",userDTO);
+		sqlSession.insert("userMapper.create", userDTO);
 	}
-	
+
 	@Override
-	public int checkIdExist(String userId) {
-		return sqlSession.selectOne("userMapper.checkIdExist",userId);
+	public int checkEmailExist(String userId) {
+		return sqlSession.selectOne("userMapper.checkEmailExist", userId);
 	}
-	
+
 	@Override
 	public int logIn(Map<String, Object> map) {
-		if(sqlSession.selectOne("userMapper.logIn",map) != null){
-			return sqlSession.selectOne("userMapper.logIn",map);
-		}else {
+		if (sqlSession.selectOne("userMapper.logIn", map) != null) {
+			return sqlSession.selectOne("userMapper.logIn", map);
+		} else {
 			return 0;
 		}
-		
+
 	}
 
 	@Override
 	public UserDTO getUser(int id) {
-		return sqlSession.selectOne("userMapper.getUser",id);
+		return sqlSession.selectOne("userMapper.getUser", id);
 	}
 
 	@Override
@@ -56,28 +52,28 @@ public class UserDAOMyBatis implements UserDAO{
 	}
 
 	@Override
-	public int getIdByUserId(String userId) {
-		return sqlSession.selectOne("userMapper.getIdByUserId",userId);
+	public int getIdByEmail(String userId) {
+		return sqlSession.selectOne("userMapper.getIdByEmail", userId);
 	}
 
 	@Override
 	public void update(UserDTO userDTO) {
-		sqlSession.update("userMapper.update",userDTO);
+		sqlSession.update("userMapper.update", userDTO);
 	}
 
 	@Override
 	public void delete(int id) {
-		sqlSession.update("userMapper.softDelete",id);
+		sqlSession.update("userMapper.softDelete", id);
 	}
 
 	@Override
 	public void rollback(int id) {
-		sqlSession.update("userMapper.rollback",id);
+		sqlSession.update("userMapper.rollback", id);
 	}
-	
+
 	@Override
 	public void block(int id) {
-		sqlSession.update("userMapper.block",id);
+		sqlSession.update("userMapper.block", id);
 	}
 
 	@Override
@@ -86,7 +82,4 @@ public class UserDAOMyBatis implements UserDAO{
 		return null;
 	}
 
-	
-	
-	
 }

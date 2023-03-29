@@ -22,7 +22,7 @@ public class UserSignInService implements UserService{
 		
 		dao.create(user);
 		JSONArray arr = new JSONArray();
-		int status = dao.getUser(dao.getIdByUserId(user.getUserId())) != null? 200:500;
+		int status = dao.getUser(dao.getIdByEmail(user.getEmail())) != null? 200:500;
 		arr.put("{status:"+status+"}");			
 		
 		return arr;

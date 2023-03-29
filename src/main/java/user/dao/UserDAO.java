@@ -26,8 +26,8 @@ public interface UserDAO {
 	
 	List<UserDTO> listUsers(UserQueryOption option);
 
-	int getIdByUserId(String userId);
+	int getIdByEmail(String userId);
 
-	int checkIdExist(String userId);
+	int checkEmailExist(String userId);
 
 }

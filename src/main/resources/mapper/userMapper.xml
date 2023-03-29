@@ -8,8 +8,6 @@
 	<insert id="create" parameterType="user">
 		insert into user(
 			image_url,
-			user_id,
-			password,
 			name,
 			interests,
 			description,
@@ -20,8 +18,6 @@
 			date_created
 		)values(
 			#{imageUrl},
-			#{userId},
-			#{password},
 			#{name},
 			#{interests},
 			#{description},
@@ -33,13 +29,13 @@
 		)
 	</insert>
 	
-	<select id="checkIdExist" resultType="Integer">
+	<select id="checkEmailExist" resultType="Integer">
 		select
 			count(*)
 		from
 			user
 		where 
-			user_id = #{userId}
+			email = #{email}
 	</select>
 	
 	<select id="logIn" parameterType="hashMap" resultType="Integer">
@@ -48,14 +44,12 @@
 		from
 			user
 		where 
-			user_id = #{userId} and password = #{password} and status = 0
+			email = #{email} and status = 0
 	</select>
 	
 	<select id="getUser" parameterType="Integer" resultType="user">
 		select
 			id as "id",
-			user_id as "userId",
-			password as "password",
 			image_url as "imageUrl",
 			name as "name",
 			interests as "interests",
@@ -74,8 +68,8 @@
 		
 	</select>
 	
-	<select id="getIdByUserId" resultType="Integer">
- 		select id from user where user_id = #{userId}
+	<select id="getIdByEmail" resultType="Integer">
+ 		select id from user where email = #{email}
  	</select>
  	
  	<select id="getUserCount" resultType="Integer">
@@ -84,7 +78,6 @@
  	
  	<update id="update" parameterType="user">
  		update user set
- 			password = #{password},
  			image_url = #{imageUrl},
  			name = #{name},
  			interests = #{interests},
