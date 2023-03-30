@@ -10,26 +10,24 @@ import user.dao.UserDAO;
 
 @Service
 @RequiredArgsConstructor
-public class UserLogInService implements UserService{
-	public Map<String, UserDAO> userDAO;
+public class UserLogInService implements UserService {
+	private Map<String, UserDAO> userDAO;
 
 	@Override
 	public JSONArray execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
 		JSONArray arr = new JSONArray();
 		int status = 200;
-		
-		int userId = dao.logIn(map);
-		
-		if(userId != 1) {
+		int id = dao.logIn(map);
+
+		if (id == 0 ) {
 			status = 500;
-		}else {
-			arr.put("{data:"+userId+"}");
+		} else {
+			arr.put("{data:" + id + "}");
 		}
-		arr.put("{status:"+status+"}");
-		
+		arr.put("{status:" + status + "}");
+
 		return arr;
 	}
 
-	
 }

@@ -10,13 +10,19 @@ import user.dao.UserDAO;
 
 @Service
 @RequiredArgsConstructor
-public class UserListService implements UserService {
+public class CheckUserService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
 	public JSONArray execute(Map<String, Object> map) {
+		JSONArray arr = new JSONArray();
+		UserDAO dao = userDAO.get("userDAOMyBatis");
 
-		return null;
+		int exist = dao.checkEmailExist((String) map.get("email"));
+
+		arr.put("{status:200}");
+		arr.put("{data:" + exist + "}");
+		return arr;
 	}
 
 }

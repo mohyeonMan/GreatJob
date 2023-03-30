@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="recruitMapper">
+ 
+	<insert id="create" parameterType="user">
+		insert into user(
+			title,
+			description,
+			category_id,
+			date_start,
+			date_end,
+			phone,
+			address,
+			type,
+			date_created
+		)values(
+			#{imageUrl},
+			#{name},
+			#{interests},
+			#{description},
+			#{email},
+			#{phone},
+			#{address},
+			#{type},
+			now()
+		)
+	</insert>
+	
+	<select id="checkEmailExist" resultType="Integer">
+		select
+			count(*)
+		from
+			user
+		where 
+			email = #{email}
+	</select>
+	
+	<select id="logIn" parameterType="hashMap" resultType="Integer">
+		select 
+			id as "id"
+		from
+			user
+		where 
+			email = #{email} and status = 0
+	</select>
+	
+	<select id="getUser" parameterType="Integer" resultType="user">
+		select
+			id as "id",
+			image_url as "imageUrl",
+			name as "name",
+			interests as "interests",
+			description as "description",
+			point as "point",
+			email as "email",
+			phone as "phone",
+			address as "address",
+			reported as "reported",
+			date_created as "dateCreated",
+			type as "type"
+		from
+			user
+		where
+			id= #{id} and status = 0
+		
+	</select>
+	
+	<select id="getIdByEmail" resultType="Integer">
+ 		select id from user where email = #{email}
+ 	</select>
+ 	
+ 	<select id="getUserCount" resultType="Integer">
+ 		select count(*) from user
+ 	</select>
+ 	
+ 	<update id="update" parameterType="user">
+ 		update user set
+ 			image_url = #{imageUrl},
+ 			name = #{name},
+ 			interests = #{interests},
+ 			description = #{description},
+ 			email = #{email},
+ 			phone = #{phone},
+ 			address = #{address},
+ 			type = #{type}
+ 		where id = #{id} and status = 0
+ 	</update>
+ 	
+ 	<update id="softDelete" parameterType="Integer">
+		update user set
+			status = 1
+		where id= #{id} and status != 1
+	</update>
+	
+	<update id="block" parameterType="Integer">
+		update user set
+			status = 2
+		where id= #{id} and status = 0  and status !=2
+	</update>
+	
+	<update id="rollback" parameterType="Integer">
+		update user set
+			status = 0
+		where id= #{id} and status != 0
+	</update>
+	
+ </mapper>

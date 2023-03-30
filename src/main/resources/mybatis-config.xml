@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias type="user.bean.UserDTO" alias="user" />
+		<typeAlias type="recruit.bean.RecruitDTO" alias="recruit"/>
 	</typeAliases>
 
 

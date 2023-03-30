@@ -27,8 +27,8 @@ public class UserDAOMyBatis implements UserDAO {
 	}
 
 	@Override
-	public int checkEmailExist(String userId) {
-		return sqlSession.selectOne("userMapper.checkEmailExist", userId);
+	public int checkEmailExist(String email) {
+		return sqlSession.selectOne("userMapper.checkEmailExist", email);
 	}
 
 	@Override
@@ -52,8 +52,8 @@ public class UserDAOMyBatis implements UserDAO {
 	}
 
 	@Override
-	public int getIdByEmail(String userId) {
-		return sqlSession.selectOne("userMapper.getIdByEmail", userId);
+	public int getIdByEmail(String email) {
+		return sqlSession.selectOne("userMapper.getIdByEmail", email);
 	}
 
 	@Override
