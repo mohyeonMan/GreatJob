@@ -7,6 +7,6 @@ import org.json.JSONArray;
 
 public interface UserService {
 
-	public Map<String, Object> execute(Map<String, Object> map);
+	public JSONArray execute(Map<String, Object> map);
 
 }
