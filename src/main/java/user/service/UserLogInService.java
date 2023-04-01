@@ -33,18 +33,18 @@ public class UserLogInService implements UserService {
 			dao.create(user);
 		//type이 일치하지 않으면, 이미 가입된 이메일.
 		}else if(type != (int)map.get("type")) {
-			new JSONObject().put("status", 400);
+			object.put("status", 400);
 			return object.toString();
 		}
 		//로그인
 		int id = dao.logIn(map);
 		if (id == 0 ) {
-			new JSONObject().put("status", 500);
+			object.put("status", 500);
 		} else {
 			JSONArray arr = new JSONArray();
 			arr.put(new JSONObject().put("id", id));
-			new JSONObject().put("status", 200);
-			new JSONObject().put("data", arr);
+			object.put("status", 200);
+			object.put("data", arr);
 		}
 		return object.toString();
 		
