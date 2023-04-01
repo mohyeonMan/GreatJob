@@ -28,9 +28,12 @@ public class UserLogInService implements UserService {
 		if(type == -1){
 			UserDTO user = parseValue(map);
 			dao.create(user);
+		//type이 일치하지 않으면, 이미 가입된 이메일.
 		}else if(type != (int)map.get("type")) {
 			arr.put(new JSONObject().put("status", 400));
+			return arr;
 		}
+		
 		int id = dao.logIn(map);
 		if (id == 0 ) {
 			arr.put(new JSONObject().put("status", 500));
@@ -40,7 +43,6 @@ public class UserLogInService implements UserService {
 		}
 		return arr;
 		
-		//로그인 후 가져온 id
 	}
 	
 	public UserDTO parseValue (Map<String, Object> map) {
