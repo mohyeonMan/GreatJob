@@ -42,9 +42,9 @@ public class UserLogInService implements UserService {
 			returnMap.put("status", 500);
 		} else {
 			JSONArray arr = new JSONArray();
-			arr.put(new JSONObject().put("id", id).toString());
+			arr.put(new JSONObject().put("id", id));
 			returnMap.put("status", 200);
-			returnMap.put("data", arr);
+			returnMap.put("data", arr.toString());
 		}
 		return returnMap;
 		
