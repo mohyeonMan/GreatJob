@@ -1,11 +1,11 @@
 package recruit.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +21,7 @@ public class RecruitController {
 	private Map<String, RecruitService> recruitService;
 	
 	@GetMapping(value = "listRecruits")
-	public String listRecruits() {
-		Map<String, Object> map = new HashMap<>();
+	public String listRecruits(@RequestBody(required = false) Map<String, Object> map) {
 		return recruitService.get("listRecruitService").execute(map);
 	}
 }

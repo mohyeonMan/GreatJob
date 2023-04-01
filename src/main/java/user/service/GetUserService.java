@@ -28,12 +28,8 @@ public class GetUserService implements UserService{
 		int status = 200;
 		UserDTO user = dao.getUser((int)map.get("id"));
 		
-		try {
-			object.put("data",new ObjectMapper().writeValueAsString(user));
-		} catch (JsonProcessingException | JSONException e) {
-			e.printStackTrace();
+			object.put("data",new JSONObject(user));
 			status = 500;
-		}
 		
 		object.put("status",status);
 		return object.toString();
