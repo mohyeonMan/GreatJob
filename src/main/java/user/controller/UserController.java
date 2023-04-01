@@ -27,7 +27,7 @@ public class UserController {
 
 	@PostMapping(value = "logIn")
 	public JSONArray logIn(@RequestBody Map<String, Object> map) {
-		System.out.println(map);
+		System.out.println("controller -> "+map);
 		return userService.get("userLogInService").execute(map);
 	} 
 
