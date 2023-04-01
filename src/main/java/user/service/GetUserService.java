@@ -27,11 +27,13 @@ public class GetUserService implements UserService{
 		JSONObject object = new JSONObject();
 		int status = 200;
 		UserDTO user = dao.getUser((int)map.get("id"));
-		
-			object.put("data",new JSONObject(user));
+		if(user == null){
 			status = 500;
-		
+		}else {
+			object.put("data",new JSONObject(user));			
+		}
 		object.put("status",status);
+		
 		return object.toString();
 	}
 	
