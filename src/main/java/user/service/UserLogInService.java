@@ -41,9 +41,9 @@ public class UserLogInService implements UserService {
 		if (id == 0 ) {
 			returnMap.put("status", 500);
 		} else {
-			List<JSONObject> list = new ArrayList<>();
-			list.add(new JSONObject().put("id", id));
-			returnMap.put("data", list);
+			JSONArray arr = new JSONArray();
+			arr.put(new JSONObject().put("id", id));
+			returnMap.put("data", arr.toString());
 			returnMap.put("status", 200);
 		}
 		return returnMap;
