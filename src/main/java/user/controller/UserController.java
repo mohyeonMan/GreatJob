@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import user.service.UserService;
 @RequiredArgsConstructor
 @RequestMapping(value = "user")
 public class UserController {
+	@Autowired
 	private Map<String, UserService> userService;
 
 
