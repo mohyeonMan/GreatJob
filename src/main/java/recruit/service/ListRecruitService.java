@@ -21,7 +21,6 @@ public class ListRecruitService implements RecruitService{
 
 	@Override
 	public String execute(Map<String, Object> map) {
-		System.out.println("recruitDAO=============="+recruitDAO);
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		

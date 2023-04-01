@@ -3,6 +3,8 @@ package user.service;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +24,19 @@ public class GetUserService implements UserService{
 	@Override
 	public String execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
-		JSONArray arr = new JSONArray();
+		JSONObject object = new JSONObject();
 		int status = 200;
 		UserDTO user = dao.getUser((int)map.get("id"));
+		
 		try {
-			arr.put("{\"data\":"+
-					new ObjectMapper().writeValueAsString(user)
-					+"}");
-		} catch (JsonProcessingException e) {
+			object.put("data",new ObjectMapper().writeValueAsString(user));
+		} catch (JsonProcessingException | JSONException e) {
 			e.printStackTrace();
 			status = 500;
 		}
-		arr.put("{\"status\":"+status+"}");
-		return null;
+		
+		object.put("status",status);
+		return object.toString();
 	}
 	
 }
