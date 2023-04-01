@@ -19,6 +19,7 @@ public class UserLogInService implements UserService {
 
 	@Override
 	public JSONArray execute(Map<String, Object> map) {
+		System.out.println("USERDAO -> "+userDAO);
 		UserDAO dao = userDAO.get("userDAOMyBatis");
 		JSONArray arr = new JSONArray();
 		
