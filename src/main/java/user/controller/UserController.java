@@ -24,13 +24,6 @@ import user.service.UserService;
 public class UserController {
 	private Map<String, UserService> userService;
 
-	
-	@PostMapping(value = "signIn")
-	public JSONArray signIn(@RequestBody UserDTO userDTO) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("user", userDTO);
-		return userService.get("userSignInService").execute(map);
-	}
 
 	@PostMapping(value = "logIn")
 	public JSONArray logIn(@RequestBody Map<String, Object> map) {

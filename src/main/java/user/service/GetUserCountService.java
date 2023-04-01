@@ -19,8 +19,8 @@ public class GetUserCountService implements UserService {
 		JSONArray arr = new JSONArray();
 
 		int count = dao.getUserCount();
-		arr.put("{status:200}");
-		arr.put("{data:" + count + "}");
+		arr.put("{\"status\":200}");
+		arr.put("{\"data\":" + count + "}");
 		return arr;
 	}
 

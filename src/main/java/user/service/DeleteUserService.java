@@ -26,7 +26,7 @@ public class DeleteUserService implements UserService {
 		if (dao.getUser(id) != null) {
 			status = 500;
 		}
-		arr.put("{status:" + status + "}");
+		arr.put("{\"status\":" + status + "}");
 		return arr;
 	}
 

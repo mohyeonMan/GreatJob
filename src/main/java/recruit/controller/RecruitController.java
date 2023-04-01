@@ -16,4 +16,5 @@ import recruit.service.RecruitService;
 public class RecruitController {
 	private Map<String, RecruitService> recruitService;
 
+	
 }
