@@ -3,6 +3,7 @@ package user.service;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,6 +16,7 @@ import user.dao.UserDAO;
 @Service
 @RequiredArgsConstructor
 public class GetUserService implements UserService{
+	@Autowired
 	private Map<String, UserDAO> userDAO;
 
 	@Override

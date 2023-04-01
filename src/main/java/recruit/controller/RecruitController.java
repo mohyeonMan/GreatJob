@@ -22,6 +22,7 @@ public class RecruitController {
 	
 	@GetMapping(value = "listRecruits")
 	public String listRecruits() {
+		System.out.println("service ==============="+recruitService);
 		Map<String, Object> map = new HashMap<>();
 		return recruitService.get("listRecruitService").execute(map);
 	}

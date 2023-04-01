@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -15,10 +16,12 @@ import recruit.dao.RecruitDAO;
 @Service
 @RequiredArgsConstructor
 public class ListRecruitService implements RecruitService{
+	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
 
 	@Override
 	public String execute(Map<String, Object> map) {
+		System.out.println("recruitDAO=============="+recruitDAO);
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
