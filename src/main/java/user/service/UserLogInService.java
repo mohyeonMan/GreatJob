@@ -3,6 +3,7 @@ package user.service;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import user.bean.UserDTO;
 import user.dao.UserDAO;
 
 @Service
+@Primary
 @RequiredArgsConstructor
 public class UserLogInService implements UserService {
 	private Map<String, UserDAO> userDAO;
