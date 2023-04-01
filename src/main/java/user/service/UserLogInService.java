@@ -22,9 +22,9 @@ public class UserLogInService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
-	public Map<String, Object> execute(Map<String, Object> map) {
+	public String execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
-		Map<String, Object> returnMap = new HashMap<>();
+		JSONObject object = new JSONObject();
 		
 		//아이디 중복여부 확인 후 없으면 가입.
 		int type = dao.checkEmailExist((String)map.get("email"));
@@ -33,20 +33,20 @@ public class UserLogInService implements UserService {
 			dao.create(user);
 		//type이 일치하지 않으면, 이미 가입된 이메일.
 		}else if(type != (int)map.get("type")) {
-			returnMap.put("status", 400);
-			return returnMap;
+			new JSONObject().put("status", 400);
+			return object.toString();
 		}
 		//로그인
 		int id = dao.logIn(map);
 		if (id == 0 ) {
-			returnMap.put("status", 500);
+			new JSONObject().put("status", 500);
 		} else {
 			JSONArray arr = new JSONArray();
 			arr.put(new JSONObject().put("id", id));
-			returnMap.put("status", 200);
-			returnMap.put("data", arr.toString());
+			new JSONObject().put("status", 200);
+			new JSONObject().put("data", arr);
 		}
-		return returnMap;
+		return object.toString();
 		
 	}
 	

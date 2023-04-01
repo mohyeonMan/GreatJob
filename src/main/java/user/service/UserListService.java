@@ -14,7 +14,7 @@ public class UserListService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
-	public Map<String, Object> execute(Map<String, Object> map) {
+	public String execute(Map<String, Object> map) {
 
 		return null;
 	}

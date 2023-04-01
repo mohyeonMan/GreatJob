@@ -8,6 +8,6 @@ import org.json.JSONObject;
 
 public interface UserService {
 
-	public Map<String, Object> execute(Map<String, Object> map);
+	public String execute(Map<String, Object> map);
 
 }

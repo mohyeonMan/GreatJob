@@ -15,7 +15,7 @@ public class DeleteUserService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
-	public Map<String, Object> execute(Map<String, Object> map) {
+	public String execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
 		JSONArray arr = new JSONArray();
 		int status = 200;
