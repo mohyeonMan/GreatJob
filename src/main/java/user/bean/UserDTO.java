@@ -22,11 +22,15 @@ public class UserDTO {
 	
 	
 	public String getInterests() {
-		String interestString= "";
-		for(String item : this.interests) {
-			interestString+=item+",";
+		if(this.interests == null) {
+			return null;
+		}else {
+			String interestString= "";
+			for(String item : this.interests) {
+				interestString+=item+",";
+			}
+			return interestString.substring(0,interestString.length()-1);
 		}
-		return interestString.substring(0,interestString.length()-1);
 	}
 	public String[] getInterestsArray() {
 		return this.interests;
