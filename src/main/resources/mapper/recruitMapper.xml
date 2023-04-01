@@ -6,105 +6,69 @@
  <mapper namespace="recruitMapper">
  
 	<insert id="create" parameterType="user">
-		insert into user(
+		insert into recruit(
 			title,
 			description,
 			category_id,
 			date_start,
 			date_end,
-			phone,
+			host,
 			address,
-			type,
-			date_created
+			user_id,
+			max_personnel,
+			current_personnel,
+			date_created,
+			date_modified
 		)values(
-			#{imageUrl},
-			#{name},
-			#{interests},
+			#{title},
 			#{description},
-			#{email},
-			#{phone},
+			#{categoryId},
+			#{dateStart},
+			#{dateEnd},
+			#{host},
 			#{address},
-			#{type},
+			#{userId},
+			#{maxPersonnel},
+			0,
+			now(),
 			now()
 		)
 	</insert>
-	
-	<select id="checkEmailExist" resultType="Integer">
-		select
-			count(*)
-		from
-			user
-		where 
-			email = #{email}
-	</select>
-	
-	<select id="logIn" parameterType="hashMap" resultType="Integer">
-		select 
-			id as "id"
-		from
-			user
-		where 
-			email = #{email} and status = 0
-	</select>
-	
-	<select id="getUser" parameterType="Integer" resultType="user">
-		select
-			id as "id",
-			image_url as "imageUrl",
-			name as "name",
-			interests as "interests",
-			description as "description",
-			point as "point",
-			email as "email",
-			phone as "phone",
-			address as "address",
-			reported as "reported",
-			date_created as "dateCreated",
-			type as "type"
-		from
-			user
-		where
-			id= #{id} and status = 0
-		
-	</select>
-	
-	<select id="getIdByEmail" resultType="Integer">
- 		select id from user where email = #{email}
- 	</select>
- 	
- 	<select id="getUserCount" resultType="Integer">
- 		select count(*) from user
- 	</select>
  	
  	<update id="update" parameterType="user">
- 		update user set
- 			image_url = #{imageUrl},
- 			name = #{name},
- 			interests = #{interests},
+ 		update recruit set
+ 			title = #{title},
  			description = #{description},
- 			email = #{email},
- 			phone = #{phone},
+ 			category_id = #{categoryId},
+ 			date_start = #{dateStart},
+ 			date_end = #{dateEnd},
+ 			host = #{host},
  			address = #{address},
- 			type = #{type}
- 		where id = #{id} and status = 0
+ 			max_personnel = #{maxPersonnel},
+ 			date_modified = now()
+ 		where id = #{id}
  	</update>
  	
- 	<update id="softDelete" parameterType="Integer">
-		update user set
-			status = 1
-		where id= #{id} and status != 1
-	</update>
+ 	<delete id="delete" parameterType="Integer">
+		delete from recruit where id= #{id}
+	</delete>
 	
-	<update id="block" parameterType="Integer">
-		update user set
-			status = 2
-		where id= #{id} and status = 0  and status !=2
-	</update>
-	
-	<update id="rollback" parameterType="Integer">
-		update user set
-			status = 0
-		where id= #{id} and status != 0
-	</update>
+	<select id="listRecruits" parameterType="rqo" resultType="recruit">
+		select 
+			title as "title",
+			description as "description",
+			category_id as "categoryId",
+			date_start as "dateStart",
+			date_end as "dateEnd",
+			host as "host",
+			address as "address",
+			user_id as "userId",
+			max_personnel as "maxPersonnel",
+			current_personnel as "currentPersonnel",
+			date_created as "dateCreated",
+			date_modified as "dateModified"
+		from
+			recruit
+	</select>
 	
  </mapper>
