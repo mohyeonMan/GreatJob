@@ -41,10 +41,8 @@ public class UserLogInService implements UserService {
 		if (id == 0 ) {
 			object.put("status", 500);
 		} else {
-			JSONArray arr = new JSONArray();
-			arr.put(new JSONObject().put("id", id));
 			object.put("status", 200);
-			object.put("data", arr);
+			object.put("data", new JSONObject().put("id", id));
 		}
 		return object.toString();
 		
