@@ -28,20 +28,20 @@ public class UserController {
 
 
 	@PostMapping(value = "logIn")
-	public String logIn(@RequestBody Map<String, Object> map) {
-		return userService.get("userLogInService").execute(map).toString();
+	public Map<String, Object> logIn(@RequestBody Map<String, Object> map) {
+		return userService.get("userLogInService").execute(map);
 	} 
 
-	@GetMapping(value = "getUser")
-	public JSONArray getUser(@RequestBody Map<String,Object> map) {
-		return userService.get("getUserService").execute(map);
-	}
-	
-	@GetMapping(value = "getUserCount")
-	public JSONArray getUserCount() {
-		Map<String, Object> map = new HashMap<>();
-		return userService.get("getUserCountService").execute(map);
-	}
+//	@GetMapping(value = "getUser")
+//	public String getUser(@RequestBody Map<String,Object> map) {
+//		return userService.get("getUserService").execute(map).toString();
+//	}
+//	
+//	@GetMapping(value = "getUserCount")
+//	public String getUserCount() {
+//		Map<String, Object> map = new HashMap<>();
+//		return userService.get("getUserCountService").execute(map).toString();
+//	}
 
 //	@PutMapping(value = "edit")
 //	public JSONArray edit(@RequestBody Map<String, Object> map) {
