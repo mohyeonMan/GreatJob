@@ -28,8 +28,8 @@ public class UserController {
 
 
 	@PostMapping(value = "logIn")
-	public JSONArray logIn(@RequestBody Map<String, Object> map) {
-		return userService.get("userLogInService").execute(map);
+	public String logIn(@RequestBody Map<String, Object> map) {
+		return userService.get("userLogInService").execute(map).toString();
 	} 
 
 	@GetMapping(value = "getUser")
