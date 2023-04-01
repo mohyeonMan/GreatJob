@@ -11,7 +11,6 @@ import user.bean.UserDTO;
 import user.dao.UserDAO;
 
 @Service
-@Primary
 @RequiredArgsConstructor
 public class UserLogInService implements UserService {
 	private Map<String, UserDAO> userDAO;

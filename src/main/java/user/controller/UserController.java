@@ -29,10 +29,7 @@ public class UserController {
 
 	@PostMapping(value = "logIn")
 	public JSONArray logIn(@RequestBody Map<String, Object> map) {
-		System.out.println("controller -> "+map);
-		System.out.println(userService);
-//		return userService.get("UserLogInService").execute(map);
-		return null;
+		return userService.get("userLogInService").execute(map);
 	} 
 
 	@GetMapping(value = "getUser")
