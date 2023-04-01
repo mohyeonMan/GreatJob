@@ -24,15 +24,13 @@ public class UserLogInService implements UserService {
 		JSONArray arr = new JSONArray();
 		
 		//아이디 중복여부 확인 후 없으면 가입.
-		if(dao.checkEmailExist((String)map.get("email")) == 0){
+		int type = dao.checkEmailExist((String)map.get("email"));
+		if(type == -1){
 			UserDTO user = parseValue(map);
 			dao.create(user);
-		}else {
+		}else if(type != (int)map.get("type")) {
 			arr.put(new JSONObject().put("status", 400));
-			return arr;
 		}
-		
-		//로그인 후 가져온 id
 		int id = dao.logIn(map);
 		if (id == 0 ) {
 			arr.put(new JSONObject().put("status", 500));
@@ -40,8 +38,9 @@ public class UserLogInService implements UserService {
 			arr.put(new JSONObject().put("data", id));
 			arr.put(new JSONObject().put("status", 200));
 		}
-		System.out.println("jsonarray -> " +arr);
 		return arr;
+		
+		//로그인 후 가져온 id
 	}
 	
 	public UserDTO parseValue (Map<String, Object> map) {
