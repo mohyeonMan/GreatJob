@@ -3,6 +3,7 @@ package user.service;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,11 @@ import user.dao.UserDAO;
 @Service
 @RequiredArgsConstructor
 public class UserLogInService implements UserService {
+	@Autowired
 	private Map<String, UserDAO> userDAO;
 
 	@Override
 	public JSONArray execute(Map<String, Object> map) {
-		System.out.println("This is UserLogInService");
 		UserDAO dao = userDAO.get("userDAOMyBatis");
 		JSONArray arr = new JSONArray();
 		
