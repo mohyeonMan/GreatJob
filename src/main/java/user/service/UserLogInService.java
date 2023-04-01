@@ -1,5 +1,8 @@
 package user.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -19,9 +22,9 @@ public class UserLogInService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
-	public JSONArray execute(Map<String, Object> map) {
+	public Map<String, Object> execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
-		JSONArray arr = new JSONArray();
+		Map<String, Object> returnMap = new HashMap<>();
 		
 		//아이디 중복여부 확인 후 없으면 가입.
 		int type = dao.checkEmailExist((String)map.get("email"));
@@ -30,18 +33,20 @@ public class UserLogInService implements UserService {
 			dao.create(user);
 		//type이 일치하지 않으면, 이미 가입된 이메일.
 		}else if(type != (int)map.get("type")) {
-			arr.put(new JSONObject().put("status", 400));
-			return arr;
+			returnMap.put("status", 400);
+			return returnMap;
 		}
-		
+		//로그인
 		int id = dao.logIn(map);
 		if (id == 0 ) {
-			arr.put(new JSONObject().put("status", 500));
+			returnMap.put("status", 500);
 		} else {
-			arr.put(new JSONObject().put("data", id));
-			arr.put(new JSONObject().put("status", 200));
+			List<JSONObject> list = new ArrayList<>();
+			list.add(new JSONObject().put("id", id));
+			returnMap.put("data", list);
+			returnMap.put("status", 200);
 		}
-		return arr;
+		return returnMap;
 		
 	}
 	

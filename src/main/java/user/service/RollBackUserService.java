@@ -3,6 +3,7 @@ package user.service;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,10 @@ public class RollBackUserService implements UserService {
 	private Map<String, UserDAO> userDAO;
 
 	@Override
-	public JSONArray execute(Map<String, Object> map) {
+	public JSONObject execute(Map<String, Object> map) {
 		UserDAO dao = userDAO.get("userDAOMyBatis");
 		JSONArray arr = new JSONArray();
 		int status = 200;
-
 		int id = (int) map.get("id");
 		dao.rollback(id);
 

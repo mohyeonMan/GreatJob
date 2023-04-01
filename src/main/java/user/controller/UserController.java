@@ -28,8 +28,8 @@ public class UserController {
 
 
 	@PostMapping(value = "logIn")
-	public String logIn(@RequestBody Map<String, Object> map) {
-		return userService.get("userLogInService").execute(map).toString();
+	public Map<String, Object> logIn(@RequestBody Map<String, Object> map) {
+		return userService.get("userLogInService").execute(map);
 	} 
 
 	@GetMapping(value = "getUser")
