@@ -11,6 +11,28 @@ import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
 import recruit.dao.RecruitDAO;
 
+/**
+ * 
+ * <pre>
+ * 
+ * @author jihoon
+ * 
+ * >>input
+ * title(String)		제목
+ * description(String)	내용
+ * categoryId(int)		카테고리의 id
+ * dateStart(long)		봉사 시작일
+ * dateEnd(long)		봉사 종료일
+ * host(String)			주관지
+ * userId(int)			게시자의 id
+ * maxPersonnel(int)	봉사 최대인원
+ * address(String) 		봉사 예정지
+ * 
+ * </pre>
+ * 
+ */
+
+
 @Service 
 @RequiredArgsConstructor
 public class CreateRecruitService implements RecruitService{

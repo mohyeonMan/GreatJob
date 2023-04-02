@@ -55,42 +55,50 @@
 	
 	<select id="getRecruit" parameterType="Integer" resultType="recruit">
 		select 
-			id as "id",
-			title as "title",
-			description as "description",
-			category_id as "categoryId",
-			date_start as "dateStart",
-			date_end as "dateEnd",
-			host as "host",
-			address as "address",
-			user_id as "userId",
-			max_personnel as "maxPersonnel",
-			current_personnel as "currentPersonnel",
-			date_created as "dateCreated",
-			date_modified as "dateModified"
+			r.id as "id",
+			r.title as "title",
+			r.description as "description",
+			r.category_id as "categoryId",
+			c.c.name as "categoryName",
+			r.date_start as "dateStart",
+			r.date_end as "dateEnd",
+			r.host as "host",
+			r.address as "address",
+			r.user_id as "userId",
+			u.name as "userName" 
+			r.max_personnel as "maxPersonnel",
+			r.current_personnel as "currentPersonnel",
+			r.date_created as "dateCreated",
+			r.date_modified as "dateModified"
 		from
-			recruit
+			recruit r
+			left join category c on r.category_id = c.id
+			left join user u on r.user_id = u.id
 		where
 			id = #{id}
 	</select>
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
 		select 
-			id as "id",
-			title as "title",
-			description as "description",
-			category_id as "categoryId",
-			date_start as "dateStart",
-			date_end as "dateEnd",
-			host as "host",
-			address as "address",
-			user_id as "userId",
-			max_personnel as "maxPersonnel",
-			current_personnel as "currentPersonnel",
-			date_created as "dateCreated",
-			date_modified as "dateModified"
+			r.id as "id",
+			r.title as "title",
+			r.description as "description",
+			r.category_id as "categoryId",
+			c.c.name as "categoryName",
+			r.date_start as "dateStart",
+			r.date_end as "dateEnd",
+			r.host as "host",
+			r.address as "address",
+			r.user_id as "userId",
+			u.name as "userName" 
+			r.max_personnel as "maxPersonnel",
+			r.current_personnel as "currentPersonnel",
+			r.date_created as "dateCreated",
+			r.date_modified as "dateModified"
 		from
-			recruit
+			recruit r
+			left join category c on r.category_id = c.id
+			left join user u on r.user_id = u.id
 	</select>
 	
  </mapper>

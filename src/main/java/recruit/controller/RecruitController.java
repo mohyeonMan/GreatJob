@@ -27,6 +27,11 @@ public class RecruitController {
 		return recruitService.get("createRecruitService").execute(map);
 	}
 	
+	@PostMapping(value = "edit")
+	public String edit(@RequestBody Map<String, Object> map) {
+		return recruitService.get("editRecruitService").execute(map);
+	}
+	
 	@GetMapping(value = "getRecruit")
 	public String getRecruit(@RequestBody Map<String, Object> map) {
 		return recruitService.get("getRecruitService").execute(map);

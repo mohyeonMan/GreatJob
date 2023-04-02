@@ -12,10 +12,12 @@ public class RecruitDTO {
 	private String title;
 	private String description;
 	private int categoryId;
+	private String categoryName;
 	private Date dateStart;
 	private Date dateEnd;
 	private String host;
 	private int userId;
+	private String userName;
 	private int maxPersonnel;
 	private int currentPersonnel;
 	private String address;
