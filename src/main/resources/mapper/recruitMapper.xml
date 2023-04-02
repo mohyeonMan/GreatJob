@@ -75,7 +75,7 @@
 			left join category c on r.category_id = c.id
 			left join user u on r.user_id = u.id
 		where
-			id = #{id}
+			r.id = #{id}
 	</select>
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
