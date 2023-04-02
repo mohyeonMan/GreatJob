@@ -20,7 +20,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryDAOMyBatis dao;
 	
-	@PostMapping
+	@PostMapping(value = "create")
 	public void create(@RequestBody Map<String, Object> map) {
 		dao.create((String)map.get("name"));
 	}

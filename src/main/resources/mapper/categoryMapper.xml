@@ -9,7 +9,7 @@
 		insert into category(name)values(#{name})
 	</insert>
 	
-	<select id="listCategories" returnType="hashMap">
+	<select id="listCategories" resultType="hashMap">
 		select
 			id as "id",
 			name as "name"
