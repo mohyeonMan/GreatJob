@@ -8,14 +8,17 @@ import lombok.Data;
 @Data
 public class RecruitDTO {
 	
-	private Date dateStart;
-	private String host;
-	private String description;
-	private int currentPersonnel;
-	private Date dateEnd;
 	private int id;
 	private String title;
+	private String description;
 	private int categoryId;
+	private Date dateStart;
+	private Date dateEnd;
+	private String host;
 	private int userId;
 	private int maxpPersonnel;
+	private int currentPersonnel;
+	private String address;
+	private Date dateCreated;
+	private Date dateModified;
 }
