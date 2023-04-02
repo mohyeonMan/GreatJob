@@ -34,8 +34,8 @@ public class CreateRecruitService implements RecruitService{
 		recruit.setTitle((String)map.get("title"));
 		recruit.setDescription((String)map.get("description"));
 		recruit.setCategoryId((int)map.get("categoryId"));
-		recruit.setDateStart((Date)map.get("dateStart"));
-		recruit.setDateEnd((Date)map.get("dateEnd"));
+		recruit.setDateStart(Date.valueOf((String)map.get("dateStart")));
+		recruit.setDateEnd(Date.valueOf((String)map.get("dateEnd")));
 		recruit.setHost((String)map.get("host"));
 		recruit.setUserId((int)map.get("userId"));
 		recruit.setMaxPersonnel((int)map.get("maxPersonnel"));
