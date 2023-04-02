@@ -65,7 +65,7 @@
 			r.host as "host",
 			r.address as "address",
 			r.user_id as "userId",
-			u.name as "userName" 
+			u.name as "userName" ,
 			r.max_personnel as "maxPersonnel",
 			r.current_personnel as "currentPersonnel",
 			r.date_created as "dateCreated",
@@ -90,7 +90,7 @@
 			r.host as "host",
 			r.address as "address",
 			r.user_id as "userId",
-			u.name as "userName" 
+			u.name as "userName",
 			r.max_personnel as "maxPersonnel",
 			r.current_personnel as "currentPersonnel",
 			r.date_created as "dateCreated",
