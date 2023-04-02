@@ -23,12 +23,14 @@ import recruit.dao.RecruitDAO;
  * id(int)				공고 id
  * title(String)		제목
  * description(String)	내용
- * categoryId(int)		카테고리의 id
+ * categoryId(int)		카테고리 id
+ * categoryName			카테고리 이름
  * dateStart(long)		봉사 시작일
  * dateEnd(long)		봉사 종료일
  * host(String)			주관지
  * address(String) 		봉사 예정지
- * userId(int)			게시자의 id
+ * userId(int)			게시자 id
+ * userName(String)		게사자 이름
  * maxPersonnel(int)	봉사 최대인원
  * currenPersonnel(int)	봉사 현재인원
  * dateCreated(Date)	게시일	

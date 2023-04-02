@@ -42,4 +42,5 @@ public class RecruitController {
 	public String listRecruits(@RequestBody(required = false) Map<String, Object> map) {
 		return recruitService.get("listRecruitsService").execute(map);
 	}
+	
 }
