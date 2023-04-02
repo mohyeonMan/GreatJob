@@ -28,8 +28,8 @@ import recruit.dao.RecruitDAO;
  * 		description(String)	내용
  * 		categoryId(int)		카테고리 id
  * 		categoryName(String)카테고리 이름
- * 		dateStart(long)		봉사 시작일
- * 		dateEnd(long)		봉사 종료일
+ * 		dateStart(Date)		봉사 시작일
+ * 		dateEnd(Date)		봉사 종료일
  * 		host(String)		주관지
  * 		address(String) 	봉사 예정지
  * 		userId(int)			게시자 id

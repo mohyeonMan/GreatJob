@@ -27,7 +27,7 @@ public class UserController {
 		return userService.get("userLogInService").execute(map);
 	}
 
-	@GetMapping(value = "getUser")
+	@PostMapping(value = "getUser")
 	public String getUser(@RequestBody Map<String, Object> map) {
 		return userService.get("getUserService").execute(map);
 	}
