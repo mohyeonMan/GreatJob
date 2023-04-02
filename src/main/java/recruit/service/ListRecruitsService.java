@@ -15,7 +15,7 @@ import recruit.dao.RecruitDAO;
 
 @Service
 @RequiredArgsConstructor
-public class ListRecruitService implements RecruitService{
+public class ListRecruitsService implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
 

@@ -55,6 +55,7 @@
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
 		select 
+			id as "id",
 			title as "title",
 			description as "description",
 			category_id as "categoryId",

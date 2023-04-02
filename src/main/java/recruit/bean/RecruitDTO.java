@@ -16,7 +16,7 @@ public class RecruitDTO {
 	private Date dateEnd;
 	private String host;
 	private int userId;
-	private int maxpPersonnel;
+	private int maxPersonnel;
 	private int currentPersonnel;
 	private String address;
 	private Date dateCreated;
