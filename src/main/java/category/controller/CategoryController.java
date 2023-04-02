@@ -3,6 +3,7 @@ package category.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class CategoryController {
 	
 	@GetMapping(value = "listCategories")
 	public String listCategories() {
-		return dao.listCategories().toString();
+		JSONArray arr = new JSONArray(dao.listCategories());
+		return arr.toString();
 	}
 }
