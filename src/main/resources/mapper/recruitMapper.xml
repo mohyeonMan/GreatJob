@@ -53,8 +53,25 @@
 		delete from recruit where id = #{id}
 	</delete>
 	
-	<select id="getRecruit" parameterType="Integer">
-		select * from recruit where id = #{id}
+	<select id="getRecruit" parameterType="Integer" resultType="recruit">
+		select 
+			id as "id",
+			title as "title",
+			description as "description",
+			category_id as "categoryId",
+			date_start as "dateStart",
+			date_end as "dateEnd",
+			host as "host",
+			address as "address",
+			user_id as "userId",
+			max_personnel as "maxPersonnel",
+			current_personnel as "currentPersonnel",
+			date_created as "dateCreated",
+			date_modified as "dateModified"
+		from
+			recruit
+		where
+			id = #{id}
 	</select>
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
