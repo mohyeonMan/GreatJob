@@ -50,8 +50,12 @@
  	</update>
  	
  	<delete id="delete" parameterType="Integer">
-		delete from recruit where id= #{id}
+		delete from recruit where id = #{id}
 	</delete>
+	
+	<select id="getRecruit" parameterType="Integer">
+		select * from recruit where id = #{id}
+	</select>
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
 		select 
