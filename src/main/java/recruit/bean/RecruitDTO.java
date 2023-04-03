@@ -23,11 +23,4 @@ public class RecruitDTO {
 	private long dateCreated = 1;
 	private long dateModified = 1;
 	
-//	public long getDateStart() {
-//		return dateStart.getTime();
-//	}
-//
-//	public long getDateEnd() {
-//		return dateEnd.getTime();
-//	}
 }

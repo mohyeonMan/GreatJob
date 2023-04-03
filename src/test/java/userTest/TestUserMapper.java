@@ -1,5 +1,7 @@
 package userTest;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +40,8 @@ public class TestUserMapper {
 		user.setAddress("address-");
 		user.setType(1);
 		userDAO.get("userDAOMyBatis").create(user);
-				
+			
+		
 		int count = userDAO.get("userDAOMyBatis").getUserCount();
 		Assertions.assertThat(count).isEqualTo(1);
 	}

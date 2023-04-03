@@ -47,7 +47,7 @@ public class CreateRecruitService implements RecruitService{
 		
 		RecruitDTO recruit = parseValue(map);
 		System.out.println("========="+recruit);
-		dao.create(recruit);
+		//dao.create(recruit);
 		
 		object.put("status", 200);
 		
@@ -58,8 +58,8 @@ public class CreateRecruitService implements RecruitService{
 		recruit.setTitle((String)map.get("title"));
 		recruit.setDescription((String)map.get("description"));
 		recruit.setCategoryId((int)map.get("categoryId"));
-		recruit.setDateStart((int)map.get("dateStart"));
-		recruit.setDateEnd((int)map.get("dateEnd"));
+		recruit.setDateStart((long)map.get("dateStart"));
+		recruit.setDateEnd((long)map.get("dateEnd"));
 		recruit.setHost((String)map.get("host"));
 		recruit.setUserId((int)map.get("userId"));
 		recruit.setMaxPersonnel((int)map.get("maxPersonnel"));
