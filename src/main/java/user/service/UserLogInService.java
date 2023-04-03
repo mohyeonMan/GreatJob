@@ -49,7 +49,6 @@ public class UserLogInService implements UserService {
 		user.setImageUrl((String)map.get("imageUrl"));
 		user.setType((int)map.get("type"));
 		user.setName((String)map.get("name"));	
-		System.out.println("parsedUser ->"+user);
 		return user;
 	}
 
