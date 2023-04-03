@@ -43,8 +43,5 @@ public class UserDTO {
 	public void setInterests(String[] interests) {
 		this.interests = interests;
 	}
-	
-	public long getDateCreated() {
-		return dateCreated.getTime();
-	}
+
 }
