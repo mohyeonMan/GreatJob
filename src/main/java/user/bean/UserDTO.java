@@ -1,6 +1,6 @@
 package user.bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class UserDTO {
 	private String phone;
 	private String address;
 	private int reported;
-	private Date dateCreated;
+	private Timestamp dateCreated;
 	private int type;
 	
 	
