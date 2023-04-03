@@ -30,7 +30,7 @@ public class GetUserService implements UserService{
 		if(user == null){
 			status = 500;
 		}else {
-			object.put("data",new JSONObject(user));			
+			object.put("data",new JSONObject(user));
 		}
 		object.put("status",status);
 		
