@@ -43,4 +43,12 @@ public class UserDTO {
 	public void setInterests(String[] interests) {
 		this.interests = interests;
 	}
+	
+	public void setDateCreated(Timestamp dateCreated) {
+		this.dateCreated = dateCreated.getTime();
+	}
+	
+	public void setDateCreated(long dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 }
