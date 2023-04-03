@@ -28,7 +28,7 @@ public class GetUserService implements UserService{
 		int status = 200;
 		UserDTO user = dao.getUser((int)map.get("id"));
 		if(user == null){
-			status = 500;
+			status = 400;
 		}else {
 			object.put("data",new JSONObject(user));
 		}

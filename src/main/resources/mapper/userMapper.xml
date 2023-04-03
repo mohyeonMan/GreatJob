@@ -65,7 +65,26 @@
 			user
 		where
 			id= #{id} and status = 0
-		
+	</select>
+	
+	<select id="listUsers" parameterType="uqo" resultType="user">
+		select
+			id as "id",
+			image_url as "imageUrl",
+			name as "name",
+			interests as "interests",
+			description as "description",
+			point as "point",
+			email as "email",
+			phone as "phone",
+			address as "address",
+			reported as "reported",
+			UNIX_TIMESTAMP(date_created)*1000 as "dateCreated",
+			type as "type"
+		from
+			user
+		where
+			status = 0
 	</select>
 	
 	<select id="getIdByEmail" resultType="Integer">
@@ -106,58 +125,5 @@
 			status = 0
 		where id= #{id} and status != 0
 	</update>
- 
- 
-<!--  	<insert id="create" parameterType="company">
-	 	insert into company(
-	 		image_url,name,user_id,password,email,description,address,date_created
-	 	)values(
-	 		#{imageUrl},#{name},#{userId},#{password},#{email},#{description},#{address},now()
-	 	)
- 	</insert>
  	
- 	<select id="getCompany" parameterType="Integer" resultType="company">
- 		select 
- 			id as "id",
- 			image_url as "imageUrl",
- 			name as "name",
- 			description as "description",
- 			email as "email",
- 			address as "address",
- 			date_created as "dateCreated"
- 		from company where id = #{id} and deleted = 0
- 	</select>
- 	
- 	<select id="getCompanyCount" resultType="Integer">
- 		select count(*) from company where deleted = 0
- 	</select>
- 	
- 	<select id="getIdByName" resultType="Integer">
- 		select id from company where name = #{name}
- 	</select>
- 	
- 	<update id="update" parameterType="company">
- 		update company set 
- 			image_url = #{imageUrl},
- 			user_id = #{userId},
- 			password = #{password},
- 			name = #{name},
- 			description = #{description},
- 			email = #{email},
- 			address = #{address}
- 		where id = #{id} and deleted = 0
- 	</update>
- 	
-	<update id="delete" parameterType="Integer">
-		update company set
-			deleted = 1
-		where id= #{id} and deleted = 0
-	</update>
-	
-	<update id="rollback" parameterType="Integer">
-		update company set
-			deleted = 0
-		where id= #{id} and deleted = 1
-	</update> -->
-	
  </mapper>
