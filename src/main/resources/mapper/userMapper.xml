@@ -59,7 +59,7 @@
 			phone as "phone",
 			address as "address",
 			reported as "reported",
-			date_created as "dateCreated",
+			UNIX_TIMESTAMP(date_created) as "dateCreated",
 			type as "type"
 		from
 			user

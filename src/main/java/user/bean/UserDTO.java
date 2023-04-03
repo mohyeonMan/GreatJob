@@ -17,7 +17,7 @@ public class UserDTO {
 	private String phone;
 	private String address;
 	private int reported;
-	private Timestamp dateCreated;
+	private long dateCreated;
 	private int type;
 	
 	

@@ -13,16 +13,16 @@ public class RecruitDTO {
 	private String description;
 	private int categoryId;
 	private String categoryName;
-	private Timestamp dateStart;
-	private Timestamp dateEnd;
+	private long dateStart;
+	private long dateEnd;
 	private String host;
 	private int userId;
 	private String userName;
 	private int maxPersonnel;
 	private int currentPersonnel;
 	private String address;
-	private Timestamp dateCreated;
-	private Timestamp dateModified;
+	private long dateCreated;
+	private long dateModified;
 	
 //	public long getDateStart() {
 //		return dateStart.getTime();
