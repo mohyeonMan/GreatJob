@@ -46,7 +46,6 @@ public class CreateRecruitService implements RecruitService{
 		JSONObject object = new JSONObject();
 		
 		RecruitDTO recruit = parseValue(map);
-		System.out.println("========="+recruit);
 		dao.create(recruit);
 		
 		object.put("status", 200);

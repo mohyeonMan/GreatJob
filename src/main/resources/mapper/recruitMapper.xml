@@ -68,8 +68,8 @@
 			u.name as "userName",
 			r.max_personnel as "maxPersonnel",
 			r.current_personnel as "currentPersonnel",
-			UNIX_TIMESTAMP(r.date_created) as "dateCreated",
-			UNIX_TIMESTAMP(r.date_modified) as "dateModified"
+			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
 		from
 			recruit r
 			left join category c on r.category_id = c.id
@@ -93,8 +93,8 @@
 			u.name as "userName",
 			r.max_personnel as "maxPersonnel",
 			r.current_personnel as "currentPersonnel",
-			UNIX_TIMESTAMP(r.date_created) as "dateCreated",
-			UNIX_TIMESTAMP(r.date_modified) as "dateModified"
+			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
 		from
 			recruit r
 			left join category c on r.category_id = c.id
