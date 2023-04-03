@@ -4,13 +4,6 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="recruitMapper">
- 
-	<resultMap id="recruitMap" type="recruit">
-	  <result property="dateCreated" column="date_created" javaType="long" />
-  	  <result property="dateModified" column="date_modified" javaType="long" />
-  	  <result property="dateStart" column="date_start" javaType="long" />
-  	  <result property="dateEnd" column="date_end" javaType="long" />
-	</resultMap>
 	
 	<insert id="create" parameterType="user">
 		insert into recruit(

@@ -1,6 +1,8 @@
 package recruit.bean;
 
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
@@ -11,16 +13,16 @@ public class RecruitDTO {
 	private String description;
 	private int categoryId;
 	private String categoryName;
-	private long dateStart;
-	private long dateEnd;
+	private Timestamp dateStart;
+	private Timestamp dateEnd;
 	private String host;
 	private int userId;
 	private String userName;
 	private int maxPersonnel;
 	private int currentPersonnel;
 	private String address;
-	private long dateCreated;
-	private long dateModified;
+	private Timestamp dateCreated;
+	private Timestamp dateModified;
 	
 //	public long getDateStart() {
 //		return dateStart.getTime();
