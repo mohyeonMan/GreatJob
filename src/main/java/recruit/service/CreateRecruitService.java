@@ -1,6 +1,7 @@
 package recruit.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -56,8 +57,8 @@ public class CreateRecruitService implements RecruitService{
 		recruit.setTitle((String)map.get("title"));
 		recruit.setDescription((String)map.get("description"));
 		recruit.setCategoryId((int)map.get("categoryId"));
-		recruit.setDateStart(new Date((long)map.get("dateStart")));
-		recruit.setDateEnd(new Date((long)map.get("dateEnd")));
+		recruit.setDateStart((Timestamp)map.get("dateStart"));
+		recruit.setDateEnd((Timestamp)map.get("dateEnd"));
 		recruit.setHost((String)map.get("host"));
 		recruit.setUserId((int)map.get("userId"));
 		recruit.setMaxPersonnel((int)map.get("maxPersonnel"));
