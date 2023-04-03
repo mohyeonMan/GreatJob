@@ -82,8 +82,7 @@ public class UserDAOMyBatis implements UserDAO {
 
 	@Override
 	public List<UserDTO> listUsers(UserQueryOption option) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("userMapper.listUsers",option);
 	}
 
 }
