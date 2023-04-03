@@ -5,6 +5,13 @@
  
  <mapper namespace="recruitMapper">
  
+	<resultMap id="recruitMap" type="recruit">
+	  <result property="dateCreated" column="date_created" javaType="long" />
+  	  <result property="dateModified" column="date_modified" javaType="long" />
+  	  <result property="dateStart" column="date_start" javaType="long" />
+  	  <result property="dateEnd" column="date_end" javaType="long" />
+	</resultMap>
+	
 	<insert id="create" parameterType="user">
 		insert into recruit(
 			title,
@@ -53,7 +60,7 @@
 		delete from recruit where id = #{id}
 	</delete>
 	
-	<select id="getRecruit" parameterType="Integer" resultType="recruit">
+	<select id="getRecruit" parameterType="Integer" resultMap="recruitMap">
 		select 
 			r.id as "id",
 			r.title as "title",
@@ -78,7 +85,7 @@
 			r.id = #{id}
 	</select>
 	
-	<select id="listRecruits" parameterType="rqo" resultType="recruit">
+	<select id="listRecruits" parameterType="rqo" resultMap="recruitMap">
 		select 
 			r.id as "id",
 			r.title as "title",
