@@ -53,7 +53,7 @@
 		delete from recruit where id = #{id}
 	</delete>
 	
-	<select id="getRecruit" parameterType="Integer" resultMap="recruitMap">
+	<select id="getRecruit" parameterType="Integer" resultType="recruit">
 		select 
 			r.id as "id",
 			r.title as "title",
@@ -78,7 +78,7 @@
 			r.id = #{id}
 	</select>
 	
-	<select id="listRecruits" parameterType="rqo" resultMap="recruitMap">
+	<select id="listRecruits" parameterType="rqo" resultType="recruit">
 		select 
 			r.id as "id",
 			r.title as "title",
