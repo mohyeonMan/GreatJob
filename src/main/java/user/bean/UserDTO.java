@@ -17,7 +17,7 @@ public class UserDTO {
 	private String phone;
 	private String address;
 	private int reported;
-	private long dateCreated;
+	private Timestamp dateCreated;
 	private int type;
 	
 	
@@ -44,11 +44,7 @@ public class UserDTO {
 		this.interests = interests;
 	}
 	
-	public void setDateCreated(Timestamp dateCreated) {
-		this.dateCreated = dateCreated.getTime();
-	}
-	
-	public void setDateCreated(long dateCreated) {
-		this.dateCreated = dateCreated;
+	public long getDateCreated() {
+		return dateCreated.getTime();
 	}
 }
