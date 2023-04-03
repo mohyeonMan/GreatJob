@@ -1,7 +1,6 @@
 package recruit.bean;
 
 
-import java.sql.Timestamp;
 
 import lombok.Data;
 
