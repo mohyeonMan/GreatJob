@@ -23,9 +23,8 @@
 			#{title},
 			#{description},
 			#{categoryId},
-			<!-- FROM_UNIXTIME( -->
-			#{dateStart},
-			#{dateEnd},
+			FROM_UNIXTIME(#{dateStart}),
+			FROM_UNIXTIME(#{dateEnd}),
 			#{host},
 			#{address},
 			#{userId},
