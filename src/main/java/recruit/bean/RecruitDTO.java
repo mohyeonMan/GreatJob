@@ -23,19 +23,11 @@ public class RecruitDTO {
 	private Timestamp dateCreated;
 	private Timestamp dateModified;
 
-	public long getDateStart() {
-		return dateStart.getTime();
-	}
-
-	public long getDateEnd() {
-		return dateEnd.getTime();
-	}
-
-	public long getDateCreated() {
-		return dateCreated.getTime();
-	}
-
-	public long getDateModified() {
-		return dateModified.getTime();
-	}
+//	public long getDateStart() {
+//		return dateStart.getTime();
+//	}
+//
+//	public long getDateEnd() {
+//		return dateEnd.getTime();
+//	}
 }
