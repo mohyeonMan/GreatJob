@@ -42,7 +42,7 @@ public class EditUserService implements UserService{
 		return object.toString();
 	}
 	
-	public UserDTO parseValue (Map<String, Object> map) {
+	private UserDTO parseValue (Map<String, Object> map) {
 		UserDTO user = new UserDTO();
 		user.setId((int)map.get("id"));
 		user.setName((String)map.get("name"));
@@ -54,7 +54,7 @@ public class EditUserService implements UserService{
 		return user;
 	}
 	
-	public boolean compareUser (UserDTO user1,UserDTO user2) {
+	private boolean compareUser (UserDTO user1,UserDTO user2) {
 		return(
 				user1.getId() == user2.getId()
 			&&	user1.getName().equals(user2.getName())

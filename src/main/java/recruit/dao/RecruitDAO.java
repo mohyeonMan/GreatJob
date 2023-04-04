@@ -9,8 +9,10 @@ public interface RecruitDAO {
 
 	void create(RecruitDTO recruitDTO);
 
-	RecruitDTO getRecruit(int id);
+	void update(RecruitDTO recruitDTO);
 	
+	RecruitDTO getRecruit(int id);
+
 	List<RecruitDTO> listRecruits(RecruitQueryOption option);
 
 }

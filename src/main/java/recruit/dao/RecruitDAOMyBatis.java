@@ -26,6 +26,11 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	}
 	
 	@Override
+	public void update(RecruitDTO recruitDTO) {
+		sqlSession.update("recruitMapper.update",recruitDTO);
+	}
+	
+	@Override
 	public RecruitDTO getRecruit(int id) {
 		return sqlSession.selectOne("recruitMapper.getRecruit",id);
 	}
