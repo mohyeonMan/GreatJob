@@ -1,6 +1,7 @@
 package user.bean;
 
 import java.sql.Timestamp;
+import java.util.Iterator;
 
 import lombok.Data;
 
@@ -10,7 +11,7 @@ public class UserDTO {
 	private int id;
 	private String imageUrl;
 	private String name;
-	private String[] interests;
+	private int[] interests;
 	private String description;
 	private int point;
 	private String email;
@@ -26,21 +27,27 @@ public class UserDTO {
 			return null;
 		}else {
 			String interestString= "";
-			for(String item : this.interests) {
+			for(int item : this.interests) {
 				interestString+=item+",";
 			}
 			return interestString.substring(0,interestString.length()-1);
 		}
 	}
-	public String[] getInterestsArray() {
+	public int[] getInterestsArray() {
 		return this.interests;
 	}
 	
 	public void setInterests(String interestString) {
-		this.interests = interestString.split(",");
+		String[] stringArr = interestString.split(",");
+		int[] arr = new int[stringArr.length];
+		for(int i=0;i<stringArr.length;i++) {
+			arr[i] = Integer.parseInt(stringArr[i]);
+		}
+		
+		this.interests = arr;
 	}
 	
-	public void setInterests(String[] interests) {
+	public void setInterests(int[] interests) {
 		this.interests = interests;
 	}
 

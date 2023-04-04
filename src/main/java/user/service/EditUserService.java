@@ -44,7 +44,7 @@ public class EditUserService implements UserService{
 		UserDTO user = new UserDTO();
 		user.setId((int)map.get("id"));
 		user.setName((String)map.get("name"));
-		user.setInterests((String[])map.get("interest"));
+		user.setInterests((int[])map.get("interest"));
 		user.setDescription((String)map.get("description"));
 		user.setPhone((String)map.get("phone"));
 		user.setAddress((String)map.get("address"));
