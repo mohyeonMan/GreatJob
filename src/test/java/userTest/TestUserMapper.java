@@ -2,7 +2,9 @@ package userTest;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
@@ -32,7 +34,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -53,7 +57,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -77,7 +83,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -108,7 +116,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -137,7 +147,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -150,7 +162,9 @@ public class TestUserMapper {
 		user.setId(userDAO.get("userDAOMyBatis").getIdByEmail("email@gmail.com"));
 		user.setImageUrl("url---");
 		user.setName("name---");
-		int[] arr2 = {3,4};
+		List<Integer> arr2 = new ArrayList<>();
+		arr.add(3);
+		arr.add(4);
 		user.setInterests(arr2);
 		user.setDescription("description---");
 		user.setEmail("email@gmail.com---");
@@ -179,7 +193,9 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		int[] arr = {1,2};
+		List<Integer> arr = new ArrayList<>();
+		arr.add(1);
+		arr.add(2);
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");

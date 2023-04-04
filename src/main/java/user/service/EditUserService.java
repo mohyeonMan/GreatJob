@@ -1,5 +1,7 @@
 package user.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -44,7 +46,7 @@ public class EditUserService implements UserService{
 		UserDTO user = new UserDTO();
 		user.setId((int)map.get("id"));
 		user.setName((String)map.get("name"));
-		user.setInterests((int[])map.get("interest"));
+		user.setInterests((ArrayList<Integer>)map.get("interest"));
 		user.setDescription((String)map.get("description"));
 		user.setPhone((String)map.get("phone"));
 		user.setAddress((String)map.get("address"));
