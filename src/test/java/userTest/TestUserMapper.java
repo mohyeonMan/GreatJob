@@ -32,7 +32,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -53,7 +53,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -77,7 +77,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -108,7 +108,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -137,7 +137,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
@@ -150,7 +150,7 @@ public class TestUserMapper {
 		user.setId(userDAO.get("userDAOMyBatis").getIdByEmail("email@gmail.com"));
 		user.setImageUrl("url---");
 		user.setName("name---");
-		String[] arr2 = {"interest3","interest4"};
+		int[] arr2 = {3,4};
 		user.setInterests(arr2);
 		user.setDescription("description---");
 		user.setEmail("email@gmail.com---");
@@ -179,7 +179,7 @@ public class TestUserMapper {
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
 		user.setName("name-");
-		String[] arr = {"interest","interest2"};
+		int[] arr = {1,2};
 		user.setInterests(arr);
 		user.setDescription("description-");
 		user.setEmail("email@gmail.com");
