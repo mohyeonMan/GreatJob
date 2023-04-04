@@ -101,10 +101,8 @@
  			name = #{name},
  			interests = #{interests},
  			description = #{description},
- 			email = #{email},
  			phone = #{phone},
  			address = #{address},
- 			type = #{type}
  		where id = #{id} and status = 0
  	</update>
  	
