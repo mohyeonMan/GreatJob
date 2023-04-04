@@ -52,7 +52,7 @@ public class EditRecruitService implements RecruitService {
 		if(replaceRecruit == null|| changedRecruit == null) {
 			object.put("status", 400);
 		}else {
-			if(compareUser(replaceRecruit, changedRecruit)) {
+			if(compareRecruit(replaceRecruit, changedRecruit)) {
 				object.put("status", 200);
 			}else {
 				object.put("status", 500);
@@ -77,7 +77,9 @@ public class EditRecruitService implements RecruitService {
 		return recruit;
 	}
 	
-	private boolean compareUser(RecruitDTO recruit1, RecruitDTO recruit2) {
+	private boolean compareRecruit(RecruitDTO recruit1, RecruitDTO recruit2) {
+		System.out.println("replace------------"+recruit1);
+		System.out.println("changed------------"+recruit2);
 		return (
 				recruit1.getId() == recruit2.getId()
 			&&	recruit1.getTitle().equals(recruit2.getTitle())
