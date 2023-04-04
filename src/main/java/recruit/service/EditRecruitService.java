@@ -78,15 +78,14 @@ public class EditRecruitService implements RecruitService {
 	}
 	
 	private boolean compareRecruit(RecruitDTO recruit1, RecruitDTO recruit2) {
-		System.out.println("replace------------"+recruit1);
-		System.out.println("changed------------"+recruit2);
 		return (
 				recruit1.getId() == recruit2.getId()
 			&&	recruit1.getTitle().equals(recruit2.getTitle())
 			&&	recruit1.getDescription().equals(recruit2.getDescription())
 			&&	recruit1.getCategoryId() == recruit2.getCategoryId()
-			&&	recruit1.getDateStart() == recruit2.getDateStart()
-			&&	recruit1.getDateEnd() == recruit2.getDateEnd()
+			//milliseconds
+			&&	recruit1.getDateStart()*1000 == recruit2.getDateStart()
+			&&	recruit1.getDateEnd()*1000 == recruit2.getDateEnd()
 			&&	recruit1.getHost().equals(recruit2.getHost())
 			&&	recruit1.getMaxPersonnel() == recruit2.getMaxPersonnel()
 			&&	recruit1.getAddress().equals(recruit2.getAddress())
