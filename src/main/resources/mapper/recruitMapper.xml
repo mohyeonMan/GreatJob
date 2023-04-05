@@ -128,7 +128,8 @@
 			,
 		</if>
 			r.date_created desc -->
-		) r where r.rn <![CDATA[>]]>#{startItem} 
+		) r 
+		where r.rn <![CDATA[>]]>#{startItem} 
 			and r.rn<![CDATA[>]]>(#{startItem}+#{itemAmount})
 	</select>
 	
