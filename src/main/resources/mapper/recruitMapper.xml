@@ -111,7 +111,7 @@
 			<if test="address != null">
 				and r.address REGEXP 
 				<foreach collection="address" item="item" open="'" close="'" separator="|">
-				 concat('%',#{item},'%')
+				 ${item}
 				</foreach>
 			</if>
 		</where>
