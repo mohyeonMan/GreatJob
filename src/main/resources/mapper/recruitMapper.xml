@@ -104,13 +104,13 @@
 			<if test="categoryId != null">
 			and r.category_id in
 				<foreach collection="categoryId" item="item" open="(" separator="," close=")">
-				${item}
+				#{item}
 				</foreach>
 			</if>
 		<!-- address -->
 			<if test="address != null">
 				<foreach collection="address" item="item">
-				and r.address like concat('%',${item},'%')
+				and r.address like concat('%',#{item},'%')
 				</foreach>
 			</if>
 		</where>
