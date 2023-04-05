@@ -113,6 +113,7 @@
 				<foreach collection="address" item="item" separator=",'|',">
 				 #{item}
 				</foreach>
+				)
 			</if>
 		</where>
 		order by
