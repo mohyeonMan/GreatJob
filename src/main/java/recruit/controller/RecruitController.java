@@ -41,7 +41,7 @@ public class RecruitController {
 
 
 	@GetMapping(value = "listRecruits")
-	public String listRecruits(@RequestBody(required = false) Map<String, Object> map) {
+	public String listRecruits(@RequestParam(required = false) Map<String, Object> map) {
 		return recruitService.get("listRecruitsService").execute(map);
 	}
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,7 @@ public class UserController {
 		return userService.get("rollBackUserService").execute(map);
 	}
 	@GetMapping(value = "listUsers")
-	public String listUsers(@RequestBody(required = false)Map<String, Object> map) {
+	public String listUsers(@RequestParam(required = false)Map<String, Object> map) {
 		return userService.get("listUsersService").execute(map);
 	}
 
