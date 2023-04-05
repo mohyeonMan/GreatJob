@@ -101,10 +101,10 @@
 			left join user u on r.user_id = u.id
 		<where>
 		<!-- categoryId -->
-			<if test="categoryId !=null">
+			<if test="categoryId != null">
 			and r.category_id in
 				<foreach collection="categoryId" item="item" open="(" separator="," close=")">
-				${item}
+				#{item}
 				</foreach>
 			</if>
 		<!-- address -->
