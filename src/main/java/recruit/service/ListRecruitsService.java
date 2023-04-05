@@ -65,6 +65,7 @@ public class ListRecruitsService implements RecruitService{
 			option = new RecruitQueryOption();			
 		}else {
 			option = parseValue(map);
+			System.out.println(option);
 		}
 		
 		List<RecruitDTO> recruits = dao.listRecruits(option);
