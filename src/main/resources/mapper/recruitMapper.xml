@@ -109,7 +109,7 @@
 			</if>
 		<!-- address -->
 			<if test="address != null">
-				<foreach collection="categoryId" item="item">
+				<foreach collection="address" item="item">
 				and r.address like concat('%',#{item},'%')
 				</foreach>
 			</if>
