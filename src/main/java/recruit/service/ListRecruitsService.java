@@ -79,9 +79,12 @@ public class ListRecruitsService implements RecruitService{
 		option.setCategoryId((ArrayList<Integer>)map.get("categoryId"));
 		option.setAddress((ArrayList<String>)map.get("address"));
 		option.setSort((String)map.get("sort")); 
-		option.setStartItem(
-			map.get("startItem") != null? (int)map.get("startItem"):0
-		);
+		if (map.get("startTime") != null) {
+			option.setStartItem((int)map.get("startItem"));
+		}
+		if (map.get("itemAmount") != null) {
+			option.setItemAmount((int)map.get("itemAmount"));
+		}
 		
 		return option;
 	}

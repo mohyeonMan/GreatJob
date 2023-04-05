@@ -82,6 +82,8 @@
 		select * from(
 			select 
 				row_number() over(order by
+				
+				<!-- sort -->
 				<if test="sort != null">
 				,
 				</if>
@@ -107,14 +109,16 @@
 				left join category c on r.category_id = c.id
 				left join user u on r.user_id = u.id
 		<where>
-		<!-- categoryId -->
+		
+			<!-- categoryId -->
 			<if test="categoryId != null">
 			and r.category_id in
 				<foreach collection="categoryId" item="item" open="(" separator="," close=")">
 				#{item}
 				</foreach>
 			</if>
-		<!-- address -->
+			
+			<!-- address -->
 			<if test="address != null">
 				and r.address REGEXP concat(
 				<foreach collection="address" item="item" separator=",'|',">
@@ -122,12 +126,8 @@
 				</foreach>
 				)
 			</if>
+			
 		</where>
-		<!-- order by
-		<if test="sort != null">
-			,
-		</if>
-			r.date_created desc -->
 		) r 
 		where r.rn <![CDATA[>]]>#{startItem} 
 		and r.rn<![CDATA[<=]]>(#{startItem}+#{itemAmount})
