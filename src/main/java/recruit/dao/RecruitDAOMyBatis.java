@@ -39,9 +39,7 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 
 	@Override
 	public List<RecruitDTO> listRecruits(RecruitQueryOption option) {
-		if(sqlSession.selectList("recruitMapper.listRecruits",option) != null) {
-			return sqlSession.selectList("recruitMapper.listRecruits",option);			
-		}return new ArrayList<>();
+		return sqlSession.selectList("recruitMapper.listRecruits",option);			
 	}
 
 }

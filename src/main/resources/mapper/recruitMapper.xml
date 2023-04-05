@@ -109,8 +109,9 @@
 			</if>
 		<!-- address -->
 			<if test="address != null">
-				<foreach collection="address" item="item">
-				and r.address like concat('%',#{item},'%')
+				and r.address REGEXP 
+				<foreach collection="address" item="item" open="'" close="'" separator="|">
+				 concat('%',#{item},'%')
 				</foreach>
 			</if>
 		</where>
