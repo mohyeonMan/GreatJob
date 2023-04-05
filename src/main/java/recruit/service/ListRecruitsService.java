@@ -1,5 +1,6 @@
 package recruit.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,11 @@ import recruit.dao.RecruitDAO;
  * <pre>
  * 
  * @author jihoon
- * 
+ * >>input
+ * categoryId(List<int>)	카테고리 id
+ * address(List<String>)	주소 조건
+ * sort(String)				정렬조건
+ * startItem(int)			시작 행
  * 
  * >>output
  * list [
@@ -55,7 +60,13 @@ public class ListRecruitsService implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
-		RecruitQueryOption option = new RecruitQueryOption();
+		RecruitQueryOption option;
+		if(map == null) {
+			option = new RecruitQueryOption();			
+		}else {
+			option = parseValue(map);
+		}
+		
 		List<RecruitDTO> recruits = dao.listRecruits(option);
 		object.put("data", new JSONArray(recruits));
 		object.put("status", 200);
@@ -65,6 +76,11 @@ public class ListRecruitsService implements RecruitService{
 	
 	private RecruitQueryOption parseValue(Map<String, Object> map) {
 		RecruitQueryOption option = new RecruitQueryOption();
+		option.setCategoryId((ArrayList<Integer>)map.get("categoryId"));
+		option.setAddress((ArrayList<String>)map.get("address"));
+		option.setSort((String)map.get("sort")); 
+		option.setStartItem((int)map.get("startItem"));
+		
 		return option;
 	}
 	

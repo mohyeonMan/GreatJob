@@ -99,6 +99,26 @@
 			recruit r
 			left join category c on r.category_id = c.id
 			left join user u on r.user_id = u.id
+		<where>
+		<!-- categoryId -->
+			<if test="categoryId !=null">
+			and r.category_id in
+				<foreach collection="List" item="item" open="(" separator="," close=")">
+				${item}
+				</foreach>
+			</if>
+		<!-- address -->
+			<if test="address != null">
+				<foreach collection="List" item="item">
+				and r.address like concat('%',#{item},'%')
+				</foreach>
+			</if>
+		</where>
+		order by
+		<if test="sort != null">
+			,
+		</if>
+			r.date_created desc
 	</select>
 	
  </mapper>
