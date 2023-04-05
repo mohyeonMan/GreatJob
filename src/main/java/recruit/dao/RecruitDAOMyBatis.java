@@ -39,5 +39,10 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	public List<RecruitDTO> listRecruits(RecruitQueryOption option) {
 		return sqlSession.selectList("recruitMapper.listRecruits",option);			
 	}
+	
+	@Override
+	public void delete(int id) {
+		sqlSession.delete("recruitMapper.delete",id);
+	}
 
 }
