@@ -79,26 +79,33 @@
 	</select>
 	
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
-		select 
-			r.id as "id",
-			r.title as "title",
-			r.description as "description",
-			r.category_id as "categoryId",
-			c.name as "categoryName",
-			UNIX_TIMESTAMP(r.date_start)*1000 as "dateStart",
-			UNIX_TIMESTAMP(r.date_end)*1000 as "dateEnd",
-			r.host as "host",
-			r.address as "address",
-			r.user_id as "userId",
-			u.name as "userName",
-			r.max_personnel as "maxPersonnel",
-			r.current_personnel as "currentPersonnel",
-			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
-			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
-		from
-			recruit r
-			left join category c on r.category_id = c.id
-			left join user u on r.user_id = u.id
+		select * from(
+			select 
+				row_number() over(order by
+				<if test="sort != null">
+				,
+				</if>
+				r.date_created desc
+				) as rn,
+				r.id as "id",
+				r.title as "title",
+				r.description as "description",
+				r.category_id as "categoryId",
+				c.name as "categoryName",
+				UNIX_TIMESTAMP(r.date_start)*1000 as "dateStart",
+				UNIX_TIMESTAMP(r.date_end)*1000 as "dateEnd",
+				r.host as "host",
+				r.address as "address",
+				r.user_id as "userId",
+				u.name as "userName",
+				r.max_personnel as "maxPersonnel",
+				r.current_personnel as "currentPersonnel",
+				UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
+				UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
+			from
+				recruit r
+				left join category c on r.category_id = c.id
+				left join user u on r.user_id = u.id
 		<where>
 		<!-- categoryId -->
 			<if test="categoryId != null">
@@ -116,11 +123,13 @@
 				)
 			</if>
 		</where>
-		order by
+		<!-- order by
 		<if test="sort != null">
 			,
 		</if>
-			r.date_created desc
+			r.date_created desc -->
+		) r where r.rn <![CDATA[>]]>#{startItem} 
+			and r.rn<![CDATA[>]]>(#{startItem}+#{itemAmount})
 	</select>
 	
  </mapper>
