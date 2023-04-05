@@ -26,4 +26,8 @@ public class CategoryDAOMyBatis {
 	public List<Map<String, Object>> listCategories(){
 		return sqlSession.selectList("categoryMapper.listCategories");
 	}
+	
+	public void delete(int id) {
+		sqlSession.delete("categoryMapper.delete",id);
+	}
 }

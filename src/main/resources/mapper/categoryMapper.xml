@@ -16,6 +16,10 @@
 		from
 			category
 	</select>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from category where id = #{id}
+	</delete>
  	
  	
  
