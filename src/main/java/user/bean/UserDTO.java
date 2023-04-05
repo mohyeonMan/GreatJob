@@ -21,7 +21,6 @@ public class UserDTO {
 	private long dateCreated;
 	private int type;
 	
-	
 	public String getInterests() {
 		if(this.interests == null) {
 			return null;

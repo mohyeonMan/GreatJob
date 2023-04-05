@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="commentMapper">
+ 
+	<insert id="create" parameterType="comment">
+		insert into comment(
+			object,
+			object_id,
+			super_id,
+			user_id,
+			description,
+			date_created,
+			date_modified
+		)values(
+			#{object},
+			#{objectId},
+			#{super_id},
+			#{user_id},
+			#{description},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<select id="listComments" parameterType="comment" resultType="comment">
+		select
+			c.id as "id",
+			c.super_id as "superId",
+			c.user_id as "userId",
+			u.name as "userName",
+			u.image_url as "userImageUrl",
+			c.description as "description",
+			UNIX_TIMESTAMP(c.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified"
+		from
+			comment c
+			left join user u on c.user_id = u.id
+		where
+			c.object = #{object} and c.object_id = #{objectId}
+		order by c.id
+	</select>
+	
+	<update id="update" parameterMap="comment">
+		update comment set
+			description = #{description}
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from comment where id = #{id}
+	</delete>
+	
+	
+ </mapper>

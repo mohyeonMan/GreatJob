@@ -1,7 +1,5 @@
 package recruit.bean;
 
-
-
 import lombok.Data;
 
 @Data
@@ -22,5 +20,5 @@ public class RecruitDTO {
 	private String address;
 	private long dateCreated = 1;
 	private long dateModified = 1;
-	
+
 }
