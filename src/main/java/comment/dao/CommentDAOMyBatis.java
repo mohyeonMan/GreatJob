@@ -20,7 +20,7 @@ public class CommentDAOMyBatis implements CommentDAO {
 
 	@Override
 	public CommentDTO getComment(int parentId) {
-		return	sqlSession.selectOne("commentMapper.getComment",parentId);
+		return sqlSession.selectOne("commentMapper.getComment",parentId);
 	}
 
 }

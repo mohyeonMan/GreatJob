@@ -31,7 +31,7 @@
 	</insert>
 	
 	
-	<select id="getComment" parameterType="Integer" resultType="hashMap">
+	<select id="getComment" parameterType="Integer" resultType="comment">
 		select 
 			c.comment_order as "commentOrder",
 			c.comment_level as "commentLevel"
@@ -68,10 +68,6 @@
 	<delete id="delete" parameterType="Integer">
 		delete from comment where id = #{id}
 	</delete>
-	
-	<select id="getMaxGroup" parameterType="comment" resultType="Integer">
-		select ifNull(max(comment_group),0) from comment where object = #{object} and object_id = #{objectId}
-	</select>
 	
 	
  </mapper>
