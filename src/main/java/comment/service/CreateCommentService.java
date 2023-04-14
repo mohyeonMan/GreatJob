@@ -31,8 +31,7 @@ public class CreateCommentService implements CommentService{
 			comment.setParentId((int)map.get("parentId"));
 			CommentDTO commentPlace = dao.getComment(comment.getParentId());
 			comment.setCommentLevel(commentPlace.getCommentLevel());
-			comment.setCommentOrder(commentPlace.getCommentOrder()
-					+ String.format("%05d", comment.getCommentOrder()));
+			comment.setCommentOrder(commentPlace.getCommentOrder());
 		}
 		
 		dao.create(comment);

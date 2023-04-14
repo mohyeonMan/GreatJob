@@ -33,8 +33,8 @@
 	
 	<select id="getComment" parameterType="Integer" resultType="comment">
 		select 
-			c.comment_order as "commentOrder",
-			c.comment_level as "commentLevel"
+			ifnull(concat(c.comment_order,lpad(c.id,'5','0')),lpad(c.id,'5','0')) as "commentOrder",
+			c.comment_level+1 as "commentLevel"
 		from
 			comment c
 		where c.id = #{parentId};
