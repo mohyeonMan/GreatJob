@@ -27,7 +27,7 @@
 			#{commentLevel},
 			#{parentId}
 		)
-		<if test="comment_order == null">
+		<if test="commentOrder == null">
 			update comment
 				set comment_order = lpad(id,'5','0')
 			where
