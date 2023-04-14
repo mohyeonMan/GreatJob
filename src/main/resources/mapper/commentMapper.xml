@@ -27,15 +27,7 @@
 			#{commentLevel},
 			#{parentId}
 		)
-		<if test="commentOrder == null">
-			update comment
-				set comment_order = lpad(id,'5','0')
-			where
-				object = #{object}
-			and object_id = #{objectId}
-			and user_id = #{userId}
-			and description = #{description}
-		</if>
+		
 	</insert>
 	
 	
