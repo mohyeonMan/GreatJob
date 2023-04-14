@@ -33,7 +33,7 @@
 	
 	<select id="getComment" parameterType="Integer" resultType="comment">
 		select 
-			ifnull(concat(c.comment_order,lpad(c.id,'5','0')),lpad(c.id,'5','0')) as "commentOrder",
+			concat(ifnull(c.comment_order,''),lpad(c.id,'5','0')) as "commentOrder",
 			c.comment_level+1 as "commentLevel"
 		from
 			comment c
@@ -44,7 +44,7 @@
 	<select id="listComments" parameterType="comment" resultType="comment">
 		select
 			c.id as "id",
-			c.super_id as "superId",
+			c.parent_id as "parentId",
 			c.user_id as "userId",
 			u.name as "userName",
 			u.image_url as "userImageUrl",
@@ -56,7 +56,7 @@
 			left join user u on c.user_id = u.id
 		where
 			c.object = #{object} and c.object_id = #{objectId}
-		order by c.id
+		order by concat(ifnull(c.comment_order,''),lpad(c.id,'5','0'))
 	</select>
 	
 	<update id="update" parameterType="comment">
