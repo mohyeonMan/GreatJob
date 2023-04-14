@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="commentMapper">
+ 
+	<insert id="create" parameterType="comment">
+		insert into comment(
+			object,
+			object_id,
+			user_id,
+			description,
+			date_created,
+			date_modified,
+			comment_order,
+			comment_level,
+			parent_id
+		)values(
+			#{object},
+			#{objectId},
+			#{userId},
+			#{description},
+			now(),
+			now(),
+			#{commentOrder},
+			#{commentLevel},
+			#{parentId}
+		)
+		<if test="comment_order == null">
+			update comment
+				set comment_order = lpad(id,'5','0')
+			where
+				object = #{object}
+			and object_id = #{objectId}
+			and user_id = #{userId}
+			and description = #{description}
+		</if>
+		
+	</insert>
+	
+	
+	<select id="getComment" parameterType="Integer" resultType="hashMap">
+		select 
+			c.comment_order as "commentOrder",
+			c.comment_level as "commentLevel"
+		from
+			comment c
+		where c.id = #{parentId};
+	</select>
+	
+	
+	<select id="listComments" parameterType="comment" resultType="comment">
+		select
+			c.id as "id",
+			c.super_id as "superId",
+			c.user_id as "userId",
+			u.name as "userName",
+			u.image_url as "userImageUrl",
+			c.description as "description",
+			UNIX_TIMESTAMP(c.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified"
+		from
+			comment c
+			left join user u on c.user_id = u.id
+		where
+			c.object = #{object} and c.object_id = #{objectId}
+		order by c.id
+	</select>
+	
+	<update id="update" parameterType="comment">
+		update comment set
+			description = #{description}
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from comment where id = #{id}
+	</delete>
+	
+	<select id="getMaxGroup" parameterType="comment" resultType="Integer">
+		select ifNull(max(comment_group),0) from comment where object = #{object} and object_id = #{objectId}
+	</select>
+	
+	
+ </mapper>

@@ -9,7 +9,7 @@
 		<typeAlias type="user.bean.UserQueryOption" alias="uqo" />
 		<typeAlias type="recruit.bean.RecruitDTO" alias="recruit"/>
 		<typeAlias type="recruit.bean.RecruitQueryOption" alias="rqo"/>
-		<!-- <typeAlias type="comment.bean.CommentDTO" alias="comment"/> -->
+		<typeAlias type="comment.bean.CommentDTO" alias="comment"/>
 	</typeAliases>
 
 
