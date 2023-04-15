@@ -72,9 +72,15 @@ public class ListRecruitsService implements RecruitService{
 	private RecruitQueryOption parseValue(Map<String, Object> map) {
 		RecruitQueryOption option = new RecruitQueryOption();
 		if(map != null) {
-			option.setCategoryId((String)map.get("categoryId"));
-			option.setAddress((String)map.get("address"));
-			option.setSort((String)map.get("sort")); 
+			if(map.get("categoryId") != null) {
+				option.setCategoryId((String)map.get("categoryId"));				
+			}
+			if(map.get("address") != null) {
+				option.setAddress((String)map.get("address"));
+			}
+			if(map.get("sort") != null) {
+				option.setSort((String)map.get("sort")); 
+			}
 			if (map.get("startTime") != null) {
 				option.setStartItem((int)map.get("startItem"));
 			}

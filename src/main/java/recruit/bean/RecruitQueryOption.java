@@ -1,7 +1,6 @@
 package recruit.bean;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import lombok.Data;
@@ -25,8 +24,8 @@ public class RecruitQueryOption {
 	}
 	
 	public void setAddress(String address) {
-		String[] strArr = address.split(",");
 		List<String> list = new ArrayList<>();
+		String[] strArr = address.split(",");
 		for (String str : strArr) {
 			list.add(str);
 		}
