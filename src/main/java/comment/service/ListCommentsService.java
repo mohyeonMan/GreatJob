@@ -25,7 +25,7 @@ public class ListCommentsService implements CommentService{
 		
 		CommentDTO comment = new CommentDTO();
 		comment.setObject(Integer.parseInt((String)map.get("object")));
-		comment.setObjectId(Integer.parseInt((String)map.get("objectId"));
+		comment.setObjectId(Integer.parseInt((String)map.get("objectId")));
 		
 		List<CommentDTO> comments = dao.listComments(comment);
 		object.put("data", new JSONArray(comments));
