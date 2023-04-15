@@ -6,6 +6,7 @@ import lombok.Data;
 public class RecruitDTO {
 
 	private int id;
+	private int row;
 	private String title;
 	private String description;
 	private int categoryId;

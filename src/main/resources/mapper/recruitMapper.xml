@@ -81,7 +81,7 @@
 	<select id="listRecruits" parameterType="rqo" resultType="recruit">
 		select * from(
 			select 
-				row_number() over(order by
+				row_number() as "row" over(order by
 				
 				<!-- sort -->
 				<if test="sort != null">
