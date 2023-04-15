@@ -60,12 +60,7 @@ public class ListRecruitsService implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
-		RecruitQueryOption option;
-		if(map == null) {
-			option = new RecruitQueryOption();			
-		}else {
-			option = parseValue(map);
-		}
+		RecruitQueryOption option = parseValue(map);
 		
 		List<RecruitDTO> recruits = dao.listRecruits(option);
 		object.put("data", new JSONArray(recruits));

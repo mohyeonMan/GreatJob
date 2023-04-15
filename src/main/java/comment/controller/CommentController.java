@@ -4,9 +4,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import comment.service.CommentService;
@@ -24,6 +26,11 @@ public class CommentController {
 	public String create(@RequestBody Map<String, Object> map) {
 		return serviceMap.get("createCommentService").execute(map);
 		
+	}
+	
+	@GetMapping(value = "listComments")
+	public String listComments(@RequestParam Map<String, Object> map){
+		return serviceMap.get("listCommentsService").execute(map);
 	}
 	
 }

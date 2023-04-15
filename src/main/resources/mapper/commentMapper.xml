@@ -49,6 +49,7 @@
 			u.name as "userName",
 			u.image_url as "userImageUrl",
 			c.description as "description",
+			c.comment_level as "commentLevel",
 			UNIX_TIMESTAMP(c.date_created)*1000 as "dateCreated",
 			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified"
 		from
