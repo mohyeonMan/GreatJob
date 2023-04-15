@@ -46,7 +46,7 @@ public class EditUserService implements UserService{
 		UserDTO user = new UserDTO();
 		user.setId((int)map.get("id"));
 		user.setName((String)map.get("name"));
-		if(map.get("interest") != null && map.get("interest") != "") {
+		if(map.get("interest") != null && !((String)map.get("interest")).equals("")) {
 			user.setInterests((String)map.get("interest"));			
 		}
 		user.setDescription((String)map.get("description"));
