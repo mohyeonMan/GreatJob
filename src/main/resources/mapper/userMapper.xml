@@ -97,7 +97,6 @@
  	
  	<update id="update" parameterType="user">
  		update user set
- 			image_url = #{imageUrl},
  			name = #{name},
  			interests = #{interests},
  			description = #{description},
