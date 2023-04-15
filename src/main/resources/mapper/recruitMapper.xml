@@ -88,7 +88,7 @@
 				,
 				</if>
 				r.date_created desc
-				) as "row",
+				) as "rn",
 				r.id as "id",
 				r.title as "title",
 				r.description as "description",
