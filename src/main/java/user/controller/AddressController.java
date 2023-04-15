@@ -13,6 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class AddressController {
 	@GetMapping(value = "DaumAPI")
 	public String addressAPI() {
-		return "/resources/static/addressAPI.jsp";
+		return "/WEB-INF/addressAPI.jsp";
 	}
 }
