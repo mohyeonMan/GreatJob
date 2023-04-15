@@ -1,5 +1,7 @@
 package comment.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,11 @@ public class CommentDAOMyBatis implements CommentDAO {
 	@Override
 	public CommentDTO getComment(int parentId) {
 		return sqlSession.selectOne("commentMapper.getComment",parentId);
+	}
+
+	@Override
+	public List<CommentDTO> listComments(CommentDTO comment) {
+		return sqlSession.selectList("commentMapper.listComments",comment);
 	}
 
 }

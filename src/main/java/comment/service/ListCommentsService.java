@@ -1,11 +1,14 @@
 package comment.service;
 
+import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import comment.bean.CommentDTO;
 import comment.dao.CommentDAO;
 import lombok.RequiredArgsConstructor;
 
@@ -20,9 +23,15 @@ public class ListCommentsService implements CommentService{
 		CommentDAO dao = commentDAO.get("commentDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
+		CommentDTO comment = new CommentDTO();
+		comment.setObject((int)map.get("object"));
+		comment.setObjectId((int)map.get("objectId"));
 		
+		List<CommentDTO> comments = dao.listComments(comment);
+		object.put("data", new JSONArray(comments));
+		object.put("status", 200);
 		
-		return null;
+		return object.toString();
 	}
 
 }
