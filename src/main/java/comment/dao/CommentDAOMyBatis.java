@@ -21,13 +21,23 @@ public class CommentDAOMyBatis implements CommentDAO {
 	}
 
 	@Override
-	public CommentDTO getComment(int parentId) {
-		return sqlSession.selectOne("commentMapper.getComment",parentId);
+	public CommentDTO getMaterialFromParent(int parentId) {
+		return sqlSession.selectOne("commentMapper.getMaterialFromParent",parentId);
 	}
 
 	@Override
+	public CommentDTO getComment(int id) {
+		return sqlSession.selectOne("commentMapper.getComment",id);
+	}
+	
+	@Override
 	public List<CommentDTO> listComments(CommentDTO comment) {
 		return sqlSession.selectList("commentMapper.listComments",comment);
+	}
+	
+	@Override
+	public void delete(int id) {
+		sqlSession.update("commentMapper.delete",id);
 	}
 
 }

@@ -31,7 +31,7 @@
 	</insert>
 	
 	
-	<select id="getComment" parameterType="Integer" resultType="comment">
+	<select id="getMaterialFromParent" parameterType="Integer" resultType="comment">
 		select 
 			concat(ifnull(c.comment_order,''),lpad(c.id,'5','0')) as "commentOrder",
 			c.comment_level+1 as "commentLevel"
@@ -40,6 +40,24 @@
 		where c.id = #{parentId};
 	</select>
 	
+	<select id="getComment">
+		select
+			c.id as "id",
+			c.parent_id as "parentId",
+			c.user_id as "userId",
+			u.name as "userName",
+			u.image_url as "userImageUrl",
+			c.description as "description",
+			c.comment_level as "commentLevel",
+			UNIX_TIMESTAMP(c.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified",
+			c.status as "status"
+		from
+			comment c
+			left join user u on c.user_id = u.id
+		where
+			c.id = #{id}
+	</select>
 	
 	<select id="listComments" parameterType="comment" resultType="comment">
 		select
@@ -51,7 +69,8 @@
 			c.description as "description",
 			c.comment_level as "commentLevel",
 			UNIX_TIMESTAMP(c.date_created)*1000 as "dateCreated",
-			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified"
+			UNIX_TIMESTAMP(c.date_modified)*1000 as "dateModified",
+			c.status as "status"
 		from
 			comment c
 			left join user u on c.user_id = u.id
@@ -66,9 +85,11 @@
 		where id = #{id}
 	</update>
 	
-	<delete id="delete" parameterType="Integer">
-		delete from comment where id = #{id}
-	</delete>
+	<update id="delete" parameterType="Integer">
+		update comment set 
+			status = 1
+		where id = #{id} and status = 0;
+	</update>
 	
 	
  </mapper>

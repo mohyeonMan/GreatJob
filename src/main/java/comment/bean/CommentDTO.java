@@ -15,4 +15,5 @@ public class CommentDTO {
 	private String commentOrder = null;
 	private int commentLevel = 0;
 	private int parentId = 0;
+	private int status;
 }

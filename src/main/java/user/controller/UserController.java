@@ -55,9 +55,15 @@ public class UserController {
 	public String rollback(@RequestBody Map<String, Object> map) {
 		return userService.get("rollBackUserService").execute(map);
 	}
+	
 	@GetMapping(value = "listUsers")
 	public String listUsers(@RequestParam(required = false)Map<String, Object> map) {
 		return userService.get("listUsersService").execute(map);
+	}
+	
+	@GetMapping(value = "addressAPI")
+	public String addressAPI() {
+		return "/static/addressAPI.jsp";
 	}
 
 }

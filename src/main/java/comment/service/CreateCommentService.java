@@ -29,7 +29,7 @@ public class CreateCommentService implements CommentService{
 		
 		if(map.get("parentId") != null) {
 			comment.setParentId((int)map.get("parentId"));
-			CommentDTO commentPlace = dao.getComment(comment.getParentId());
+			CommentDTO commentPlace = dao.getMaterialFromParent(comment.getParentId());
 			if(commentPlace == null) {
 				object.put("status", 400);
 				return object.toString();

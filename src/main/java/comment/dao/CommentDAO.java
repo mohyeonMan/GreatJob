@@ -8,8 +8,12 @@ public interface CommentDAO {
 
 	void create(CommentDTO comment);
 
-	CommentDTO getComment(int parentId);
+	CommentDTO getMaterialFromParent(int parentId);
 
 	List<CommentDTO> listComments(CommentDTO comment);
+
+	void delete(int id);
+
+	CommentDTO getComment(int id);
 
 }
