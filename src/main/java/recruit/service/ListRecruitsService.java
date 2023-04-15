@@ -1,6 +1,5 @@
 package recruit.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -81,7 +80,7 @@ public class ListRecruitsService implements RecruitService{
 			if(map.get("sort") != null) {
 				option.setSort((String)map.get("sort")); 
 			}
-			if (map.get("startTime") != null) {
+			if (map.get("startItem") != null) {
 				option.setStartItem(Integer.parseInt((String)map.get("startItem")));
 			}
 			if (map.get("itemAmount") != null) {
