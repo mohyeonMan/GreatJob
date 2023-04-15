@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -59,11 +60,6 @@ public class UserController {
 	@GetMapping(value = "listUsers")
 	public String listUsers(@RequestParam(required = false)Map<String, Object> map) {
 		return userService.get("listUsersService").execute(map);
-	}
-	
-	@GetMapping(value = "addressAPI")
-	public String addressAPI() {
-		return "/static/addressAPI.jsp";
 	}
 
 }
