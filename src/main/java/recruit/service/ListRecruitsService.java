@@ -82,10 +82,10 @@ public class ListRecruitsService implements RecruitService{
 				option.setSort((String)map.get("sort")); 
 			}
 			if (map.get("startTime") != null) {
-				option.setStartItem((int)map.get("startItem"));
+				option.setStartItem(Integer.parseInt((String)map.get("startItem")));
 			}
 			if (map.get("itemAmount") != null) {
-				option.setItemAmount((int)map.get("itemAmount"));
+				option.setItemAmount(Integer.parseInt((String)map.get("itemAmount")));
 			}
 		}
 		
