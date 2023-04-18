@@ -57,9 +57,9 @@ public class CreateRecruitService implements RecruitService{
 		byte[] arr5 =  arr4[1];
 		
 		byte[][] arr = (byte[][])map.get("images");
-		
+		System.out.println("\n\n\n");
 		for ( byte[] mini : arr) {
-			System.out.println(mini.toString()+"\n\n\n");
+			System.out.println(mini.length);
 		}
 		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
