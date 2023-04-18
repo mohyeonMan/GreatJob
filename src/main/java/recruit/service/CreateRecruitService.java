@@ -2,6 +2,7 @@ package recruit.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -48,15 +49,18 @@ public class CreateRecruitService implements RecruitService{
 		byte[] arr1 = {1,2,3};
 		byte[] arr2 = {1,2,3};
 		byte[] arr3 = {1,2,3};
+		byte[][] arr4 = {arr1,arr2,arr3};
 		
 		JSONObject arrObject = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.put(arr1);
-		jsonArray.put(arr2);
-		jsonArray.put(arr3);
-		arrObject.put("images", jsonArray);
+		arrObject.put("images", arr4);
 		
-		System.out.println((List<byte[]>)map.get("images"));
+		byte[] arr5 =  arr4[1];
+		
+		byte[][] arr = (byte[][])map.get("images");
+		
+		for ( byte[] mini : arr) {
+			System.out.println(mini.toString()+"\n\n\n");
+		}
 		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
