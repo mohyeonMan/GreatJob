@@ -42,8 +42,11 @@ public class CreateRecruitService implements RecruitService{
 
 	@Override
 	public String execute(Map<String, Object> map) {
+		System.out.println((String)map.get("image"));
+		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
+		
 		
 		RecruitDTO recruit = parseValue(map);
 		dao.create(recruit);

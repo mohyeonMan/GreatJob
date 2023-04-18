@@ -10,6 +10,22 @@ import lombok.RequiredArgsConstructor;
 import user.bean.UserDTO;
 import user.dao.UserDAO;
 
+/**
+ * 
+ * <pre>
+ * 
+ * @author jihoon
+ * 
+ * >>input
+ * email(String)		제목
+ * imageUrl(String)		내용
+ * type(int)			카테고리의 id
+ * name(String)			봉사 시작일
+ * 
+ * </pre>
+ * 
+ */
+
 @Service
 @RequiredArgsConstructor
 public class UserLogInService implements UserService {
