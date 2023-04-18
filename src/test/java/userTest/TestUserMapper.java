@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,7 +53,7 @@ public class TestUserMapper {
 	
 	@Test
 	@Transactional
-	void checkIdExist() {
+	void checkIdExist() throws JSONException {
 		//user 생성
 		UserDTO user = new UserDTO();
 		user.setImageUrl("url-");
@@ -65,6 +68,19 @@ public class TestUserMapper {
 		user.setAddress("address-");
 		user.setType(1);
 		userDAO.get("userDAOMyBatis").create(user);
+		
+		byte[] arr1 = {1,2,3};
+		byte[] arr2 = {1,2,3};
+		byte[] arr3 = {1,2,3};
+		
+		JSONObject arrObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.put(arr1);
+		jsonArray.put(arr2);
+		jsonArray.put(arr3);
+		arrObject.put("images", jsonArray);
+		
+		System.out.println(arrObject.toString());
 		
 		int exist = userDAO.get("userDAOMyBatis").checkEmailExist(user.getEmail());
 		Assertions.assertThat(exist).isEqualTo(1);

@@ -2,8 +2,11 @@ package recruit.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.javassist.expr.NewArray;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +45,18 @@ public class CreateRecruitService implements RecruitService{
 
 	@Override
 	public String execute(Map<String, Object> map) {
-		System.out.println((String)map.get("image"));
+		byte[] arr1 = {1,2,3};
+		byte[] arr2 = {1,2,3};
+		byte[] arr3 = {1,2,3};
+		
+		JSONObject arrObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.put(arr1);
+		jsonArray.put(arr2);
+		jsonArray.put(arr3);
+		arrObject.put("images", jsonArray);
+		
+		System.out.println((List<byte[]>)map.get("images"));
 		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
