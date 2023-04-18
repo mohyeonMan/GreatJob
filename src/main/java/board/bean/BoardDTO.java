@@ -1,20 +1,19 @@
-package comment.bean;
+package board.bean;
 
 import lombok.Data;
 
 @Data
-public class CommentDTO {
+public class BoardDTO {
+	
 	private int id;
-	private int object;
-	private int objectId;
+	private int categoryId;
+	private String categoryName;
 	private int userId;
 	private String userName;
 	private String userImageUrl;
+	private String title;
 	private String description;
 	private long dateCreated;
 	private long dateModified;
-	private String commentOrder = null;
-	private int commentLevel = 0;
-	private int parentId = 0;
-	private int status;
+	private int hit;
 }

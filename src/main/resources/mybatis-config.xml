@@ -10,6 +10,9 @@
 		<typeAlias type="recruit.bean.RecruitDTO" alias="recruit"/>
 		<typeAlias type="recruit.bean.RecruitQueryOption" alias="rqo"/>
 		<typeAlias type="comment.bean.CommentDTO" alias="comment"/>
+		<typeAlias type="category.bean.CategoryDTO" alias="category"/>
+		<typeAlias type="board.bean.BoardDTO" alias="board"/>
+		<typeAlias type="board.bean.BoardQueryOption" alias="bqo"/>
 	</typeAliases>
 
 

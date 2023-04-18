@@ -79,17 +79,32 @@
 		order by concat(ifnull(c.comment_order,''),lpad(c.id,'5','0'))
 	</select>
 	
-	<update id="update" parameterType="comment">
-		update comment set
-			description = #{description}
-		where id = #{id}
-	</update>
-	
 	<update id="delete" parameterType="Integer">
 		update comment set 
 			status = 1
-		where id = #{id} and status = 0;
+		where id = #{id} and status = 0
 	</update>
 	
+	<update id="rollBack" parameterType="Integer">
+		update comment set
+			status = 0
+		where id = #{id} and status = 1
+	</update>
+	
+	<update id="update" parameterType="comment">
+		update comment set
+			description = #{description},
+			date_modified = now(),
+			status = 0
+		where id = #{id}
+	</update>
+	
+	<delete id="objectDeleted" parameterType="hashMap">
+		delete 
+			from comment
+		where
+			object = #{object}
+		and object_id = #{id}
+	</delete>
 	
  </mapper>

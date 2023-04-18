@@ -44,5 +44,10 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	public void delete(int id) {
 		sqlSession.delete("recruitMapper.delete",id);
 	}
+	
+	@Override
+	public void hit(int id) {
+		sqlSession.update("recruitMapper.hit",id);
+	}
 
 }

@@ -1,4 +1,4 @@
-package recruit.service;
+package board.service;
 
 import java.util.Map;
 
@@ -6,21 +6,21 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import board.dao.BoardDAO;
 import comment.dao.CommentDAO;
 import lombok.RequiredArgsConstructor;
-import recruit.dao.RecruitDAO;
 
 @Service
 @RequiredArgsConstructor
-public class DeleteRecruitService implements RecruitService{
+public class DeleteBoardService implements BoardService{
 	@Autowired
-	private Map<String, RecruitDAO> recruitDAOMap;
+	private Map<String, BoardDAO> boardDAOMap;
 	@Autowired
 	private Map<String, CommentDAO> commentDAOMap;
 	
 	@Override
 	public String execute(Map<String, Object> map) {
-		RecruitDAO recruitDAO = recruitDAOMap.get("recruitDAOMyBatis");
+		BoardDAO boardDAO = boardDAOMap.get("boardDAOMyBatis");
 		CommentDAO commentDAO = commentDAOMap.get("commentDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
@@ -29,11 +29,11 @@ public class DeleteRecruitService implements RecruitService{
 		if(map.get("id") != null) {
 			int id = (int)map.get("id");
 			
-			map.put("object", 1);
+			map.put("object", 0);
 			commentDAO.objectDeleted(map);
-			recruitDAO.delete(id);
-
-			if(recruitDAO.getRecruit(id) != null) {
+			boardDAO.delete(id);
+			
+			if(boardDAO.getBoard(id) != null) {
 				status = 500;
 			}
 		}else {
@@ -44,5 +44,6 @@ public class DeleteRecruitService implements RecruitService{
 		
 		return object.toString();
 	}
-
+	
+	
 }

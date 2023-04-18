@@ -1,6 +1,7 @@
 package comment.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,19 @@ public class CommentDAOMyBatis implements CommentDAO {
 	public void delete(int id) {
 		sqlSession.update("commentMapper.delete",id);
 	}
+	
+	@Override
+	public void rollBack(int id) {
+		sqlSession.update("commentMapper.rollBack",id);
+	}
 
+	@Override
+	public void update(CommentDTO comment) {
+		sqlSession.update("commentMapper.update",comment);
+	}
+	
+	@Override
+	public void objectDeleted(Map<String, Object> map) {
+		sqlSession.delete("commentMapper.objectDeleted",map);
+	}
 }

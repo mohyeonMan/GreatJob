@@ -21,5 +21,6 @@ public class RecruitDTO {
 	private String address;
 	private long dateCreated = 1;
 	private long dateModified = 1;
+	private int hit;
 
 }

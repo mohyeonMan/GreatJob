@@ -5,16 +5,24 @@
  
  <mapper namespace="categoryMapper">
  
-	<insert id="create" parameterType="String">
-		insert into category(name)values(#{name})
+	<insert id="create" parameterType="category">
+		insert into category(
+			name,
+			object
+		)values(
+			#{name},
+			#{object}
+		)
 	</insert>
 	
-	<select id="listCategories" resultType="hashMap">
+	<select id="listCategories" parameterType="Integer" resultType="category">
 		select
 			id as "id",
 			name as "name"
 		from
 			category
+		where
+			object = #{object}
 	</select>
 	
 	<delete id="delete" parameterType="Integer">

@@ -42,6 +42,7 @@ public class EditRecruitService implements RecruitService {
 	public String execute(Map<String, Object> map) {
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
+		int status = 200;
 		
 		RecruitDTO replaceRecruit = parseValue(map);
 		
@@ -50,14 +51,14 @@ public class EditRecruitService implements RecruitService {
 		RecruitDTO changedRecruit = dao.getRecruit((int)map.get("id"));
 		
 		if(replaceRecruit == null|| changedRecruit == null) {
-			object.put("status", 400);
+			status = 400;
 		}else {
-			if(compareRecruit(replaceRecruit, changedRecruit)) {
-				object.put("status", 200);
-			}else {
-				object.put("status", 500);
+			if(!compareRecruit(replaceRecruit, changedRecruit)) {
+				status = 500;
 			}
 		}
+		
+		object.put("status", status);
 		
 		return object.toString();
 	}

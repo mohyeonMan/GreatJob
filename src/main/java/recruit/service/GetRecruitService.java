@@ -50,14 +50,22 @@ public class GetRecruitService implements RecruitService{
 	public String execute(Map<String, Object> map) {
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
+		int status = 200;
 		
-		RecruitDTO recruit = dao.getRecruit((int)map.get("id"));
-		if(recruit == null) {
-			object.put("status", 400);
+		if (map.get("id") != null) {
+			int id = (int)map.get("id");
+			RecruitDTO recruit = dao.getRecruit(id);
+			dao.hit(id);
+			if(recruit != null) {
+				object.put("data",new JSONObject(recruit));
+			}else {
+				status = 400;
+			}
 		}else {
-			object.put("data",new JSONObject(recruit));
-			object.put("status", 200);
+			status = 400;
 		}
+		
+		object.put("status", status);
 		
 		return object.toString();
 	}

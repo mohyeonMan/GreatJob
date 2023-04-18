@@ -17,4 +17,6 @@ public interface RecruitDAO {
 
 	void delete(int id);
 
+	void hit(int id);
+
 }

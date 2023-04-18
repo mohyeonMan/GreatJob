@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="boardMapper">
+ 
+	<insert id="create" parameterType="board">
+		insert into board(
+			user_id,
+			category_id,
+			title,
+			description,
+			date_created,
+			date_modified,
+			hit
+		)values(
+			#{userId},
+			#{categoryId},
+			#{title},
+			#{description},
+			now(),
+			now(),
+			0
+		)
+	</insert>
+	
+	<select id="getBoard" parameterType="Integer" resultType="board">
+		select
+			b.id as "id",
+			c.name as "categoryName",
+			u.name as "userName",
+			u.image_url as "userImageUrl",
+			b.title as "title",
+			b.description as "description",
+			UNIX_TIMESTAMP(b.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(b.date_modified)*1000 as "dateModified",
+			b.hit as "hit"
+		from board b
+			left join category c on b.category_id = c.id
+			left join user u on b.user_id = u.id
+		where
+			b.id = #{id}
+			
+	</select>
+	
+	<select id="listBoards" parameterType="bqo" resultType="board">
+		select
+			b.id as "id",
+			c.name as "categoryName",
+			u.name as "userName",
+			u.image_url as "userImageUrl",
+			b.title as "title",
+			b.description as "description",
+			UNIX_TIMESTAMP(b.date_created)*1000 as "dateCreated",
+			UNIX_TIMESTAMP(b.date_modified)*1000 as "dateModified",
+			b.hit as "hit"
+		from board b
+			left join category c on b.category_id = c.id
+			left join user u on b.user_id = u.id
+	</select>
+	
+	<update id="hit">
+		update board set
+			hit = hit+1
+		where 
+			id = #{id}
+	</update>
+	
+	<update id="update" parameterType="board">
+		update board set
+			category_id = #{categoryId},
+			title = #{title},
+			description = #{description},
+			date_modified = now()
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from board where id = #{id}
+	</delete>
+	
+ </mapper>

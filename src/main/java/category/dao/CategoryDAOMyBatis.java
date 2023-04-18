@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import category.bean.CategoryDTO;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -19,12 +20,12 @@ public class CategoryDAOMyBatis {
 	@Autowired
 	SqlSession sqlSession;
 
-	public void create(String name) {
-		sqlSession.insert("categoryMapper.create",name);
+	public void create(CategoryDTO category) {
+		sqlSession.insert("categoryMapper.create",category);
 	}
 	
-	public List<Map<String, Object>> listCategories(){
-		return sqlSession.selectList("categoryMapper.listCategories");
+	public List<CategoryDTO> listCategories(int object){
+		return sqlSession.selectList("categoryMapper.listCategories",object);
 	}
 	
 	public void delete(int id) {

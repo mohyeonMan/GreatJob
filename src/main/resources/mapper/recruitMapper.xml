@@ -18,7 +18,8 @@
 			max_personnel,
 			current_personnel,
 			date_created,
-			date_modified
+			date_modified,
+			hit
 		)values(
 			#{title},
 			#{description},
@@ -31,7 +32,8 @@
 			#{maxPersonnel},
 			0,
 			now(),
-			now()
+			now(),
+			0
 		)
 	</insert>
  	
@@ -48,6 +50,13 @@
  			date_modified = now()
  		where id = #{id}
  	</update>
+ 	
+ 	<update id="hit">
+		update recruit set
+			hit = hit+1
+		where 
+			id = #{id}
+	</update>
  	
  	<delete id="delete" parameterType="Integer">
 		delete from recruit where id = #{id}
@@ -69,7 +78,8 @@
 			r.max_personnel as "maxPersonnel",
 			r.current_personnel as "currentPersonnel",
 			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
-			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
+			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
+			r.hit as "hit"
 		from
 			recruit r
 			left join category c on r.category_id = c.id
@@ -103,7 +113,8 @@
 				r.max_personnel as "maxPersonnel",
 				r.current_personnel as "currentPersonnel",
 				UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
-				UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified"
+				UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
+				r.hit as "hit"
 			from
 				recruit r
 				left join category c on r.category_id = c.id
