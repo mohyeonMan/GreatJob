@@ -46,21 +46,9 @@ public class CreateRecruitService implements RecruitService{
 
 	@Override
 	public String execute(Map<String, Object> map) {
-		byte[] arr1 = {1,2,3};
-		byte[] arr2 = {1,2,3};
-		byte[] arr3 = {1,2,3};
-		byte[][] arr4 = {arr1,arr2,arr3};
 		
-		JSONObject arrObject = new JSONObject();
-		arrObject.put("images", arr4);
-		
-		byte[] arr5 =  arr4[1];
-		
-		byte[][] arr = (byte[][])map.get("images");
-		System.out.println("\n\n\n");
-		for ( byte[] mini : arr) {
-			System.out.println(mini.length);
-		}
+		String str = (String)map.get("images");
+		System.out.println("\n\n\n"+str+"\n\n\n");
 		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
