@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,12 +32,12 @@ public class RecruitController {
 
 	@PostMapping(value = "multiPart")
 	public void multiPart(
-			@RequestBody MultipartFile file,
-			@RequestBody(required = false) String data) {
+			@RequestPart(value = "file") MultipartFile file,
+			@RequestPart(value = "data", required = false) Map<String, Object> data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(data != null) {
-			System.out.println(data);			
+			System.out.println(data.entrySet());			
 		}else {
 			System.out.println("data is null");
 		}
