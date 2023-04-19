@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonParser;
 
 import lombok.RequiredArgsConstructor;
+import recruit.bean.TestDTO;
 import recruit.service.RecruitService;
 
 @CrossOrigin
@@ -33,11 +34,11 @@ public class RecruitController {
 	@PostMapping(value = "multiPart")
 	public void multiPart(
 			@RequestPart(value = "file") MultipartFile file,
-			@RequestPart(value = "data", required = false) Map<String, Object> data) {
+			@RequestPart(value = "data", required = false) TestDTO data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(data != null) {
-			System.out.println(data.entrySet());			
+			System.out.println(data);			
 		}else {
 			System.out.println("data is null");
 		}
