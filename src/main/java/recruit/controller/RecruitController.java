@@ -32,11 +32,11 @@ public class RecruitController {
 	private Map<String, RecruitService> recruitService;
 
 	@PostMapping(value = "multiPart")
-	public void multiPart(@RequestPart(value = "file") MultipartFile file,@RequestPart(value = "key", required = false) Map<String, Object> map) {
+	public void multiPart(@RequestPart(value = "file") MultipartFile file,@RequestPart(value = "key", required = false) String key) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
-		if(map.get("key") != null) {
-			System.out.println("key = "+(int)map.get("key"));			
+		if(key != null) {
+			System.out.println("key = "+key);			
 		}else {
 			System.out.println("key is null");
 		}
