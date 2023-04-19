@@ -37,6 +37,8 @@ public class RecruitController {
 		System.out.println(file.getContentType());
 		if(data != null) {
 			System.out.println(data);			
+		}else {
+			System.out.println("data is null");
 		}
 	}
 	
