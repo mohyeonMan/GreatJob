@@ -42,6 +42,17 @@ public class RecruitController {
 		}
 	}
 	
+	@PostMapping(value = "multiPart2")
+	public void multiPart2(@RequestPart(value = "file") MultipartFile file,@RequestPart(value = "key", required = false) JSONObject key) {
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getContentType());
+		if(key != null) {
+			System.out.println("key = "+key.toString());			
+		}else {
+			System.out.println("key is null");
+		}
+	}
+	
 	@PostMapping(value = "image")
 	public void postMethodName(@RequestBody MultipartFile file) {
 		System.out.println(file.getOriginalFilename());
