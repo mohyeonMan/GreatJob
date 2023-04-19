@@ -31,10 +31,10 @@ public class RecruitController {
 	@Autowired
 	private Map<String, RecruitService> recruitService;
 
-	@PostMapping(value = "multiPart")
+	@PostMapping(value = "multiPart", consumes = "")
 	public void multiPart(
-			@RequestPart(value = "file") MultipartFile file,
-			@RequestPart(value = "data", required = false) TestDTO data) {
+			@RequestPart("file") MultipartFile file,
+			@RequestPart("data") TestDTO data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(data != null) {
