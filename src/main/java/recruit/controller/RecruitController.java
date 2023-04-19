@@ -31,7 +31,7 @@ public class RecruitController {
 	@Autowired
 	private Map<String, RecruitService> recruitService;
 
-	@PostMapping(value = "multiPart", consumes = "")
+	@PostMapping(value = "multiPart")
 	public void multiPart(
 			@RequestPart("file") MultipartFile file,
 			@RequestPart("data") TestDTO data) {
