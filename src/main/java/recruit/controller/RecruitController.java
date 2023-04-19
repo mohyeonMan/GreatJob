@@ -36,7 +36,7 @@ public class RecruitController {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(key != null) {
-			System.out.println("key = "+key);			
+			System.out.println("key = "+new JSONObject(key).toString());			
 		}else {
 			System.out.println("key is null");
 		}
