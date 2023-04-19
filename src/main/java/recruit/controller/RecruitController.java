@@ -43,11 +43,11 @@ public class RecruitController {
 	}
 	
 	@PostMapping(value = "multiPart2")
-	public void multiPart2(@RequestPart(value = "file") MultipartFile file,@RequestPart(value = "key", required = false) JSONObject key) {
+	public void multiPart2(@RequestParam(value = "file") MultipartFile file,@RequestBody(required = false) Map<String, Object> key) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(key != null) {
-			System.out.println("key = "+key.toString());			
+			System.out.println("key = "+key.entrySet());			
 		}else {
 			System.out.println("key is null");
 		}
