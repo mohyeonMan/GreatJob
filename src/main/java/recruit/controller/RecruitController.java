@@ -33,7 +33,7 @@ public class RecruitController {
 	@PostMapping(value = "multiPart")
 	public void multiPart(
 			@RequestPart(value = "file") MultipartFile file,
-			@RequestPart(value = "data", required = false) Map<String, Object> data) {
+			@RequestPart(value = "data", required = false) String data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(data != null) {
