@@ -32,11 +32,11 @@ public class RecruitController {
 	@PostMapping(value = "multiPart")
 	public void multiPart(
 			@RequestBody MultipartFile file,
-			@RequestBody(required = false) Map<String, Object> data) {
+			@RequestBody(required = false) String data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(data != null) {
-			System.out.println(data.entrySet());			
+			System.out.println(data);			
 		}
 	}
 	
