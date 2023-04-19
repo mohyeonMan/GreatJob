@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import recruit.service.RecruitService;
@@ -24,6 +25,26 @@ public class RecruitController {
 	@Autowired
 	private Map<String, RecruitService> recruitService;
 
+	@PostMapping(value = "multiPart")
+	public void multiPart(
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("data") Map<String, Object> map) {
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getContentType());
+		System.out.println(map.entrySet());
+	}
+	
+	@PostMapping(value = "image")
+	public void postMethodName(@RequestParam MultipartFile file) {
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getContentType());
+	}
+
+	
+	
+	
+	
+	
 	@PostMapping(value = "create")
 	public String create(@RequestBody Map<String, Object> map) {
 		return recruitService.get("createRecruitService").execute(map);
@@ -38,7 +59,6 @@ public class RecruitController {
 	public String getRecruit(@RequestParam Map<String, Object> map) {
 		return recruitService.get("getRecruitService").execute(map);
 	}
-
 
 	@GetMapping(value = "listRecruits")
 	public String listRecruits(@RequestParam(required = false) Map<String, Object> map) {

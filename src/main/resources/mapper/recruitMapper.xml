@@ -5,7 +5,7 @@
  
  <mapper namespace="recruitMapper">
 	
-	<insert id="create" parameterType="user">
+	<insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
 		insert into recruit(
 			title,
 			description,
