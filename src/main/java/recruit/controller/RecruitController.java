@@ -2,7 +2,9 @@ package recruit.controller;
 
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonParser;
 
 import lombok.RequiredArgsConstructor;
 import recruit.service.RecruitService;
@@ -27,15 +31,16 @@ public class RecruitController {
 
 	@PostMapping(value = "multiPart")
 	public void multiPart(
-			@RequestParam("file") MultipartFile file,
-			@RequestParam("data") Map<String, Object> map) {
+			@RequestBody MultipartFile file,
+			@RequestBody Map<String, Object> data) {
+		JSONObject object = new JSONObject(data);
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
-		System.out.println(map.entrySet());
+		System.out.println(object.toString());
 	}
 	
 	@PostMapping(value = "image")
-	public void postMethodName(@RequestParam MultipartFile file) {
+	public void postMethodName(@RequestBody MultipartFile file) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 	}
