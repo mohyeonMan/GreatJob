@@ -32,11 +32,12 @@ public class RecruitController {
 	@PostMapping(value = "multiPart")
 	public void multiPart(
 			@RequestBody MultipartFile file,
-			@RequestBody Map<String, Object> data) {
-		JSONObject object = new JSONObject(data);
+			@RequestBody(required = false) Map<String, Object> data) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
-		System.out.println(object.toString());
+		if(data != null) {
+			System.out.println(data.entrySet());			
+		}
 	}
 	
 	@PostMapping(value = "image")
