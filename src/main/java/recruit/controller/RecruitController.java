@@ -1,5 +1,6 @@
 package recruit.controller;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -32,9 +33,12 @@ public class RecruitController {
 	private Map<String, RecruitService> recruitService;
 
 	@PostMapping(value = "multiPart")
-	public void multiPart(@RequestPart(value = "file") MultipartFile file,@RequestPart(value = "key", required = false) String key) {
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getContentType());
+	public void multiPart(@RequestPart(value = "file") MultipartFile[] file,@RequestPart(value = "key", required = false) String key) {
+		for(int i=0;i<file.length;i++) {
+			System.out.println(file[i].getOriginalFilename());
+			System.out.println(file[i].getContentType());
+		}
+		
 		if(key != null) {
 			System.out.println("key = "+new JSONObject(key).toString());			
 		}else {
