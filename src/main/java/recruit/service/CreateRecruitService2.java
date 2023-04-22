@@ -62,10 +62,9 @@ public class CreateRecruitService2 implements RecruitService{
 		JSONObject object = new JSONObject();
 		
 		RecruitDTO recruit = parseValue(new JSONObject((String)map.get("data")));
-		if (map.get("image") != null) {
-			String imageUrl = imageUpload((ArrayList) map.get("image"));
-			
-			
+		if (map.get("images") != null) {
+			String imageUrl = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+			recruit.setImageUrl(imageUrl);
 		}
 		dao.create(recruit);
 		
@@ -92,16 +91,21 @@ public class CreateRecruitService2 implements RecruitService{
 		FileOutputStream fos;
 		String imageUrls = "";
 		
-		MultipartFile image = images.get(0);
-		UUID uuid = UUID.randomUUID();
-		String imageUrl = uuid.toString()+"_"+image.getOriginalFilename();
-		
-		try {
-			fos = new FileOutputStream(new File("src/main/resources/images/"+imageUrl));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		imageUrls += imageUrl;
+		for(int i = 0;i<images.size();i++) {
+			UUID uuid = UUID.randomUUID();
+			String imageUrl = uuid.toString()+"_"+images.get(i).getOriginalFilename();
+			
+			try {
+				fos = new FileOutputStream(new File("src/main/resources/images/"+imageUrl));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} 
+			imageUrls += imageUrl;
+			
+			if(i != images.size()-1) {
+				imageUrls+=",";
+			}
+		}
 		
 		
 		return imageUrls;
