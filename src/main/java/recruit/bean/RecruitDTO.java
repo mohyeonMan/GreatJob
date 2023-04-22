@@ -9,6 +9,7 @@ public class RecruitDTO {
 	private int rn;
 	private String title;
 	private String description;
+	private String imageUrl;
 	private int categoryId;
 	private String categoryName;
 	private long dateStart = 1;

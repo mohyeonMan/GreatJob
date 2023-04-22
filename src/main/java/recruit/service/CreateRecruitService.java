@@ -2,6 +2,7 @@ package recruit.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -47,12 +48,8 @@ public class CreateRecruitService implements RecruitService{
 	@Override
 	public String execute(Map<String, Object> map) {
 		
-		String str = (String)map.get("images");
-		System.out.println("\n\n\n"+str+"\n\n\n");
-		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
-		
 		
 		RecruitDTO recruit = parseValue(map);
 		dao.create(recruit);
@@ -74,6 +71,10 @@ public class CreateRecruitService implements RecruitService{
 		recruit.setAddress((String)map.get("address"));
 		
 		return recruit; 
+	}
+	
+	public void imageUpload() {
+		
 	}
 
 	
