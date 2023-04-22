@@ -38,7 +38,7 @@ public class RecruitController {
 	@PostMapping(value = "create2")
 	public String create2(@RequestPart(value = "image", required = false) List<MultipartFile> images,@RequestPart(value = "data") String data) {
 		Map<String, Object> map = new HashMap<>();
-		if(images != null && !images.isEmpty()) {
+		if(images != null) {
 			System.out.println(images.toString());
 			map.put("images", images);
 		}
