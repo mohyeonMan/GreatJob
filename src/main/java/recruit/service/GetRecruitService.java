@@ -53,7 +53,7 @@ public class GetRecruitService implements RecruitService{
 		int status = 200;
 		
 		if (map.get("id") != null) {
-			int id = (int)map.get("id");
+			int id = Integer.parseInt((String)map.get("id"));
 			RecruitDTO recruit = dao.getRecruit(id);
 			dao.hit(id);
 			if(recruit != null) {

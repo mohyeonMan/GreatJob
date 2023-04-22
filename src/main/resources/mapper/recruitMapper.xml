@@ -19,7 +19,8 @@
 			current_personnel,
 			date_created,
 			date_modified,
-			hit
+			hit,
+			image_url
 		)values(
 			#{title},
 			#{description},
@@ -33,7 +34,8 @@
 			0,
 			now(),
 			now(),
-			0
+			0,
+			#{imageUrl}
 		)
 	</insert>
  	

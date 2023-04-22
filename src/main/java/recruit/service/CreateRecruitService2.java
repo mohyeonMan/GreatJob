@@ -3,6 +3,8 @@ package recruit.service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -56,16 +58,20 @@ public class CreateRecruitService2 implements RecruitService{
 	@Override
 	public String execute(Map<String, Object> map) {
 		
-		
-		
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
 		RecruitDTO recruit = parseValue(new JSONObject((String)map.get("data")));
+		
 		if (map.get("images") != null) {
-			String imageUrl = imageUpload((ArrayList<MultipartFile>) map.get("images"));
-			recruit.setImageUrl(imageUrl);
+			try {
+				String imageUrl = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+				recruit.setImageUrl(imageUrl);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		
 		dao.create(recruit);
 		
 		object.put("status", 200);
@@ -87,26 +93,21 @@ public class CreateRecruitService2 implements RecruitService{
 		return recruit; 
 	}
 	
-	public String imageUpload(List<MultipartFile> images) {
-		FileOutputStream fos;
+	public String imageUpload(List<MultipartFile> images) throws IOException {
 		String imageUrls = "";
 		
 		for(int i = 0;i<images.size();i++) {
 			UUID uuid = UUID.randomUUID();
-			String imageUrl = uuid.toString()+"_"+images.get(i).getOriginalFilename();
+			MultipartFile image = images.get(i);
+			String imageUrl = uuid.toString()+"_"+image.getOriginalFilename();
+			image.transferTo(new File("src/main/resources/images/"+imageUrl));
 			
-			try {
-				fos = new FileOutputStream(new File("src/main/resources/images/"+imageUrl));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} 
 			imageUrls += imageUrl;
 			
 			if(i != images.size()-1) {
 				imageUrls+=",";
 			}
 		}
-		
 		
 		return imageUrls;
 		
