@@ -30,10 +30,10 @@ public class RecruitController {
 	private Map<String, RecruitService> recruitService;
 
 	@PostMapping(value = "multiPart")
-	public void multiPart(@RequestPart(value = "image") MultipartFile[] file,@RequestPart(value = "data", required = false) String key) {
-		for(int i=0;i<file.length;i++) {
-			System.out.println(file[i].getOriginalFilename());
-			System.out.println(file[i].getContentType());
+	public void multiPart(@RequestPart(value = "image") List<MultipartFile> file,@RequestPart(value = "data", required = false) String key) {
+		for(int i=0;i<file.size();i++) {
+			System.out.println(file.get(i).getOriginalFilename());
+			System.out.println(file.get(i).getContentType());
 		}
 		
 		if(key != null) {
@@ -44,7 +44,7 @@ public class RecruitController {
 	}
 	
 	@PostMapping(value = "multiPart2")
-	public void multiPart2(@RequestParam(value = "file") MultipartFile file,@RequestBody(required = false) Map<String, Object> key) {
+	public void multiPart2(@RequestParam(value = "file") List<MultipartFile> g,@RequestBody(required = false) Map<String, Object> key) {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getContentType());
 		if(key != null) {
