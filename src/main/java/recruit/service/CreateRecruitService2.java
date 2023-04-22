@@ -65,13 +65,13 @@ public class CreateRecruitService2 implements RecruitService{
 		
 		if (map.get("images") != null) {
 			try {
-				String imageUrl = imageUpload((ArrayList<MultipartFile>) map.get("images"));
-				recruit.setImageUrl(imageUrl);
+				String imageUrls = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+				recruit.setImageUrl(imageUrls);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println(recruit.getImageUrl());
 		dao.create(recruit);
 		
 		object.put("status", 200);

@@ -39,7 +39,8 @@ public class RecruitController {
 	public String create2(@RequestPart(value = "image", required = false) List<MultipartFile> images,@RequestPart(value = "data") String data) {
 		Map<String, Object> map = new HashMap<>();
 		if(images != null && !images.isEmpty()) {
-			map.put("images", images);			
+			System.out.println(images.toString());
+			map.put("images", images);
 		}
 		map.put("data", data);
 		return recruitService.get("createRecruitService2").execute(map);
