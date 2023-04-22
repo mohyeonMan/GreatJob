@@ -65,7 +65,7 @@ public class CreateRecruitService2 implements RecruitService{
 		
 		if (map.get("images") != null) {
 			try {
-				String imageUrls = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+				String imageUrls = imageUpload((MultipartFile[]) map.get("images"));
 				recruit.setImageUrl(imageUrls);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -93,18 +93,18 @@ public class CreateRecruitService2 implements RecruitService{
 		return recruit; 
 	}
 	
-	public String imageUpload(List<MultipartFile> images) throws IOException {
+	public String imageUpload(MultipartFile[] images) throws IOException {
 		String imageUrls = "";
 		
-		for(int i = 0;i<images.size();i++) {
+		for(int i = 0;i<images.length;i++) {
 			UUID uuid = UUID.randomUUID();
-			MultipartFile image = images.get(i);
+			MultipartFile image = images[i];
 			String imageUrl = uuid.toString()+"_"+image.getOriginalFilename();
 			image.transferTo(new File("src/main/resources/images/"+imageUrl));
 			
 			imageUrls += imageUrl;
 			
-			if(i != images.size()-1) {
+			if(i != images.length-1) {
 				imageUrls+=",";
 			}
 		}
