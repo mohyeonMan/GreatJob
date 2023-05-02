@@ -54,8 +54,6 @@ import recruit.dao.RecruitDAO;
 public class CreateRecruitService2 implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
-	@Autowired
-	private AmazonS3 amazonS3;
 	
 
 	@Override
