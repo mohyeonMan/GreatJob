@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
 import recruit.dao.RecruitDAO;
@@ -52,7 +54,8 @@ import recruit.dao.RecruitDAO;
 public class CreateRecruitService2 implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
-	
+	@Autowired
+	private AmazonS3 amazonS3;
 	
 
 	@Override
@@ -61,16 +64,13 @@ public class CreateRecruitService2 implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
-		RecruitDTO recruit = parseValue(new JSONObject((String)map.get("data")));
+		RecruitDTO recruit = parseValue((String)map.get("data"));
 		
 		if (map.get("images") != null) {
-			try {
-				String imageUrls = imageUpload((MultipartFile[]) map.get("images"));
-				recruit.setImageUrl(imageUrls);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			String imageUrls = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+			recruit.setImageUrl(imageUrls);
 		}
+		
 		System.out.println(recruit.getImageUrl());
 		dao.create(recruit);
 		
@@ -78,7 +78,8 @@ public class CreateRecruitService2 implements RecruitService{
 		
 		return object.toString();
 	}
-	public RecruitDTO parseValue(JSONObject jsonObject) {
+	public RecruitDTO parseValue(String jsonString) {
+		JSONObject jsonObject = new JSONObject(jsonString);
 		RecruitDTO recruit = new RecruitDTO();
 		recruit.setTitle((String)jsonObject.get("title"));
 		recruit.setDescription((String)jsonObject.get("description"));
@@ -93,18 +94,16 @@ public class CreateRecruitService2 implements RecruitService{
 		return recruit; 
 	}
 	
-	public String imageUpload(MultipartFile[] images) throws IOException {
+	public String imageUpload(List<MultipartFile> images) {
 		String imageUrls = "";
 		
-		for(int i = 0;i<images.length;i++) {
-			UUID uuid = UUID.randomUUID();
-			MultipartFile image = images[i];
-			String imageUrl = uuid.toString()+"_"+image.getOriginalFilename();
-			image.transferTo(new File("src/main/resources/images/"+imageUrl));
+		for(int i = 0;i<images.size();i++) {
+			MultipartFile image = images.get(i);
+			String imageUrl = UUID.randomUUID()+"_"+image.getOriginalFilename();
 			
 			imageUrls += imageUrl;
 			
-			if(i != images.length-1) {
+			if(i != images.size()-1) {
 				imageUrls+=",";
 			}
 		}

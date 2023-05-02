@@ -1,8 +1,12 @@
 package recruit.bean;
 
+import org.json.JSONObject;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class RecruitDTO {
 
 	private int id;
@@ -24,5 +28,4 @@ public class RecruitDTO {
 	private long dateModified = 1;
 	private int hit;
 
-	
 }
