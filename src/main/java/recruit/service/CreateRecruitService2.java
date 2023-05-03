@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,7 +40,7 @@ import util.S3Uploader;
 @Service 
 @RequiredArgsConstructor
 public class CreateRecruitService2 implements RecruitService{
-	
+	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
 	private S3Uploader s3Uploader;
 	
