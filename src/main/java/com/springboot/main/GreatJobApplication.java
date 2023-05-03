@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.springboot.main","user.*","recruit.*","category.*","comment.*"})
+@ComponentScan(basePackages = {"com.springboot.main","user.*","recruit.*","category.*","comment.*","util.*"})
 public class GreatJobApplication {
 
 	public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package recruit.bean;
 
-import org.json.JSONObject;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

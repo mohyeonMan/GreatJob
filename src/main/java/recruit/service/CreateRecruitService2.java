@@ -1,18 +1,18 @@
 package recruit.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
 import recruit.dao.RecruitDAO;
+import util.S3Uploader;
 
 /**
  * 
@@ -39,8 +39,9 @@ import recruit.dao.RecruitDAO;
 @Service 
 @RequiredArgsConstructor
 public class CreateRecruitService2 implements RecruitService{
-	@Autowired
+	
 	private Map<String, RecruitDAO> recruitDAO;
+	private S3Uploader s3Uploader;
 	
 
 	@Override
@@ -56,7 +57,6 @@ public class CreateRecruitService2 implements RecruitService{
 			recruit.setImageUrl(imageUrls);
 		}
 		
-		System.out.println(recruit.getImageUrl());
 		dao.create(recruit);
 		
 		object.put("status", 200);
@@ -83,17 +83,19 @@ public class CreateRecruitService2 implements RecruitService{
 		String imageUrls = "";
 		
 		for(int i = 0;i<images.size();i++) {
-			MultipartFile image = images.get(i);
-			String imageUrl = UUID.randomUUID()+"_"+image.getOriginalFilename();
-			
-			imageUrls += imageUrl;
-			
-			if(i != images.size()-1) {
-				imageUrls+=",";
+			try {
+				String imageUrl = s3Uploader.upload(images.get(i));
+				imageUrls += imageUrl;
+				
+				if(i != images.size()-1) {
+					imageUrls+=",";
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		
-		return imageUrls;
+		return imageUrls == ""? null:imageUrls;
 		
 	}
 
