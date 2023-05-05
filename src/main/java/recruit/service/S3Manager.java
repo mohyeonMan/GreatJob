@@ -47,6 +47,7 @@ public class S3Manager {
 			String fileName = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
 			byte[] fileNameDecoded = fileName.getBytes(StandardCharsets.UTF_8);
 			fileName = new String(fileNameDecoded,StandardCharsets.UTF_8);
+			System.out.println("target filName ==== "+fileName);
 			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
 		
 	}
