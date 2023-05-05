@@ -147,7 +147,7 @@
 		where r.rn <![CDATA[>]]>#{startItem} 
 		and r.rn<![CDATA[<=]]>(#{startItem}+#{itemAmount})
 	</select>
-	<select id="getRecruitImageUrl">
+	<select id="getRecruitImageUrl" parameterType="Integer" resultType="String">
 		select image_url from recruit where id = #{id}
 	</select>
 	
