@@ -105,6 +105,7 @@
 				r.id as "id",
 				r.title as "title",
 				r.description as "description",
+				SUBSTRING_INDEX(r.image_url,",",1) as "imageUrl"
 				r.category_id as "categoryId",
 				c.name as "categoryName",
 				UNIX_TIMESTAMP(r.date_start)*1000 as "dateStart",

@@ -12,6 +12,7 @@ public class RecruitDTO {
 	private String title;
 	private String description;
 	private String imageUrl;
+	private String[] imageUrlArray;
 	private int categoryId;
 	private String categoryName;
 	private long dateStart = 1;
@@ -26,7 +27,4 @@ public class RecruitDTO {
 	private long dateModified = 1;
 	private int hit;
 
-	public String[] getImageUrlArray() {
-		return this.getImageUrl().split(",");
-	}
 }

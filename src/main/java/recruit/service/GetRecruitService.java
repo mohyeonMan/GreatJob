@@ -55,8 +55,11 @@ public class GetRecruitService implements RecruitService{
 		if (map.get("id") != null) {
 			int id = Integer.parseInt((String)map.get("id"));
 			RecruitDTO recruit = dao.getRecruit(id);
-			dao.hit(id);
+			
 			if(recruit != null) {
+				recruit.setImageUrlArray(recruit.getImageUrl().split(","));
+				recruit.setImageUrl(null);
+				dao.hit(id);
 				object.put("data",new JSONObject(recruit));
 			}else {
 				status = 400;
