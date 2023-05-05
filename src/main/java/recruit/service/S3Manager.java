@@ -45,6 +45,9 @@ public class S3Manager {
 	public void delete(String imageUrlString) {
 		String[] imageUrls = imageUrlString.split(",");
 		for (String imageUrl : imageUrls) {
+			System.out.println("imageUrl = "+imageUrl);
+			imageUrl = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
+			System.out.println("imageUrl SubString = "+imageUrl);
 			amazonS3.deleteObject(new DeleteObjectRequest(bucket, imageUrl));
 		}
 		
