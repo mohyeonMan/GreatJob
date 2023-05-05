@@ -1,9 +1,13 @@
 package recruit.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.tomcat.util.buf.Utf8Decoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -45,10 +49,14 @@ public class S3Manager {
 	
 	public void delete(String imageUrl) {
 			String fileName = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
-			byte[] fileNameDecoded = fileName.getBytes(StandardCharsets.UTF_8);
-			fileName = new String(fileNameDecoded,StandardCharsets.UTF_8);
+			try {
+				fileName = URLDecoder.decode(fileName, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} finally {				
 			System.out.println("target filName ==== "+fileName);
 			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
+			}
 		
 	}
 
