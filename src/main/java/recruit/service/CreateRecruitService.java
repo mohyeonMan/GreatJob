@@ -42,7 +42,7 @@ public class CreateRecruitService implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
 	@Autowired
-	private S3Uploader s3Uploader;
+	private S3Manager s3Manager;
 	
 
 	@Override
@@ -85,7 +85,7 @@ public class CreateRecruitService implements RecruitService{
 		
 		for(int i = 0;i<images.size();i++) {
 			try {
-				String imageUrl = s3Uploader.upload(images.get(i));
+				String imageUrl = s3Manager.upload(images.get(i));
 				imageUrls += imageUrl;
 				
 				if(i != images.size()-1) {

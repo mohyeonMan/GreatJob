@@ -14,6 +14,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
@@ -22,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class S3Uploader {
+public class S3Manager {
 	
 	private final AmazonS3 amazonS3;
 	
@@ -39,6 +40,14 @@ public class S3Uploader {
 		amazonS3.putObject(new PutObjectRequest(bucket, fileName, multipartFile.getInputStream(), objMeta));
 		
 		return amazonS3.getUrl(bucket, fileName).toString();
-}	
+	}
+	
+	public void delete(String imageUrlString) {
+		String[] imageUrls = imageUrlString.split(",");
+		for (String imageUrl : imageUrls) {
+			amazonS3.deleteObject(new DeleteObjectRequest(bucket, imageUrl));
+		}
+		
+	}
 
 }

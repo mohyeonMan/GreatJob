@@ -49,5 +49,10 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	public void hit(int id) {
 		sqlSession.update("recruitMapper.hit",id);
 	}
+	
+	@Override
+	public String getRecruitImageUrl(int id) {
+		return sqlSession.selectOne("recruitMapper.getRecruitImageUrl",id);
+	}
 
 }

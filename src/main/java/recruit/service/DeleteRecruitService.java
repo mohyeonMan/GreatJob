@@ -17,6 +17,8 @@ public class DeleteRecruitService implements RecruitService{
 	private Map<String, RecruitDAO> recruitDAOMap;
 	@Autowired
 	private Map<String, CommentDAO> commentDAOMap;
+	@Autowired
+	private S3Manager s3Manager;
 	
 	@Override
 	public String execute(Map<String, Object> map) {
@@ -31,6 +33,8 @@ public class DeleteRecruitService implements RecruitService{
 			
 			map.put("object", 1);
 			commentDAO.objectDeleted(map);
+			String imageUrls = recruitDAO.getRecruitImageUrl(id);
+			s3Manager.delete(imageUrls);
 			recruitDAO.delete(id);
 
 			if(recruitDAO.getRecruit(id) != null) {

@@ -19,4 +19,6 @@ public interface RecruitDAO {
 
 	void hit(int id);
 
+	String getRecruitImageUrl(int id);
+
 }
