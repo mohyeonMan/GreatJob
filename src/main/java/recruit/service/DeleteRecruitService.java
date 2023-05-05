@@ -1,5 +1,6 @@
 package recruit.service;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -34,7 +35,8 @@ public class DeleteRecruitService implements RecruitService{
 			map.put("object", 1);
 			commentDAO.objectDeleted(map);
 			String imageUrlString = recruitDAO.getRecruitImageUrl(id);
-			s3Manager.delete(imageUrlString);
+			deleteS3Image(imageUrlString);
+			
 			recruitDAO.delete(id);
 
 			if(recruitDAO.getRecruit(id) != null) {
@@ -47,6 +49,13 @@ public class DeleteRecruitService implements RecruitService{
 		object.put("status", status);
 		
 		return object.toString();
+	}
+
+	private void deleteS3Image(String imageUrlString) {
+		String[] imageUrlArray= imageUrlString.split(",");
+		for (String imageUrl : imageUrlArray) {
+			s3Manager.delete(imageUrlString);
+		}
 	}
 
 }

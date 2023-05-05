@@ -1,6 +1,7 @@
 package recruit.service;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +43,11 @@ public class S3Manager {
 		return amazonS3.getUrl(bucket, fileName).toString();
 	}
 	
-	public void delete(String imageUrlString) {
-		String[] imageUrls = imageUrlString.split(",");
-		for (String imageUrl : imageUrls) {
-			System.out.println("imageUrl = "+imageUrl);
-			imageUrl = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
-			System.out.println("imageUrl SubString = "+imageUrl);
-			amazonS3.deleteObject(new DeleteObjectRequest(bucket, imageUrl));
-		}
+	public void delete(String imageUrl) {
+			String fileName = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
+			byte[] fileNameDecoded = fileName.getBytes(StandardCharsets.UTF_8);
+			fileName = new String(fileNameDecoded,StandardCharsets.UTF_8);
+			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
 		
 	}
 
