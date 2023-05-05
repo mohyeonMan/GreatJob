@@ -54,7 +54,7 @@ public class DeleteRecruitService implements RecruitService{
 	private void deleteS3Image(String imageUrlString) {
 		String[] imageUrlArray= imageUrlString.split(",");
 		for (String imageUrl : imageUrlArray) {
-			s3Manager.delete(imageUrlString);
+			s3Manager.delete(imageUrl);
 		}
 	}
 
