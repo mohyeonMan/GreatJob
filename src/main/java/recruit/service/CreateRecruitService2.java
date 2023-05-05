@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
 import recruit.dao.RecruitDAO;
-import util.S3Uploader;
 
 /**
  * 
@@ -42,6 +41,7 @@ import util.S3Uploader;
 public class CreateRecruitService2 implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
+	@Autowired
 	private S3Uploader s3Uploader;
 	
 

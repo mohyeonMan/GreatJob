@@ -1,8 +1,9 @@
-package util;
+package recruit.service;
 
 import java.io.IOException;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,19 +28,19 @@ public class S3Uploader {
 	
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
-	@Value("${cloud.aws.credentials.accessKey}")
-	private String accessKey;
-	@Value("${cloud.aws.credentials.secretKey}")
-	private String secretKey;
+//	@Value("${cloud.aws.credentials.accessKey}")
+//	private String accessKey;
+//	@Value("${cloud.aws.credentials.secretKey}")
+//	private String secretKey;
 	
 	
-	public S3Uploader() {
-		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
-		this.amazonS3 = AmazonS3ClientBuilder.standard()
-			.withCredentials(new AWSStaticCredentialsProvider(credentials))
-			.withRegion(Regions.US_EAST_1)
-			.build();
-	  }
+//	public S3Uploader() {
+//		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+//		this.amazonS3 = AmazonS3ClientBuilder.standard()
+//			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+//			.withRegion(Regions.US_EAST_1)
+//			.build();
+//	  }
 	
 	
 	public String upload(MultipartFile multipartFile) throws IOException {
