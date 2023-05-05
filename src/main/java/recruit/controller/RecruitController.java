@@ -30,19 +30,13 @@ public class RecruitController {
 
 	
 	@PostMapping(value = "create")
-	public String create(@RequestBody Map<String, Object> map) {
-		return recruitService.get("createRecruitService").execute(map);
-	}
-	
-	@PostMapping(value = "create2")
 	public String create2(@RequestPart(value = "image", required = false) List<MultipartFile> images,@RequestPart(value = "data") String data) {
 		Map<String, Object> map = new HashMap<>();
 		if(images != null && !images.isEmpty()) {
-			System.out.println("이미지 갯수 = " + images.size());
 			map.put("images", images);
 		}
 		map.put("data", data);
-		return recruitService.get("createRecruitService2").execute(map);
+		return recruitService.get("createRecruitService").execute(map);
 	}
 	
 	@PatchMapping(value = "edit")

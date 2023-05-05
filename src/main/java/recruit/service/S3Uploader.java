@@ -28,20 +28,6 @@ public class S3Uploader {
 	
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
-//	@Value("${cloud.aws.credentials.accessKey}")
-//	private String accessKey;
-//	@Value("${cloud.aws.credentials.secretKey}")
-//	private String secretKey;
-	
-	
-//	public S3Uploader() {
-//		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
-//		this.amazonS3 = AmazonS3ClientBuilder.standard()
-//			.withCredentials(new AWSStaticCredentialsProvider(credentials))
-//			.withRegion(Regions.US_EAST_1)
-//			.build();
-//	  }
-	
 	
 	public String upload(MultipartFile multipartFile) throws IOException {
 		String fileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();

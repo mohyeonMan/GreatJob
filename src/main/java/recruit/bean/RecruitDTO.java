@@ -26,4 +26,7 @@ public class RecruitDTO {
 	private long dateModified = 1;
 	private int hit;
 
+	public String[] getImageUrlArray() {
+		return this.getImageUrl().split(",");
+	}
 }

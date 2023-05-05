@@ -70,6 +70,7 @@
 			r.title as "title",
 			r.description as "description",
 			r.category_id as "categoryId",
+			r.image_url as "imageUrl",
 			c.name as "categoryName",
 			UNIX_TIMESTAMP(r.date_start)*1000 as "dateStart",
 			UNIX_TIMESTAMP(r.date_end)*1000 as "dateEnd",

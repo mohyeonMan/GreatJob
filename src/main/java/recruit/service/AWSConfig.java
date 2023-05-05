@@ -22,7 +22,6 @@ public class AWSConfig {
 	@Bean
     AmazonS3 getAmazonS3() {
         final BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKey, secretKey);
-        // Get Amazon S3 client and return the S3 client object
         return AmazonS3ClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))

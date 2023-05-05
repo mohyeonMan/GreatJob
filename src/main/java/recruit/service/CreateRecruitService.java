@@ -1,10 +1,14 @@
 package recruit.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
@@ -37,6 +41,9 @@ import recruit.dao.RecruitDAO;
 public class CreateRecruitService implements RecruitService{
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
+	@Autowired
+	private S3Uploader s3Uploader;
+	
 
 	@Override
 	public String execute(Map<String, Object> map) {
@@ -44,29 +51,52 @@ public class CreateRecruitService implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
-		RecruitDTO recruit = parseValue(map);
+		RecruitDTO recruit = parseValue((String)map.get("data"));
+		
+		if (map.get("images") != null) {
+			String imageUrls = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+			recruit.setImageUrl(imageUrls);
+		}
+		
 		dao.create(recruit);
 		
 		object.put("status", 200);
 		
 		return object.toString();
 	}
-	public RecruitDTO parseValue(Map<String, Object> map) {
+	public RecruitDTO parseValue(String jsonString) {
+		JSONObject jsonObject = new JSONObject(jsonString);
 		RecruitDTO recruit = new RecruitDTO();
-		recruit.setTitle((String)map.get("title"));
-		recruit.setDescription((String)map.get("description"));
-		recruit.setCategoryId((int)map.get("categoryId"));
-		recruit.setDateStart((long)map.get("dateStart")/1000);
-		recruit.setDateEnd((long)map.get("dateEnd")/1000);
-		recruit.setHost((String)map.get("host"));
-		recruit.setUserId((int)map.get("userId"));
-		recruit.setMaxPersonnel((int)map.get("maxPersonnel"));
-		recruit.setAddress((String)map.get("address"));
+		recruit.setTitle((String)jsonObject.get("title"));
+		recruit.setDescription((String)jsonObject.get("description"));
+		recruit.setCategoryId((int)jsonObject.get("categoryId"));
+		recruit.setDateStart((long)jsonObject.get("dateStart")/1000);
+		recruit.setDateEnd((long)jsonObject.get("dateEnd")/1000);
+		recruit.setHost((String)jsonObject.get("host"));
+		recruit.setUserId((int)jsonObject.get("userId"));
+		recruit.setMaxPersonnel((int)jsonObject.get("maxPersonnel"));
+		recruit.setAddress((String)jsonObject.get("address"));
 		
 		return recruit; 
 	}
 	
-	public void imageUpload() {
+	public String imageUpload(List<MultipartFile> images) {
+		String imageUrls = "";
+		
+		for(int i = 0;i<images.size();i++) {
+			try {
+				String imageUrl = s3Uploader.upload(images.get(i));
+				imageUrls += imageUrl;
+				
+				if(i != images.size()-1) {
+					imageUrls+=",";
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return imageUrls == ""? null:imageUrls;
 		
 	}
 
