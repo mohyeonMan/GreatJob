@@ -5,7 +5,7 @@
  
  <mapper namespace="recruitMapper">
 	
-	<insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+	<insert id="create" parameterType="recruit">
 		insert into recruit(
 			title,
 			description,
@@ -39,7 +39,7 @@
 		)
 	</insert>
  	
- 	<update id="update" parameterType="user">
+ 	<update id="update" parameterType="recruit">
  		update recruit set
  			title = #{title},
  			description = #{description},
@@ -79,7 +79,7 @@
 			r.user_id as "userId",
 			u.name as "userName",
 			r.max_personnel as "maxPersonnel",
-			r.current_personnel as "currentPersonnel",
+			count(re.user_id) as "currentPersonnel",
 			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
 			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
 			r.hit as "hit"
@@ -87,6 +87,7 @@
 			recruit r
 			left join category c on r.category_id = c.id
 			left join user u on r.user_id = u.id
+			left join recruit_entry re on r.id = re.recruit_id 
 		where
 			r.id = #{id}
 	</select>
@@ -115,7 +116,7 @@
 				r.user_id as "userId",
 				u.name as "userName",
 				r.max_personnel as "maxPersonnel",
-				r.current_personnel as "currentPersonnel",
+				count(re.user_id) as "currentPersonnel",
 				UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
 				UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
 				r.hit as "hit"
@@ -123,6 +124,8 @@
 				recruit r
 				left join category c on r.category_id = c.id
 				left join user u on r.user_id = u.id
+				left join recruit_entry re on r.id = re.recruit_id 
+				
 		<where>
 		
 			<!-- categoryId -->
@@ -147,8 +150,10 @@
 		where r.rn <![CDATA[>]]>#{startItem} 
 		and r.rn<![CDATA[<=]]>(#{startItem}+#{itemAmount})
 	</select>
+	
 	<select id="getRecruitImageUrl" parameterType="Integer" resultType="String">
 		select image_url from recruit where id = #{id}
 	</select>
+	
 	
  </mapper>

@@ -54,7 +54,6 @@ public class S3Manager {
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			} finally {				
-			System.out.println("target filName ==== "+fileName);
 			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
 			}
 		

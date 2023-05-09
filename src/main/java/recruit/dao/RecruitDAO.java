@@ -3,6 +3,7 @@ package recruit.dao;
 import java.util.List;
 
 import recruit.bean.RecruitDTO;
+import recruit.bean.RecruitEntryDTO;
 import recruit.bean.RecruitQueryOption;
 
 public interface RecruitDAO {
@@ -20,5 +21,9 @@ public interface RecruitDAO {
 	void hit(int id);
 
 	String getRecruitImageUrl(int id);
+
+	int joinRecruit(RecruitEntryDTO entryDTO);
+
+	int secedeRecruit(RecruitEntryDTO entryDTO);
 
 }

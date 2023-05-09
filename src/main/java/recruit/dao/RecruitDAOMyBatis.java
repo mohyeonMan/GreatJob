@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
+import recruit.bean.RecruitEntryDTO;
 import recruit.bean.RecruitQueryOption;
 
 @Repository
@@ -53,6 +54,16 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	@Override
 	public String getRecruitImageUrl(int id) {
 		return sqlSession.selectOne("recruitMapper.getRecruitImageUrl",id);
+	}
+	
+	@Override
+	public int joinRecruit(RecruitEntryDTO entryDTO) {
+		return sqlSession.insert("recruitEntryMapper.join");
+	}
+	
+	@Override
+	public int secedeRecruit(RecruitEntryDTO entryDTO) {
+		return sqlSession.delete("recruitEntryMapper.secede");
 	}
 
 }
