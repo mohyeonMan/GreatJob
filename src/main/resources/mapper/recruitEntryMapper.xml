@@ -25,7 +25,7 @@
 		and user_id = #{userId} 
 	</delete>
 	
-	<select id="isJoined" parameterType="recruitEntry">
+	<select id="isJoined" parameterType="recruitEntry" resultType="Integer">
 		select count(*) from recruit_entry where user_id = #{userId} and recruit_id = #{recruitId}
 	</select>
 	
