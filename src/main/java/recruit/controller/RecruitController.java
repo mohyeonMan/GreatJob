@@ -67,5 +67,5 @@ public class RecruitController {
 	@DeleteMapping(value = "secede")
 	public String secede(@RequestBody Map<String, Object> map) {
 		return recruitService.get("secedeRecruitService").execute(map);
-	}	
+	}
 }

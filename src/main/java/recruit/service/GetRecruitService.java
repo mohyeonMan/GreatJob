@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import recruit.bean.RecruitDTO;
+import recruit.bean.RecruitEntryDTO;
 import recruit.dao.RecruitDAO;
 
 /**
@@ -42,7 +43,7 @@ import recruit.dao.RecruitDAO;
 
 @Service
 @RequiredArgsConstructor
-public class GetRecruitService implements RecruitService{
+public class GetRecruitService implements RecruitService {
 	@Autowired
 	private Map<String, RecruitDAO> recruitDAO;
 
@@ -51,25 +52,34 @@ public class GetRecruitService implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		int status = 200;
-		
+
 		if (map.get("id") != null) {
-			int id = Integer.parseInt((String)map.get("id"));
+			int id = Integer.parseInt((String) map.get("id"));
 			RecruitDTO recruit = dao.getRecruit(id);
-			
-			if(recruit != null) {
-				recruit.setImageUrlArray(recruit.getImageUrl().split(","));
-				recruit.setImageUrl(null);
+
+			if (recruit != null) {
+				
+				if(recruit.getImageUrl() != null) {
+					recruit.setImageUrlArray(recruit.getImageUrl().split(","));
+					recruit.setImageUrl(null);
+				}
+				
+				if (map.get("userId") != null) {
+					int userId = (int) map.get("userId");
+					recruit.setIsJoined(dao.isJoined(new RecruitEntryDTO(id, userId)));
+				}
+				
 				dao.hit(id);
-				object.put("data",new JSONObject(recruit));
-			}else {
+				object.put("data", new JSONObject(recruit));
+			} else {
 				status = 400;
 			}
-		}else {
+		} else {
 			status = 400;
 		}
-		
+
 		object.put("status", status);
-		
+
 		return object.toString();
 	}
 }

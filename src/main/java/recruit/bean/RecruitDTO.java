@@ -25,5 +25,6 @@ public class RecruitDTO {
 	private long dateCreated = 1;
 	private long dateModified = 1;
 	private int hit;
+	private int isJoined = 0;
 
 }

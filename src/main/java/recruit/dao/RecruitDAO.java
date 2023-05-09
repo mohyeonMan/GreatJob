@@ -26,4 +26,6 @@ public interface RecruitDAO {
 
 	int secedeRecruit(RecruitEntryDTO entryDTO);
 
+	int isJoined(RecruitEntryDTO entryDTO);
+
 }

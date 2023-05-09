@@ -25,4 +25,8 @@
 		and user_id = #{userId} 
 	</delete>
 	
+	<select id="isJoined" parameterType="recruitEntry">
+		select count(*) from recruit_entry where user_id = #{userId} and recruit_id = #{recruitId}
+	</select>
+	
  </mapper>
