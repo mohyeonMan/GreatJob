@@ -65,7 +65,7 @@ public class GetRecruitService implements RecruitService {
 				}
 				
 				if (map.get("userId") != null) {
-					int userId = (int) map.get("userId");
+					int userId = Integer.parseInt((String) map.get("userId"));
 					recruit.setIsJoined(dao.isJoined(new RecruitEntryDTO(id, userId)));
 				}
 				
