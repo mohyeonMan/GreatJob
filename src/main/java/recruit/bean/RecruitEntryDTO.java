@@ -14,6 +14,6 @@ public class RecruitEntryDTO {
 	
 	public RecruitEntryDTO(int recruitId, int userId) {
 		this.recruitId = recruitId;
-		this.userId = recruitId;
+		this.userId = userId;
 	}
 }
