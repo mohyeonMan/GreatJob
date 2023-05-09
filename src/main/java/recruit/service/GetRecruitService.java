@@ -67,6 +67,7 @@ public class GetRecruitService implements RecruitService {
 				if (map.get("userId") != null) {
 					int userId = Integer.parseInt((String) map.get("userId"));
 					recruit.setIsJoined(dao.isJoined(new RecruitEntryDTO(id, userId)));
+					System.out.println("userId ==== "+userId +"\nisJoined ==== "+recruit.getIsJoined());
 				}
 				
 				dao.hit(id);
