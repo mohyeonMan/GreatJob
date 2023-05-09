@@ -59,9 +59,13 @@ public class RecruitController {
 		return recruitService.get("deleteRecruitService").execute(map);
 	}
 	
-	@PostMapping(value = "joinRecruit")
+	@PostMapping(value = "join")
 	public String join(@RequestBody Map<String, Object> map) {
 		return recruitService.get("joinRecruitService").execute(map);
 	}
 	
+	@DeleteMapping(value = "secede")
+	public String secede(@RequestBody Map<String, Object> map) {
+		return recruitService.get("secedeRecruitService").execute(map);
+	}	
 }
