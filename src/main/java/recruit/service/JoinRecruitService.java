@@ -29,6 +29,7 @@ public class JoinRecruitService implements RecruitService{
 			RecruitDTO targetRecruit = dao.getRecruit(recruitId);
 			int maxPersonnel = targetRecruit.getMaxPersonnel();
 			int currentPersonnel = targetRecruit.getCurrentPersonnel();
+			System.out.println("userId = "+userId+"\n recruitId = "+recruitId);
 			
 			if(maxPersonnel > currentPersonnel) {
 				RecruitEntryDTO entryDTO = new RecruitEntryDTO();
