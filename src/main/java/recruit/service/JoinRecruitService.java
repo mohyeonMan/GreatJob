@@ -33,7 +33,7 @@ public class JoinRecruitService implements RecruitService{
 			
 			if(maxPersonnel > currentPersonnel) {
 				RecruitEntryDTO entryDTO = new RecruitEntryDTO();
-				entryDTO.setId(userId);
+				entryDTO.setUserId(userId);
 				entryDTO.setRecruitId(recruitId);
 				
 				if(dao.joinRecruit(entryDTO) == 0) {
