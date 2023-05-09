@@ -24,7 +24,7 @@ public class SecedeRecruitService implements RecruitService{
 		
 		if(map.get("userId") != null && map.get("recruitId") != null) {
 			RecruitEntryDTO entryDTO = new RecruitEntryDTO();
-			entryDTO.setId((int)map.get("userId"));
+			entryDTO.setUserId((int)map.get("userId"));
 			entryDTO.setRecruitId((int)map.get("recruitId"));
 			
 			if(dao.secedeRecruit(entryDTO) == 0) {
