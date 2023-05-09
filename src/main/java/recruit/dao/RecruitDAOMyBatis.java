@@ -68,7 +68,6 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	
 	@Override
 	public int isJoined(RecruitEntryDTO entryDTO) {
-		System.out.println(entryDTO.toString());
 		return sqlSession.selectOne("recruitEntryMapper.isJoined", entryDTO);
 	}
 	

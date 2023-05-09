@@ -26,12 +26,14 @@ public class JoinRecruitService implements RecruitService{
 		if(map.get("userId") != null && map.get("recruitId") != null) {
 			int userId = (int)map.get("userId");
 			int recruitId = (int)map.get("recruitId");
+			RecruitEntryDTO entryDTO = new RecruitEntryDTO(recruitId,userId);
+			
 			RecruitDTO targetRecruit = dao.getRecruit(recruitId);
 			int maxPersonnel = targetRecruit.getMaxPersonnel();
 			int currentPersonnel = targetRecruit.getCurrentPersonnel();
 			
-			if(maxPersonnel > currentPersonnel) {
-				if(dao.joinRecruit(new RecruitEntryDTO(recruitId,userId)) == 0) {
+			if(maxPersonnel > currentPersonnel && dao.isJoined(entryDTO) == 0) {
+				if(dao.joinRecruit(entryDTO) == 0) {
 					status = 500;
 				}
 			}else {
