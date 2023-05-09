@@ -58,12 +58,12 @@ public class RecruitDAOMyBatis implements RecruitDAO{
 	
 	@Override
 	public int joinRecruit(RecruitEntryDTO entryDTO) {
-		return sqlSession.insert("recruitEntryMapper.join");
+		return sqlSession.insert("recruitEntryMapper.join",entryDTO);
 	}
 	
 	@Override
 	public int secedeRecruit(RecruitEntryDTO entryDTO) {
-		return sqlSession.delete("recruitEntryMapper.secede");
+		return sqlSession.delete("recruitEntryMapper.secede",entryDTO);
 	}
 
 }
