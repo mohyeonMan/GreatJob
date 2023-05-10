@@ -27,7 +27,6 @@ public class CommentController {
 	@PostMapping(value = "create")
 	public String create(@RequestBody Map<String, Object> map) {
 		return serviceMap.get("createCommentService").execute(map);
-		
 	}
 	
 	@GetMapping(value = "listComments")

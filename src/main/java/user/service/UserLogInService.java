@@ -22,6 +22,10 @@ import user.dao.UserDAO;
  * type(int)			카테고리의 id
  * name(String)			봉사 시작일
  * 
+ * >>output
+ * data
+ * 	id(int)				생성된 회원의 아이디
+ * status 				실행결과
  * </pre>
  * 
  */

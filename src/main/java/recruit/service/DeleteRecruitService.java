@@ -1,6 +1,5 @@
 package recruit.service;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONObject;

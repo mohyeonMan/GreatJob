@@ -1,7 +1,6 @@
 package recruit.bean;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class RecruitDTO {

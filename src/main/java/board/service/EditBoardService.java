@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import board.bean.BoardDTO;
 import board.dao.BoardDAO;
 import lombok.RequiredArgsConstructor;
-import recruit.bean.RecruitDTO;
 
 @Service
 @RequiredArgsConstructor

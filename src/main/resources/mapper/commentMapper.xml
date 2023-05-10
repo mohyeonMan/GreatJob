@@ -15,7 +15,8 @@
 			date_modified,
 			comment_order,
 			comment_level,
-			parent_id
+			parent_id,
+			status
 		)values(
 			#{object},
 			#{objectId},
@@ -25,7 +26,8 @@
 			now(),
 			#{commentOrder},
 			#{commentLevel},
-			#{parentId}
+			#{parentId},
+			0
 		)
 		
 	</insert>

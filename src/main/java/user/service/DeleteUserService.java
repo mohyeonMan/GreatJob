@@ -2,13 +2,11 @@ package user.service;
 
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import user.bean.UserDTO;
 import user.dao.UserDAO;
 
 @Service
