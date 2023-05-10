@@ -4,10 +4,14 @@ import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import comment.bean.CommentDTO;
 import comment.dao.CommentDAO;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
 public class EditCommentService implements CommentService{
 	@Autowired
 	private Map<String, CommentDAO> commentDAO;
