@@ -13,7 +13,7 @@ public interface BoardDAO {
 
 	List<BoardDTO> listBoards(BoardQueryOption option);
 
-	void update(BoardDTO board);
+	int update(BoardDTO board);
 
 	int delete(int id);
 

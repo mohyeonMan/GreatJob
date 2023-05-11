@@ -22,18 +22,17 @@ public class EditBoardService implements BoardService{
 		JSONObject object = new JSONObject();
 		int status = 200;
 		
-		BoardDTO replaceBoard = parseValue(map);
-		
-		dao.update(replaceBoard);
-		
-		BoardDTO changedBoard = dao.getBoard((int)map.get("id"));
-		
-		if(replaceBoard == null || changedBoard == null) {
-			status = 400;
-		}else {
-			if(!compareBoard(replaceBoard, changedBoard)) {
+		if(map.get("id") != null
+		&& map.get("categoryId") != null
+		&& map.get("title") != null
+		&& map.get("description") != null) {
+			BoardDTO replaceBoard = parseValue(map);
+			
+			if(dao.update(replaceBoard) == 0) {
 				status = 500;
 			}
+		}else {
+			status = 400;
 		}
 		
 		object.put("status",status);
@@ -51,12 +50,4 @@ public class EditBoardService implements BoardService{
 		return board;
 	}
 	
-	private boolean compareBoard(BoardDTO board1, BoardDTO board2) {
-		return (
-				board1.getId() == board2.getId()
-			&&	board1.getTitle().equals(board2.getTitle())
-			&&	board1.getDescription().equals(board2.getDescription())
-			&&	board1.getCategoryId() == board2.getCategoryId()
-		);
-	}
 }

@@ -36,8 +36,8 @@ public class BoardDAOMyBatis implements BoardDAO{
 	}
 	
 	@Override
-	public void update(BoardDTO board) {
-		sqlSession.update("boardMapper.update",board);
+	public int update(BoardDTO board) {
+		return sqlSession.update("boardMapper.update",board);
 	}
 	
 	@Override
