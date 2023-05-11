@@ -49,7 +49,6 @@ public class CreateRecruitService implements RecruitService{
 		JSONObject object = new JSONObject();
 		
 		RecruitDTO recruit = parseValue((JSONObject)map.get("data"));
-		System.out.println(recruit.toString());
 		
 		if (map.get("images") != null) {
 			String imageUrls = s3Manager.UploadGetUrl((ArrayList<MultipartFile>) map.get("images"));
