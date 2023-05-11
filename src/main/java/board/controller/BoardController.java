@@ -34,9 +34,9 @@ public class BoardController {
 			@RequestPart(value = "data") String data) {
 		Map<String, Object> map = new HashMap<>();
 		if(images != null && !images.isEmpty()) {
-			map.put("images", new JSONObject(images));
+			map.put("images", images);
 		}
-		map.put("data", data);
+		map.put("data", new JSONObject(data));
 		return boardService.get("createBoardService").execute(map);		
 	}
 	
