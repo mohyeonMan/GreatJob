@@ -81,11 +81,13 @@
 			</if>
 			<!-- keyword -->
 			<if test="keyword != null">
-				and (
-					b.title like '%'||#{keyword}||'%'
-					or b.description like '%'||#{keyword}||'%'
-					or u.name like '%'||#{keyword}||'%'
-				) 
+				<!-- and (
+					b.title like CONCAT('%',#{keyword},'%')
+					or b.description like CONCAT('%',#{keyword},'%')
+					or u.name like CONCAT('%',#{keyword},'%')
+				)  -->
+				and (b.title || b.description || u.name)
+				like CONCAT('%',#{keyword},'%')
 			</if>
 		</where>
 		) r 
