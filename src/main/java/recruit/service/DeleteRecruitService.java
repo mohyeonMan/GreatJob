@@ -38,11 +38,11 @@ public class DeleteRecruitService implements RecruitService{
 				s3Manager.deleteS3Image(imageUrlString);
 			}
 			
-			recruitDAO.delete(id);
+			if(recruitDAO.delete(id) == 0) {
+				status =500;
+			};
 
-			if(recruitDAO.getRecruit(id) != null) {
-				status = 500;
-			}
+			
 		}else {
 			status = 400;
 		}

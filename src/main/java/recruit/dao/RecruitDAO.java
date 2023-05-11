@@ -16,7 +16,7 @@ public interface RecruitDAO {
 
 	List<RecruitDTO> listRecruits(RecruitQueryOption option);
 
-	void delete(int id);
+	int delete(int id);
 
 	void hit(int id);
 
