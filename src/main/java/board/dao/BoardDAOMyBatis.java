@@ -41,8 +41,8 @@ public class BoardDAOMyBatis implements BoardDAO{
 	}
 	
 	@Override
-	public void delete(int id) {
-		sqlSession.delete("boardMapper.delete",id);
+	public int delete(int id) {
+		return sqlSession.delete("boardMapper.delete",id);
 	}
 	
 	@Override

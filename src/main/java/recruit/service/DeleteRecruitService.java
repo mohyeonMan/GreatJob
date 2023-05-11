@@ -40,7 +40,7 @@ public class DeleteRecruitService implements RecruitService{
 			
 			if(recruitDAO.delete(id) == 0) {
 				status =500;
-			};
+			}
 
 			
 		}else {

@@ -29,7 +29,7 @@ public class GetBoardService implements BoardService{
 			if(board != null) {
 				if(board.getImageUrl() != null) {
 					board.setImageUrlArray(board.getImageUrl().split(","));
-					board.setImageUrl(null);
+					board.setImageUrl(null); 
 				}
 				
 				dao.hit(id);

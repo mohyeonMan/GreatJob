@@ -15,7 +15,7 @@ public interface BoardDAO {
 
 	void update(BoardDTO board);
 
-	void delete(int id);
+	int delete(int id);
 
 	void hit(int id);
 

@@ -38,9 +38,8 @@ public class DeleteBoardService implements BoardService{
 			if(imageUrlString != null) {
 				s3Manager.deleteS3Image(imageUrlString);
 			}			
-			boardDAO.delete(id);
 			
-			if(boardDAO.getBoard(id) != null) {
+			if(boardDAO.delete(id) == 0) {
 				status = 500;
 			}
 		}else {
