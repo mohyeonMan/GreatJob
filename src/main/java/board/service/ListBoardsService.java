@@ -39,6 +39,9 @@ public class ListBoardsService implements BoardService{
 			if(map.get("categoryId") != null) {
 				option.setCategoryId((String)map.get("categoryId"));				
 			}
+			if(map.get("keyword") != null) {
+				option.setKeyword((String)map.get("keyword"));				
+			}
 			if(map.get("sort") != null) {
 				option.setSort((String)map.get("sort")); 
 			}

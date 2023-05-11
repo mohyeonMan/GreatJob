@@ -12,6 +12,7 @@ public class BoardQueryOption {
 	private String sort;
 	private int startItem = 0;
 	private int itemAmount= 10;
+	private String keyword;
 	
 	public void setCategoryId(String categoryId) {
 		String[] strArr = categoryId.split(",");
