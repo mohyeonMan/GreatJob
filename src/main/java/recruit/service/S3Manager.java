@@ -39,15 +39,14 @@ public class S3Manager {
 	}
 	
 	public void delete(String imageUrl) {
-			String fileName = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
-			try {
-				fileName = URLDecoder.decode(fileName, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			} finally {				
-			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
-			}
-		
+		String fileName = imageUrl.substring("https://greatjobimage.s3.amazonaws.com/".length());
+		try {
+			fileName = URLDecoder.decode(fileName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} finally {				
+		amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
+		}
 	}
 	
 	public String UploadGetUrl(List<MultipartFile> images) {
