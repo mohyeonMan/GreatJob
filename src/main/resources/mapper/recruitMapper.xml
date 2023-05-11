@@ -125,12 +125,11 @@
 				left join recruit_entry re on r.id = re.recruit_id 
 				
 		<where>
-		
 			<!-- categoryId -->
 			<if test="categoryId != null">
 			and r.category_id in
 				<foreach collection="categoryId" item="item" open="(" separator="," close=")">
-				#{item}
+					#{item}
 				</foreach>
 			</if>
 			
@@ -138,11 +137,10 @@
 			<if test="address != null">
 				and r.address REGEXP concat(
 				<foreach collection="address" item="item" separator=",'|',">
-				 #{item}
+					#{item}
 				</foreach>
 				)
 			</if>
-			
 		</where>
 		) r 
 		where r.rn <![CDATA[>]]>#{startItem} 

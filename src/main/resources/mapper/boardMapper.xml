@@ -48,20 +48,45 @@
 	</select>
 	
 	<select id="listBoards" parameterType="bqo" resultType="board">
-		select
-			b.id as "id",
-			c.name as "categoryName",
-			u.name as "userName",
-			u.image_url as "userImageUrl",
-			b.title as "title",
-			SUBSTRING_INDEX(b.image_url,",",1) as "imageUrl",
-			b.description as "description",
-			UNIX_TIMESTAMP(b.date_created)*1000 as "dateCreated",
-			UNIX_TIMESTAMP(b.date_modified)*1000 as "dateModified",
-			b.hit as "hit"
-		from board b
-			left join category c on b.category_id = c.id
-			left join user u on b.user_id = u.id
+		select * from(
+			select 
+				row_number() over(order by
+				<!-- sort -->
+				<if test="sort != null">
+				,
+				</if>
+				b.date_created desc
+				) as "rn",
+				b.id as "id",
+				c.name as "categoryName",
+				u.name as "userName",
+				u.image_url as "userImageUrl",
+				b.title as "title",
+				SUBSTRING_INDEX(b.image_url,",",1) as "imageUrl",
+				b.description as "description",
+				UNIX_TIMESTAMP(b.date_created)*1000 as "dateCreated",
+				UNIX_TIMESTAMP(b.date_modified)*1000 as "dateModified",
+				b.hit as "hit"
+			from board b
+				left join category c on b.category_id = c.id
+				left join user u on b.user_id = u.id
+			
+		<where>
+			<!-- categoryId -->
+			<if test="categoryId != null">
+				and b.category_id in
+				<foreach collection="categoryId" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<!-- keyword -->
+			<if test="keyword != null">
+				and (b.title or b.description or u.name) like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		) r 
+		where r.rn <![CDATA[>]]>#{startItem} 
+		and r.rn<![CDATA[<=]]>(#{startItem}+#{itemAmount})
 	</select>
 	
 	<update id="hit">
