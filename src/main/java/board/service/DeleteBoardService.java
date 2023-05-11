@@ -35,8 +35,9 @@ public class DeleteBoardService implements BoardService{
 			map.put("object", 0);
 			commentDAO.objectDeleted(map);
 			String imageUrlString = boardDAO.getBoardImageUrl(id);
-			s3Manager.deleteS3Image(imageUrlString);
-			
+			if(imageUrlString != null) {
+				s3Manager.deleteS3Image(imageUrlString);
+			}			
 			boardDAO.delete(id);
 			
 			if(boardDAO.getBoard(id) != null) {
