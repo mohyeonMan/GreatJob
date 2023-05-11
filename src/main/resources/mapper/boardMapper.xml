@@ -81,7 +81,11 @@
 			</if>
 			<!-- keyword -->
 			<if test="keyword != null">
-				and (b.title or b.description or u.name) like '%'||#{keyword}||'%'
+				and (
+					b.title like '%'||#{keyword}||'%'
+					or b.description like '%'||#{keyword}||'%'
+					or u.name like '%'||#{keyword}||'%'
+				) 
 			</if>
 		</where>
 		) r 
