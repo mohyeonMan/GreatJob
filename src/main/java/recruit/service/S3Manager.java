@@ -52,7 +52,7 @@ public class S3Manager {
 	
 	public String UploadGetUrl(List<MultipartFile> images) {
 		String imageUrls = "";
-		
+				System.out.println(images.size());
 		for(int i = 0;i<images.size();i++) {
 			try {
 				String imageUrl = upload(images.get(i));

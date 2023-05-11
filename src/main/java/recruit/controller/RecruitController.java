@@ -38,6 +38,7 @@ public class RecruitController {
 			map.put("images", images);
 		}
 		map.put("data", new JSONObject(data));
+				System.out.println("controller = "+map.get("data").toString());
 		return recruitService.get("createRecruitService").execute(map);
 	}
 	
