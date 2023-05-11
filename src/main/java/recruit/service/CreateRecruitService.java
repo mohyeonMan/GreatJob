@@ -43,7 +43,6 @@ public class CreateRecruitService implements RecruitService{
 	private Map<String, RecruitDAO> recruitDAO;
 	@Autowired
 	private S3Manager s3Manager;
-	
 
 	@Override
 	public String execute(Map<String, Object> map) {
@@ -51,10 +50,10 @@ public class CreateRecruitService implements RecruitService{
 		RecruitDAO dao = recruitDAO.get("recruitDAOMyBatis");
 		JSONObject object = new JSONObject();
 		
-		RecruitDTO recruit = parseValue((String)map.get("data"));
+		RecruitDTO recruit = parseValue((JSONObject)map.get("data"));
 		
 		if (map.get("images") != null) {
-			String imageUrls = imageUpload((ArrayList<MultipartFile>) map.get("images"));
+			String imageUrls = s3Manager.UploadGetUrl((ArrayList<MultipartFile>) map.get("images"));
 			recruit.setImageUrl(imageUrls);
 		}
 		
@@ -64,41 +63,22 @@ public class CreateRecruitService implements RecruitService{
 		
 		return object.toString();
 	}
-	public RecruitDTO parseValue(String jsonString) {
-		JSONObject jsonObject = new JSONObject(jsonString);
+	public RecruitDTO parseValue(JSONObject data) {
 		RecruitDTO recruit = new RecruitDTO();
-		recruit.setTitle((String)jsonObject.get("title"));
-		recruit.setDescription((String)jsonObject.get("description"));
-		recruit.setCategoryId((int)jsonObject.get("categoryId"));
-		recruit.setDateStart((long)jsonObject.get("dateStart")/1000);
-		recruit.setDateEnd((long)jsonObject.get("dateEnd")/1000);
-		recruit.setHost((String)jsonObject.get("host"));
-		recruit.setUserId((int)jsonObject.get("userId"));
-		recruit.setMaxPersonnel((int)jsonObject.get("maxPersonnel"));
-		recruit.setAddress((String)jsonObject.get("address"));
+		recruit.setTitle((String)data.get("title"));
+		recruit.setDescription((String)data.get("description"));
+		recruit.setCategoryId((int)data.get("categoryId"));
+		recruit.setDateStart((long)data.get("dateStart")/1000);
+		recruit.setDateEnd((long)data.get("dateEnd")/1000);
+		recruit.setHost((String)data.get("host"));
+		recruit.setUserId((int)data.get("userId"));
+		recruit.setMaxPersonnel((int)data.get("maxPersonnel"));
+		recruit.setAddress((String)data.get("address"));
 		
 		return recruit; 
 	}
 	
-	public String imageUpload(List<MultipartFile> images) {
-		String imageUrls = "";
-		
-		for(int i = 0;i<images.size();i++) {
-			try {
-				String imageUrl = s3Manager.upload(images.get(i));
-				imageUrls += imageUrl;
-				
-				if(i != images.size()-1) {
-					imageUrls+=",";
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return imageUrls == ""? null:imageUrls;
-		
-	}
+	
 
 	
 }

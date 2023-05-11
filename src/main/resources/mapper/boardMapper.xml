@@ -13,7 +13,8 @@
 			description,
 			date_created,
 			date_modified,
-			hit
+			hit,
+			image_url
 		)values(
 			#{userId},
 			#{categoryId},
@@ -21,7 +22,8 @@
 			#{description},
 			now(),
 			now(),
-			0
+			0,
+			#{imageUrl}
 		)
 	</insert>
 	
@@ -79,5 +81,9 @@
 	<delete id="delete" parameterType="Integer">
 		delete from board where id = #{id}
 	</delete>
+	
+	<select id="getBoardImageUrl" parameterType="Integer" resultType="String">
+		select image_url from board where id = #{id}
+	</select>
 	
  </mapper>

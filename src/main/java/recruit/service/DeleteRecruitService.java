@@ -34,7 +34,7 @@ public class DeleteRecruitService implements RecruitService{
 			map.put("object", 1);
 			commentDAO.objectDeleted(map);
 			String imageUrlString = recruitDAO.getRecruitImageUrl(id);
-			deleteS3Image(imageUrlString);
+			s3Manager.deleteS3Image(imageUrlString);
 			
 			recruitDAO.delete(id);
 
@@ -50,11 +50,6 @@ public class DeleteRecruitService implements RecruitService{
 		return object.toString();
 	}
 
-	private void deleteS3Image(String imageUrlString) {
-		String[] imageUrlArray= imageUrlString.split(",");
-		for (String imageUrl : imageUrlArray) {
-			s3Manager.delete(imageUrl);
-		}
-	}
+	
 
 }

@@ -19,4 +19,6 @@ public interface BoardDAO {
 
 	void hit(int id);
 
+	String getBoardImageUrl(int id);
+
 }

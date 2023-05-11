@@ -23,10 +23,16 @@ public class GetBoardService implements BoardService{
 		int status = 200;
 		
 		if (map.get("id") != null) {
-			int id = (int)map.get("id");
+			int id = Integer.parseInt((String)map.get("id"));
 			BoardDTO board = dao.getBoard(id);
-			dao.hit(id);
+			
 			if(board != null) {
+				if(board.getImageUrl() != null) {
+					board.setImageUrlArray(board.getImageUrl().split(","));
+					board.setImageUrl(null);
+				}
+				
+				dao.hit(id);
 				object.put("data", new JSONObject(board));				
 			}else {
 				status = 400;

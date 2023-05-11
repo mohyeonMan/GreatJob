@@ -3,9 +3,12 @@ package recruit.service;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,12 +20,11 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class S3Manager {
 	
-	private final AmazonS3 amazonS3;
-	
+	public AmazonS3 amazonS3;
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
 	
@@ -48,6 +50,33 @@ public class S3Manager {
 			amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
 			}
 		
+	}
+	
+	public String UploadGetUrl(List<MultipartFile> images) {
+		String imageUrls = "";
+		
+		for(int i = 0;i<images.size();i++) {
+			try {
+				String imageUrl = upload(images.get(i));
+				imageUrls += imageUrl;
+				
+				if(i != images.size()-1) {
+					imageUrls+=",";
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return imageUrls == ""? null:imageUrls;
+		
+	}
+	
+	public void deleteS3Image(String imageUrlString) {
+		String[] imageUrlArray= imageUrlString.split(",");
+		for (String imageUrl : imageUrlArray) {
+			delete(imageUrl);
+		}
 	}
 
 }

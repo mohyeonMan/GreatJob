@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import board.dao.BoardDAO;
 import comment.dao.CommentDAO;
 import lombok.RequiredArgsConstructor;
+import recruit.service.S3Manager;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,8 @@ public class DeleteBoardService implements BoardService{
 	private Map<String, BoardDAO> boardDAOMap;
 	@Autowired
 	private Map<String, CommentDAO> commentDAOMap;
+	@Autowired
+	private S3Manager s3Manager;
 	
 	@Override
 	public String execute(Map<String, Object> map) {
@@ -31,6 +34,9 @@ public class DeleteBoardService implements BoardService{
 			
 			map.put("object", 0);
 			commentDAO.objectDeleted(map);
+			String imageUrlString = boardDAO.getBoardImageUrl(id);
+			s3Manager.deleteS3Image(imageUrlString);
+			
 			boardDAO.delete(id);
 			
 			if(boardDAO.getBoard(id) != null) {

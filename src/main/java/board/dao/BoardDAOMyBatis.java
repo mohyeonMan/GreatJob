@@ -4,10 +4,18 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import board.bean.BoardDTO;
 import board.bean.BoardQueryOption;
+import lombok.RequiredArgsConstructor;
 
+@Repository
+@Primary
+@Transactional
+@RequiredArgsConstructor
 public class BoardDAOMyBatis implements BoardDAO{
 	@Autowired
 	SqlSession sqlSession;
@@ -40,5 +48,10 @@ public class BoardDAOMyBatis implements BoardDAO{
 	@Override
 	public void hit(int id) {
 		sqlSession.update("boardMapper.hit",id);
+	}
+	
+	@Override
+	public String getBoardImageUrl(int id) {
+		return sqlSession.selectOne("boardMapper.getBoardImageUrl",id);
 	}
 }
