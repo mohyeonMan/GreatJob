@@ -26,6 +26,8 @@ public class ListBoardsService implements BoardService{
 		
 		BoardQueryOption option = parseValue(map);
 		
+		System.out.println("keyword == " + option.getKeyword());
+		
 		List<BoardDTO> boards = dao.listBoards(option);
 		object.put("data", new JSONArray(boards));
 		object.put("status", 200);
