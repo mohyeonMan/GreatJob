@@ -28,4 +28,6 @@ public interface RecruitDAO {
 
 	int isJoined(RecruitEntryDTO entryDTO);
 
+	int recruitEntryDelete(int id);
+
 }

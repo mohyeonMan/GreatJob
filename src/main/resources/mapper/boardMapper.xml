@@ -86,8 +86,6 @@
 					or b.description like CONCAT('%',#{keyword},'%')
 					or u.name like CONCAT('%',#{keyword},'%')
 				)
-				<!-- and (b.title or b.description or u.name)
-				like CONCAT('%',#{keyword},'%') -->
 			</if>
 		</where>
 		) r 

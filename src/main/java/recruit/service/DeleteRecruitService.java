@@ -33,6 +33,7 @@ public class DeleteRecruitService implements RecruitService{
 			
 			map.put("object", 1);
 			commentDAO.objectDeleted(map);
+			recruitDAO.recruitEntryDelete(id);
 			String imageUrlString = recruitDAO.getRecruitImageUrl(id);
 			if(imageUrlString != null) {
 				s3Manager.deleteS3Image(imageUrlString);
