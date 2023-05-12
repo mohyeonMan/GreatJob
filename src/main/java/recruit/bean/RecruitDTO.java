@@ -18,6 +18,7 @@ public class RecruitDTO {
 	private String host;
 	private int userId;
 	private String userName;
+	private String userImageUrl;
 	private int maxPersonnel;
 	private int currentPersonnel;
 	private String address;
