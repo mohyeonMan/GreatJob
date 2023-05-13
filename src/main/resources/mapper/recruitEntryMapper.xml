@@ -29,7 +29,7 @@
 		select count(*) from recruit_entry where user_id = #{userId} and recruit_id = #{recruitId}
 	</select>
 	
-	<delete id="recruitDeleted" parameterType="=Integer">
+	<delete id="recruitDeleted" parameterType="Integer">
 		delete from 
 			recruit_entry
 		where
