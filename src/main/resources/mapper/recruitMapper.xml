@@ -146,7 +146,7 @@
 		</where>
 		) r 
 		where r.rn <![CDATA[>]]>#{startItem} 
-		and r.rn<![CDATA[<=]]>(#{startItem}+#{itemAmount})
+		and r.rn<![CDATA[<=]]>10
 	</select>
 	
 	<select id="getRecruitImageUrl" parameterType="Integer" resultType="String">
