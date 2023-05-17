@@ -78,7 +78,13 @@
 			u.name as "userName",
 			u.image_url as "userImageUrl",
 			r.max_personnel as "maxPersonnel",
-			count(re.user_id) as "currentPersonnel",
+			(
+				select 
+					count(*) 
+				from 
+					recruit_entry re 
+				where re.recruit_id = r.id
+			) as "currentPersonnel",
 			UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
 			UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
 			r.hit as "hit"
@@ -116,7 +122,13 @@
 				u.name as "userName",
 				u.image_url as "userImageUrl",
 				r.max_personnel as "maxPersonnel",
-				(select count(*) from recruit_entry re where re.recruit_id = r.id) as "currentPersonnel",
+				(
+					select 
+						count(*) 
+					from 
+						recruit_entry re 
+					where re.recruit_id = r.id
+				) as "currentPersonnel",
 				UNIX_TIMESTAMP(r.date_created)*1000 as "dateCreated",
 				UNIX_TIMESTAMP(r.date_modified)*1000 as "dateModified",
 				r.hit as "hit"
