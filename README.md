@@ -36,6 +36,14 @@ https://docs.google.com/spreadsheets/d/1HG6CrYYmG775vy4Ucj91HvoAOLzX6U2HQwYBDX4a
 - heroku, AWS S3
 - Git, Github 
 
+
+## 주요 개발사항
+- 무한 대댓글 구현
+- AWS S3 Bucket 생성하여 이미지 관리
+- QueryOption 클래스를 생성하여 중첩조건 검색기능 구현
+- 앱 내에서 우편번호API 사용을 위한 JSP 반환
+
+
 ## ERD
 ![ERD_CUT](https://github.com/mohyeonMan/GreatJob/assets/112916714/1ebb1a88-b5d6-4692-8030-e2bb8d1c948b)
 
